@@ -1,5 +1,5 @@
 //
-//  LGFFreePTTitle.swift
+//  LGFSwiftPTTitle.swift
 //  LGFSwiftPT
 //
 //  Created by 来 on 2019/10/9.
@@ -8,25 +8,25 @@
 
 import UIKit
 
-protocol LGFFreePTTitleDelegate: NSObjectProtocol {
+protocol LGFSwiftPTTitleDelegate: NSObjectProtocol {
     // MARK: - 加载 title 网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架，使用前请打开 lgf_IsNetImage
     /**
      imageView 要加载网络图片的 imageView
      imageUrl 网络图片的 Url
      */
     func lgf_GetTitleNetImage(_ imageView: UIImageView, _ imageUrl: URL!)
-    // MARK: - 实现这个代理来对 LGFFreePTTitle 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等
+    // MARK: - 实现这个代理来对 LGFSwiftPTTitle 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等
     /**
-     lgf_FreePTTitle LGFFreePTTitle 本体
+     lgf_FreePTTitle LGFSwiftPTTitle 本体
      index 所在的 index
-     style LGFFreePTStyle
+     style LGFSwiftPTStyle
      */
-    func lgf_GetTitle(_ lgf_FreePTTitle: UIView, _ index: Int, _ style: LGFFreePTStyle)
+    func lgf_GetTitle(_ lgf_FreePTTitle: UIView, _ index: Int, _ style: LGFSwiftPTStyle)
 }
 
-class LGFFreePTTitle: UIView {
+class LGFSwiftPTTitle: UIView {
     
-    weak var lgf_FreePTTitleDelegate: LGFFreePTTitleDelegate?
+    weak var lgf_FreePTTitleDelegate: LGFSwiftPTTitleDelegate?
     
     @IBOutlet weak var lgf_Title: UILabel!// 标
     @IBOutlet weak var lgf_SubTitle: UILabel!// 子标
@@ -108,7 +108,7 @@ class LGFFreePTTitle: UIView {
         return arr
     }()
     
-    weak var lgf_Style: LGFFreePTStyle! {// 配置用模型
+    weak var lgf_Style: LGFSwiftPTStyle! {// 配置用模型
         didSet {
             // 非主要属性配置
             if lgf_Style.lgf_TitleCornerRadius > 0.0 {
@@ -248,13 +248,13 @@ class LGFFreePTTitle: UIView {
     // MARK: - 标初始化
     /**
      titleText 标文字
-     index 在 LGFFreePT 中的位置下标
+     index 在 LGFSwiftPT 中的位置下标
      style 配置用模型
-     @return LGFFreePTTitle
+     @return LGFSwiftPTTitle
      */
-    class func lgf_AllocTitle(_ titleText: String, _ index: Int,_ style: LGFFreePTStyle!, _ delegate: LGFFreePTTitleDelegate) -> LGFFreePTTitle {
+    class func lgf_AllocTitle(_ titleText: String, _ index: Int,_ style: LGFSwiftPTStyle!, _ delegate: LGFSwiftPTTitleDelegate) -> LGFSwiftPTTitle {
         // 初始化标
-        let title = LGFPTBundle.loadNibNamed(String(describing: LGFFreePTTitle.self.classForCoder()), owner: self, options: nil)?.first as! LGFFreePTTitle
+        let title = LGFPTBundle.loadNibNamed(String(describing: LGFSwiftPTTitle.self.classForCoder()), owner: self, options: nil)?.first as! LGFSwiftPTTitle
         title.tag = index
         title.lgf_FreePTTitleDelegate = delegate
         title.lgf_Style = style
@@ -324,7 +324,7 @@ class LGFFreePTTitle: UIView {
                 }
             }
         }
-        // 这个代理放在最下面，对一些 LGFFreePTStyle 配置的属性拥有最终修改权
+        // 这个代理放在最下面，对一些 LGFSwiftPTStyle 配置的属性拥有最终修改权
         title.lgf_FreePTTitleDelegate?.lgf_GetTitle(title, index, style)
         return title
     }
@@ -332,7 +332,7 @@ class LGFFreePTTitle: UIView {
     // MARK: - 标整体状态改变 核心逻辑部分
     /**
      progress 外部 progress
-     isSelectTitle 是否是要选中的 LGFFreePTTitle
+     isSelectTitle 是否是要选中的 LGFSwiftPTTitle
      selectIndex 选中的 index
      unselectIndex 未选中的 index
      */

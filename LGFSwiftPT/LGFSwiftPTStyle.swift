@@ -1,5 +1,5 @@
 //
-//  LGFFreePTStyle.swift
+//  LGFSwiftPTStyle.swift
 //  LGFSwiftPT
 //
 //  Created by 来 on 2019/10/9.
@@ -43,7 +43,7 @@ enum lgf_FreeTitleLineWidthType {
 }
 
 
-class LGFFreePTStyle: NSObject {
+class LGFSwiftPTStyle: NSObject {
     // 开启 UI 调试模式（自定义 line 动画时可打开）
     var lgf_StartDebug: Bool = false
     // 展示自定义动画辅助 Print
@@ -306,7 +306,7 @@ class LGFFreePTStyle: NSObject {
     var lgf_LineWidthType: lgf_FreeTitleLineWidthType = .equalTitle
     // title 底部滚动线 宽度 默认 0 - 设置 LGFTitleLineType 固定宽度(FixedWith)时有效
     var lgf_LineWidth: CGFloat = 0.0
-    // title 底部滚动线 高度 默认 1.0 (line_height最大高度为 LGFFreePT 的高度)
+    // title 底部滚动线 高度 默认 1.0 (line_height最大高度为 LGFSwiftPT 的高度)
     var lgf_LineHeight: CGFloat = 1.0
     // title 底部滚动线相对于底部位置 默认 0 - 贴于底部
     var lgf_LineBottom: CGFloat = 0.0

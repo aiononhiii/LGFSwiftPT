@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, LGFFreePTDelegate {
+class ViewController: UIViewController, LGFSwiftPTDelegate {
     func lgf_SelectFreePTTitle(_ selectIndex: Int) {
         
     }
@@ -17,7 +17,7 @@ class ViewController: UIViewController, LGFFreePTDelegate {
     
     var collectionView: UICollectionView!
     
-    var freePT: LGFFreePTView!
+    var freePT: LGFSwiftPT!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class ViewController: UIViewController, LGFFreePTDelegate {
         
         sview = UIView.init(frame: CGRect.init(x: 0, y: 20, width: UIScreen.main.bounds.width, height: 50))
         view.addSubview(sview)
-        let style = LGFFreePTStyle()
+        let style = LGFSwiftPTStyle()
         style.lgf_TitleFixedWidth = 50
         style.lgf_LineHeight = 5
         style.lgf_LineWidth = 5
@@ -46,7 +46,7 @@ class ViewController: UIViewController, LGFFreePTDelegate {
         style.lgf_StartDebug = true
         style.lgf_TitleTransformSX = 1.2
         
-        freePT = LGFFreePTView.lgf(style, self, sview, collectionView)
+        freePT = LGFSwiftPT.lgf(style, self, sview, collectionView)
         freePT.lgf_FreePTDelegate = self
         freePT.lgf_Style?.lgf_Titles = ["转入", "转出", "转入", "转出","转入", "转出","转入", "转出", "转出","转入", "转出","转入", "转出", "转出","转入", "转出","转入", "转出"]
         freePT.lgf_ReloadTitle()

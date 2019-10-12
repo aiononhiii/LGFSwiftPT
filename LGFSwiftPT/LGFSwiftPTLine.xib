@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="LGFFreePTLine" id="E2O-9Q-YTf" customClass="LGFFreePTLine" customModule="LGFSwiftPTDemo" customModuleProvider="target">
+        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="LGFSwiftPTLine" id="E2O-9Q-YTf" customClass="LGFSwiftPTLine" customModule="LGFSwiftPTDemo" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="96" height="6"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" red="0.1647058824" green="0.38431372549999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
