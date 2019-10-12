@@ -1,5 +1,5 @@
 //
-//  LGFSwiftPT.swift
+//  LGFSwiftPTView.swift
 //  LGFSwiftPT
 //
 //  Created by 来 on 2019/10/9.
@@ -99,7 +99,7 @@ import UIKit
     @objc optional func lgf_FreePageViewCustomizeAnimationConfig(_ attributes: [UICollectionViewLayoutAttributes], _ flowLayout: UICollectionViewFlowLayout)
 }
 
-class LGFSwiftPT: UIScrollView {
+class LGFSwiftPTView: UIScrollView {
     
     weak var lgf_FreePTDelegate: LGFSwiftPTDelegate?
     weak var lgf_SVC: UIViewController?
@@ -125,16 +125,16 @@ class LGFSwiftPT: UIScrollView {
     }// 操作中是否禁用手势
     
     // MARK: - 初始化配置
-    class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ SV: UIView!, _ PV: UICollectionView!) -> LGFSwiftPT {
+    class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ SV: UIView!, _ PV: UICollectionView!) -> LGFSwiftPTView {
         return lgf(style, SVC, SV, PV, .zero)
     }
     // MARK: - 初始化配置(纯代码)
-    class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ PV: UICollectionView!, _ frame: CGRect) -> LGFSwiftPT {
+    class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ PV: UICollectionView!, _ frame: CGRect) -> LGFSwiftPTView {
         return lgf(style, SVC, nil, PV, frame)
     }
-    class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ SV: UIView!, _ PV: UICollectionView!, _ frame: CGRect) -> LGFSwiftPT {
+    class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ SV: UIView!, _ PV: UICollectionView!, _ frame: CGRect) -> LGFSwiftPTView {
         assert(style.lgf_UnSelectImageNames.count == style.lgf_SelectImageNames.count, "🤖️:选中图片数组和未选中图片数组count必须一致")
-        let freePT = LGFPTBundle.loadNibNamed(String(describing: LGFSwiftPT.self.classForCoder()), owner: self, options: nil)?.first as! LGFSwiftPT
+        let freePT = LGFPTBundle.loadNibNamed(String(describing: LGFSwiftPTView.self.classForCoder()), owner: self, options: nil)?.first as! LGFSwiftPTView
         freePT.lgf_Style = style
         freePT.lgf_PageView = PV
         freePT.lgf_SVC = SVC
@@ -294,7 +294,7 @@ class LGFSwiftPT: UIScrollView {
 }
 
 // MARK: - 标点击
-extension LGFSwiftPT {
+extension LGFSwiftPTView {
     // MARK: - 标点击事件 滚动到指定tag位置
     @objc func lgf_TitleClick(_ sender: UITapGestureRecognizer) {
         if !lgf_AutoSelectIndex(sender.view!.tag) {
@@ -352,7 +352,7 @@ extension LGFSwiftPT {
 }
 
 // MARK: - 外层分页控制器滚动
-extension LGFSwiftPT {
+extension LGFSwiftPTView {
     // MARK: - 外层分页控制器 contentOffset 转化
     func lgf_ConvertToProgress(_ contentOffsetX: CGFloat) {
         let selectProgress = contentOffsetX / lgf_PageView.lgfpt_Width
@@ -457,7 +457,7 @@ extension LGFSwiftPT {
 }
 
 // MARK: - 标回位
-extension LGFSwiftPT {
+extension LGFSwiftPTView {
     // MARK: - 调整title位置 使其滚动到中间
     func lgf_TitleAutoScrollToTheMiddleExecutionDelegate(_ isExecution: Bool, _ autoScrollDuration: TimeInterval) {
         if lgf_SelectIndex > lgf_TitleButtons.count - 1 || lgf_TitleButtons.count == 0 {
@@ -484,7 +484,7 @@ extension LGFSwiftPT {
 }
 
 // MARK: - 核心逻辑
-extension LGFSwiftPT {
+extension LGFSwiftPTView {
     // MARK: - 取得要改变的 X 和 Width 核心逻辑部分(注意：根据 lgf_LineWidthType 的类型，返回的结果会不一样)
     func lgf_GetXAndW(_ selectTitle: LGFSwiftPTTitle, _ unSelectTitle: LGFSwiftPTTitle) -> (CGFloat, CGFloat, CGFloat, CGFloat) {
         var selectX: CGFloat = 0.0
@@ -539,7 +539,7 @@ extension LGFSwiftPT {
 }
 
 // MARK: - 部分功能性代理
-extension LGFSwiftPT: LGFSwiftPTLineDelegate {
+extension LGFSwiftPTView: LGFSwiftPTLineDelegate {
     func lgf_GetLineNetImage(_ imageView: UIImageView, _ imageUrl: URL!) {
         lgf_FreePTDelegate?.lgf_GetNetImage?(imageView, imageUrl)
     }
@@ -548,7 +548,7 @@ extension LGFSwiftPT: LGFSwiftPTLineDelegate {
     }
 }
 
-extension LGFSwiftPT: LGFSwiftPTTitleDelegate {
+extension LGFSwiftPTView: LGFSwiftPTTitleDelegate {
     func lgf_GetTitleNetImage(_ imageView: UIImageView, _ imageUrl: URL!) {
         lgf_FreePTDelegate?.lgf_GetNetImage?(imageView, imageUrl)
     }
@@ -557,7 +557,7 @@ extension LGFSwiftPT: LGFSwiftPTTitleDelegate {
     }
 }
 
-extension LGFSwiftPT: LGFSwiftPTFlowLayoutDelegate {
+extension LGFSwiftPTView: LGFSwiftPTFlowLayoutDelegate {
     func lgf_FreePageViewCustomizeAnimation(_ attributes: [UICollectionViewLayoutAttributes], _ flowLayout: UICollectionViewFlowLayout) {
         lgf_FreePTDelegate?.lgf_FreePageViewCustomizeAnimationConfig?(attributes, flowLayout)
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1055832351D80700CD5B1A /* LGFSwiftPT.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2B1055822351D80700CD5B1A /* LGFSwiftPT.podspec */; };
 		2B394E86234F44660067AD69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394E85234F44660067AD69 /* AppDelegate.swift */; };
 		2B394E88234F44660067AD69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394E87234F44660067AD69 /* ViewController.swift */; };
 		2B394E8B234F44660067AD69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B394E89234F44660067AD69 /* Main.storyboard */; };
@@ -16,14 +17,15 @@
 		2B394EC8234F45780067AD69 /* LGFSwiftPTLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EBF234F45780067AD69 /* LGFSwiftPTLine.swift */; };
 		2B394EC9234F45780067AD69 /* LGFSwiftPTTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B394EC0234F45780067AD69 /* LGFSwiftPTTitle.xib */; };
 		2B394ECA234F45780067AD69 /* LGFSwiftPTMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EC1234F45780067AD69 /* LGFSwiftPTMethod.swift */; };
-		2B394ECB234F45780067AD69 /* LGFSwiftPT.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B394EC2234F45780067AD69 /* LGFSwiftPT.xib */; };
+		2B394ECB234F45780067AD69 /* LGFSwiftPTView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B394EC2234F45780067AD69 /* LGFSwiftPTView.xib */; };
 		2B394ECC234F45780067AD69 /* LGFSwiftPTLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B394EC3234F45780067AD69 /* LGFSwiftPTLine.xib */; };
 		2B394ECD234F45780067AD69 /* LGFSwiftPTTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EC4234F45780067AD69 /* LGFSwiftPTTitle.swift */; };
 		2B394ECE234F45780067AD69 /* LGFSwiftPTStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EC5234F45780067AD69 /* LGFSwiftPTStyle.swift */; };
-		2B394ECF234F45780067AD69 /* LGFSwiftPT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EC6234F45780067AD69 /* LGFSwiftPT.swift */; };
+		2B394ECF234F45780067AD69 /* LGFSwiftPTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EC6234F45780067AD69 /* LGFSwiftPTView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B1055822351D80700CD5B1A /* LGFSwiftPT.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LGFSwiftPT.podspec; sourceTree = SOURCE_ROOT; };
 		2B394E82234F44660067AD69 /* LGFSwiftPTDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGFSwiftPTDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B394E85234F44660067AD69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B394E87234F44660067AD69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,11 +37,11 @@
 		2B394EBF234F45780067AD69 /* LGFSwiftPTLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFSwiftPTLine.swift; sourceTree = "<group>"; };
 		2B394EC0234F45780067AD69 /* LGFSwiftPTTitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFSwiftPTTitle.xib; sourceTree = "<group>"; };
 		2B394EC1234F45780067AD69 /* LGFSwiftPTMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFSwiftPTMethod.swift; sourceTree = "<group>"; };
-		2B394EC2234F45780067AD69 /* LGFSwiftPT.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFSwiftPT.xib; sourceTree = "<group>"; };
+		2B394EC2234F45780067AD69 /* LGFSwiftPTView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFSwiftPTView.xib; sourceTree = "<group>"; };
 		2B394EC3234F45780067AD69 /* LGFSwiftPTLine.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFSwiftPTLine.xib; sourceTree = "<group>"; };
 		2B394EC4234F45780067AD69 /* LGFSwiftPTTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFSwiftPTTitle.swift; sourceTree = "<group>"; };
 		2B394EC5234F45780067AD69 /* LGFSwiftPTStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFSwiftPTStyle.swift; sourceTree = "<group>"; };
-		2B394EC6234F45780067AD69 /* LGFSwiftPT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFSwiftPT.swift; sourceTree = "<group>"; };
+		2B394EC6234F45780067AD69 /* LGFSwiftPTView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFSwiftPTView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 		2B394E84234F44660067AD69 /* LGFSwiftPTDemo */ = {
 			isa = PBXGroup;
 			children = (
+				2B1055822351D80700CD5B1A /* LGFSwiftPT.podspec */,
 				2B394E85234F44660067AD69 /* AppDelegate.swift */,
 				2B394E87234F44660067AD69 /* ViewController.swift */,
 				2B394E89234F44660067AD69 /* Main.storyboard */,
@@ -90,11 +93,11 @@
 				2B394EBF234F45780067AD69 /* LGFSwiftPTLine.swift */,
 				2B394EC0234F45780067AD69 /* LGFSwiftPTTitle.xib */,
 				2B394EC1234F45780067AD69 /* LGFSwiftPTMethod.swift */,
-				2B394EC2234F45780067AD69 /* LGFSwiftPT.xib */,
+				2B394EC2234F45780067AD69 /* LGFSwiftPTView.xib */,
 				2B394EC3234F45780067AD69 /* LGFSwiftPTLine.xib */,
 				2B394EC4234F45780067AD69 /* LGFSwiftPTTitle.swift */,
 				2B394EC5234F45780067AD69 /* LGFSwiftPTStyle.swift */,
-				2B394EC6234F45780067AD69 /* LGFSwiftPT.swift */,
+				2B394EC6234F45780067AD69 /* LGFSwiftPTView.swift */,
 			);
 			path = LGFSwiftPT;
 			sourceTree = "<group>";
@@ -159,8 +162,9 @@
 			files = (
 				2B394EC9234F45780067AD69 /* LGFSwiftPTTitle.xib in Resources */,
 				2B394ECC234F45780067AD69 /* LGFSwiftPTLine.xib in Resources */,
+				2B1055832351D80700CD5B1A /* LGFSwiftPT.podspec in Resources */,
 				2B394E90234F44660067AD69 /* LaunchScreen.storyboard in Resources */,
-				2B394ECB234F45780067AD69 /* LGFSwiftPT.xib in Resources */,
+				2B394ECB234F45780067AD69 /* LGFSwiftPTView.xib in Resources */,
 				2B394E8D234F44660067AD69 /* Assets.xcassets in Resources */,
 				2B394E8B234F44660067AD69 /* Main.storyboard in Resources */,
 			);
@@ -173,7 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B394ECF234F45780067AD69 /* LGFSwiftPT.swift in Sources */,
+				2B394ECF234F45780067AD69 /* LGFSwiftPTView.swift in Sources */,
 				2B394ECD234F45780067AD69 /* LGFSwiftPTTitle.swift in Sources */,
 				2B394ECE234F45780067AD69 /* LGFSwiftPTStyle.swift in Sources */,
 				2B394E88234F44660067AD69 /* ViewController.swift in Sources */,

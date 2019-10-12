@@ -17,7 +17,7 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
     
     var collectionView: UICollectionView!
     
-    var freePT: LGFSwiftPT!
+    var freePT: LGFSwiftPTView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,7 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
         style.lgf_StartDebug = true
         style.lgf_TitleTransformSX = 1.2
         
-        freePT = LGFSwiftPT.lgf(style, self, sview, collectionView)
+        freePT = LGFSwiftPTView.lgf(style, self, sview, collectionView)
         freePT.lgf_FreePTDelegate = self
         freePT.lgf_Style?.lgf_Titles = ["转入", "转出", "转入", "转出","转入", "转出","转入", "转出", "转出","转入", "转出","转入", "转出", "转出","转入", "转出","转入", "转出"]
         freePT.lgf_ReloadTitle()
