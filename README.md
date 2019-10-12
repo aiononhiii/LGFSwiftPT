@@ -1,13 +1,15 @@
-## LGFFreePT
+## LGFSwiftPT (Swift4.2+)
 可自由添加到指定位置的分页标控件
+
+## 本代码为 LGFFreePT 的 Swift 版本,简化部分语法，原先OC版本的 style 配法不变，可使用 LGFFreePT（OC）版本的示例代码生成的 style
 
 ## 提示
 * 本示例代码仅支持 9.0+, 本控件可以支持到 8.0+
-* 稳定期过后我会出一个 swift4 的版本，如果有问题请反馈给我哈
+* 本示例代码仅支持 swift4.2 +
 
 ## 制作目的
 * 想要把分页标放在视图任意位置
-* 把分页用的子控制器 Page 留给大家自己定义（传给 LGFFreePT 一个自己初始化的 UICollectionView，在自己的控制器里实现其代理，并在 cell 上添加子控制器就行）
+* 把分页用的子控制器 Page 留给大家自己定义（传给 LGFSwiftPT 一个自己初始化的 UICollectionView，在自己的控制器里实现其代理，并在 cell 上添加子控制器就行）
 
 ## 部分效果展示
 * 毛毛虫底部线对准title
@@ -64,7 +66,7 @@
 * 由于用法比较多，代码写的比较自由，有必要开到 h 文件的我全开到 h 文件了，有些效果也需要自己组合摸索，部分我未实现的效果我做了注释和报异常处理，如果组合中碰到崩溃有可能是我设置的异常，请查看异常Log.（具体还是下载我的示例代码，我的示例代码里列了一些我自己组合的效果，都是一些市面上主流的效果）
 
 ## 使用方式
-* pod 'LGFFreePT' 或者  [LGFFreePT](https://github.com/aiononhiii/LGFFreePT)
+* pod 'LGFSwiftPT' 或者  [LGFSwiftPT](https://github.com/aiononhiii/LGFSwiftPT)
 如果提示错误，请更新你的 cocoaPods ~>1.7.0
 
 ## 我的邮箱 - 452354033@qq.com

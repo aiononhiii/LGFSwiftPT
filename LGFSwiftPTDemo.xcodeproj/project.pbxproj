@@ -12,15 +12,15 @@
 		2B394E8B234F44660067AD69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B394E89234F44660067AD69 /* Main.storyboard */; };
 		2B394E8D234F44660067AD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B394E8C234F44660067AD69 /* Assets.xcassets */; };
 		2B394E90234F44660067AD69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B394E8E234F44660067AD69 /* LaunchScreen.storyboard */; };
-		2B394EC7234F45780067AD69 /* LGFFreePTFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EBE234F45780067AD69 /* LGFFreePTFlowLayout.swift */; };
-		2B394EC8234F45780067AD69 /* LGFFreePTLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EBF234F45780067AD69 /* LGFFreePTLine.swift */; };
-		2B394EC9234F45780067AD69 /* LGFFreePTTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B394EC0234F45780067AD69 /* LGFFreePTTitle.xib */; };
-		2B394ECA234F45780067AD69 /* LGFFreePTMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EC1234F45780067AD69 /* LGFFreePTMethod.swift */; };
-		2B394ECB234F45780067AD69 /* LGFFreePTView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B394EC2234F45780067AD69 /* LGFFreePTView.xib */; };
-		2B394ECC234F45780067AD69 /* LGFFreePTLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B394EC3234F45780067AD69 /* LGFFreePTLine.xib */; };
-		2B394ECD234F45780067AD69 /* LGFFreePTTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EC4234F45780067AD69 /* LGFFreePTTitle.swift */; };
-		2B394ECE234F45780067AD69 /* LGFFreePTStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EC5234F45780067AD69 /* LGFFreePTStyle.swift */; };
-		2B394ECF234F45780067AD69 /* LGFFreePTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EC6234F45780067AD69 /* LGFFreePTView.swift */; };
+		2B394EC7234F45780067AD69 /* LGFSwiftPTFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EBE234F45780067AD69 /* LGFSwiftPTFlowLayout.swift */; };
+		2B394EC8234F45780067AD69 /* LGFSwiftPTLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EBF234F45780067AD69 /* LGFSwiftPTLine.swift */; };
+		2B394EC9234F45780067AD69 /* LGFSwiftPTTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B394EC0234F45780067AD69 /* LGFSwiftPTTitle.xib */; };
+		2B394ECA234F45780067AD69 /* LGFSwiftPTMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EC1234F45780067AD69 /* LGFSwiftPTMethod.swift */; };
+		2B394ECB234F45780067AD69 /* LGFSwiftPT.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B394EC2234F45780067AD69 /* LGFSwiftPT.xib */; };
+		2B394ECC234F45780067AD69 /* LGFSwiftPTLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B394EC3234F45780067AD69 /* LGFSwiftPTLine.xib */; };
+		2B394ECD234F45780067AD69 /* LGFSwiftPTTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EC4234F45780067AD69 /* LGFSwiftPTTitle.swift */; };
+		2B394ECE234F45780067AD69 /* LGFSwiftPTStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EC5234F45780067AD69 /* LGFSwiftPTStyle.swift */; };
+		2B394ECF234F45780067AD69 /* LGFSwiftPT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394EC6234F45780067AD69 /* LGFSwiftPT.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,15 +31,15 @@
 		2B394E8C234F44660067AD69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B394E8F234F44660067AD69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B394E91234F44660067AD69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2B394EBE234F45780067AD69 /* LGFFreePTFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFFreePTFlowLayout.swift; sourceTree = "<group>"; };
-		2B394EBF234F45780067AD69 /* LGFFreePTLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFFreePTLine.swift; sourceTree = "<group>"; };
-		2B394EC0234F45780067AD69 /* LGFFreePTTitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFFreePTTitle.xib; sourceTree = "<group>"; };
-		2B394EC1234F45780067AD69 /* LGFFreePTMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFFreePTMethod.swift; sourceTree = "<group>"; };
-		2B394EC2234F45780067AD69 /* LGFFreePTView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFFreePTView.xib; sourceTree = "<group>"; };
-		2B394EC3234F45780067AD69 /* LGFFreePTLine.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFFreePTLine.xib; sourceTree = "<group>"; };
-		2B394EC4234F45780067AD69 /* LGFFreePTTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFFreePTTitle.swift; sourceTree = "<group>"; };
-		2B394EC5234F45780067AD69 /* LGFFreePTStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFFreePTStyle.swift; sourceTree = "<group>"; };
-		2B394EC6234F45780067AD69 /* LGFFreePTView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFFreePTView.swift; sourceTree = "<group>"; };
+		2B394EBE234F45780067AD69 /* LGFSwiftPTFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFSwiftPTFlowLayout.swift; sourceTree = "<group>"; };
+		2B394EBF234F45780067AD69 /* LGFSwiftPTLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFSwiftPTLine.swift; sourceTree = "<group>"; };
+		2B394EC0234F45780067AD69 /* LGFSwiftPTTitle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFSwiftPTTitle.xib; sourceTree = "<group>"; };
+		2B394EC1234F45780067AD69 /* LGFSwiftPTMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFSwiftPTMethod.swift; sourceTree = "<group>"; };
+		2B394EC2234F45780067AD69 /* LGFSwiftPT.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFSwiftPT.xib; sourceTree = "<group>"; };
+		2B394EC3234F45780067AD69 /* LGFSwiftPTLine.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LGFSwiftPTLine.xib; sourceTree = "<group>"; };
+		2B394EC4234F45780067AD69 /* LGFSwiftPTTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFSwiftPTTitle.swift; sourceTree = "<group>"; };
+		2B394EC5234F45780067AD69 /* LGFSwiftPTStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFSwiftPTStyle.swift; sourceTree = "<group>"; };
+		2B394EC6234F45780067AD69 /* LGFSwiftPT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGFSwiftPT.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,15 +86,15 @@
 		2B394EBD234F45780067AD69 /* LGFSwiftPT */ = {
 			isa = PBXGroup;
 			children = (
-				2B394EBE234F45780067AD69 /* LGFFreePTFlowLayout.swift */,
-				2B394EBF234F45780067AD69 /* LGFFreePTLine.swift */,
-				2B394EC0234F45780067AD69 /* LGFFreePTTitle.xib */,
-				2B394EC1234F45780067AD69 /* LGFFreePTMethod.swift */,
-				2B394EC2234F45780067AD69 /* LGFFreePTView.xib */,
-				2B394EC3234F45780067AD69 /* LGFFreePTLine.xib */,
-				2B394EC4234F45780067AD69 /* LGFFreePTTitle.swift */,
-				2B394EC5234F45780067AD69 /* LGFFreePTStyle.swift */,
-				2B394EC6234F45780067AD69 /* LGFFreePTView.swift */,
+				2B394EBE234F45780067AD69 /* LGFSwiftPTFlowLayout.swift */,
+				2B394EBF234F45780067AD69 /* LGFSwiftPTLine.swift */,
+				2B394EC0234F45780067AD69 /* LGFSwiftPTTitle.xib */,
+				2B394EC1234F45780067AD69 /* LGFSwiftPTMethod.swift */,
+				2B394EC2234F45780067AD69 /* LGFSwiftPT.xib */,
+				2B394EC3234F45780067AD69 /* LGFSwiftPTLine.xib */,
+				2B394EC4234F45780067AD69 /* LGFSwiftPTTitle.swift */,
+				2B394EC5234F45780067AD69 /* LGFSwiftPTStyle.swift */,
+				2B394EC6234F45780067AD69 /* LGFSwiftPT.swift */,
 			);
 			path = LGFSwiftPT;
 			sourceTree = "<group>";
@@ -157,10 +157,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B394EC9234F45780067AD69 /* LGFFreePTTitle.xib in Resources */,
-				2B394ECC234F45780067AD69 /* LGFFreePTLine.xib in Resources */,
+				2B394EC9234F45780067AD69 /* LGFSwiftPTTitle.xib in Resources */,
+				2B394ECC234F45780067AD69 /* LGFSwiftPTLine.xib in Resources */,
 				2B394E90234F44660067AD69 /* LaunchScreen.storyboard in Resources */,
-				2B394ECB234F45780067AD69 /* LGFFreePTView.xib in Resources */,
+				2B394ECB234F45780067AD69 /* LGFSwiftPT.xib in Resources */,
 				2B394E8D234F44660067AD69 /* Assets.xcassets in Resources */,
 				2B394E8B234F44660067AD69 /* Main.storyboard in Resources */,
 			);
@@ -173,14 +173,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B394ECF234F45780067AD69 /* LGFFreePTView.swift in Sources */,
-				2B394ECD234F45780067AD69 /* LGFFreePTTitle.swift in Sources */,
-				2B394ECE234F45780067AD69 /* LGFFreePTStyle.swift in Sources */,
+				2B394ECF234F45780067AD69 /* LGFSwiftPT.swift in Sources */,
+				2B394ECD234F45780067AD69 /* LGFSwiftPTTitle.swift in Sources */,
+				2B394ECE234F45780067AD69 /* LGFSwiftPTStyle.swift in Sources */,
 				2B394E88234F44660067AD69 /* ViewController.swift in Sources */,
-				2B394EC8234F45780067AD69 /* LGFFreePTLine.swift in Sources */,
+				2B394EC8234F45780067AD69 /* LGFSwiftPTLine.swift in Sources */,
 				2B394E86234F44660067AD69 /* AppDelegate.swift in Sources */,
-				2B394EC7234F45780067AD69 /* LGFFreePTFlowLayout.swift in Sources */,
-				2B394ECA234F45780067AD69 /* LGFFreePTMethod.swift in Sources */,
+				2B394EC7234F45780067AD69 /* LGFSwiftPTFlowLayout.swift in Sources */,
+				2B394ECA234F45780067AD69 /* LGFSwiftPTMethod.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

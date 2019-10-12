@@ -1,5 +1,5 @@
 //
-//  LGFFreePTFlowLayout.swift
+//  LGFSwiftPTFlowLayout.swift
 //  LGFSwiftPT
 //
 //  Created by 来 on 2019/10/10.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol LGFFreePTFlowLayoutDelegate: NSObjectProtocol {
+protocol LGFSwiftPTFlowLayoutDelegate: NSObjectProtocol {
     // MARK: - 自定义分页动画（我这里提供一个配置入口，也可以自己在外面配置 UICollectionViewFlowLayout 原理一样，自己在外面配置的话记得配置 self.scrollDirection = .horizontal self.minimumInteritemSpacing = 0 self.minimumLineSpacing = 0 self.sectionInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)）
     func lgf_FreePageViewCustomizeAnimation(_ attributes: [UICollectionViewLayoutAttributes], _ flowLayout: UICollectionViewFlowLayout)
 }
 
-class LGFFreePTFlowLayout: UICollectionViewFlowLayout {
-    weak var lgf_FreePTFlowLayoutDelegate: LGFFreePTFlowLayoutDelegate?
+class LGFSwiftPTFlowLayout: UICollectionViewFlowLayout {
+    weak var lgf_FreePTFlowLayoutDelegate: LGFSwiftPTFlowLayoutDelegate?
     var lgf_PVAnimationType: lgf_FreePageViewAnimationType!
     
     override func prepare() {
