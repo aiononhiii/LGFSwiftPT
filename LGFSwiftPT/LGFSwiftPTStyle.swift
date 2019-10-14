@@ -8,7 +8,7 @@
 
 import UIKit
 
-public let LGFPTBundle = Bundle.init(path: Bundle.init(for: LGFSwiftPTView.self).path(forResource: "LGFSwiftPT", ofType: "bundle") ?? "") ?? Bundle.main
+public let LGFPTBundle = Bundle.init(path: Bundle.init(for: LGFSwiftPT.self).path(forResource: "LGFSwiftPT", ofType: "bundle") ?? "") ?? Bundle.main
 
 public enum lgf_FreePageViewAnimationType {
     case defult// 默认分页动画
