@@ -45,6 +45,7 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
         style.lgf_LineWidthType = .equalTitleSTR
         style.lgf_StartDebug = true
         style.lgf_TitleTransformSX = 1.2
+        style.lgf_PVAnimationType = .topToBottom
         
         freePT = LGFSwiftPTView.lgf(style, self, sview, collectionView)
         freePT.lgf_FreePTDelegate = self

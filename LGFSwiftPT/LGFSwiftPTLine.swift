@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol LGFSwiftPTLineDelegate: NSObjectProtocol {
+public protocol LGFSwiftPTLineDelegate: NSObjectProtocol {
     // MARK: - 加载 line 网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架，使用前请打开 lgf_IsNetImage
     /**
      imageView 要加载网络图片的 imageView
@@ -23,10 +23,10 @@ protocol LGFSwiftPTLineDelegate: NSObjectProtocol {
     func lgf_GetLine(_ lgf_FreePTLine: UIImageView, _ style: LGFSwiftPTStyle)
 }
 
-class LGFSwiftPTLine: UIImageView {
-
+public class LGFSwiftPTLine: UIImageView {
+    
     weak var lgf_FreePTLineDelegate: LGFSwiftPTLineDelegate?
-
+    
     weak var lgf_Style: LGFSwiftPTStyle! {// 配置用模型
         didSet {
             // 坐标配置
@@ -59,7 +59,7 @@ class LGFSwiftPTLine: UIImageView {
             }
             contentMode = lgf_Style.lgf_LineImageContentMode
             backgroundColor = lgf_Style.lgf_LineColor
-
+            
         }
     }
     

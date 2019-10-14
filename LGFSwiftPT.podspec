@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
 s.name        = "LGFSwiftPT"
-s.version     = "0.0.3"
+s.version     = "0.0.4"
 s.summary     = "LGFSwiftPT"
 s.homepage    = "https://github.com/aiononhiii/LGFSwiftPT.git"
 s.license     = { :type => 'MIT', :file => 'LICENSE' }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc protocol LGFSwiftPTDelegate: NSObjectProtocol {
+@objc public protocol LGFSwiftPTDelegate: NSObjectProtocol {
     // MARK: - 标动画完全结束后的选中标回调代理
     @objc func lgf_SelectFreePTTitle(_ selectIndex: Int)
     // MARK: - 以 contentOffsetX 匹配最精确的选中标回调代理
@@ -99,15 +99,15 @@ import UIKit
     @objc optional func lgf_FreePageViewCustomizeAnimationConfig(_ attributes: [UICollectionViewLayoutAttributes], _ flowLayout: UICollectionViewFlowLayout)
 }
 
-class LGFSwiftPTView: UIScrollView {
+public class LGFSwiftPTView: UIScrollView {
     
-    weak var lgf_FreePTDelegate: LGFSwiftPTDelegate?
-    weak var lgf_SVC: UIViewController?
-    var lgf_TitleLine: LGFSwiftPTLine!
-    var lgf_Style: LGFSwiftPTStyle!
-    lazy var lgf_TitleButtons: [LGFSwiftPTTitle] = []
-    var lgf_SelectIndex: Int = 0
-    var lgf_UnSelectIndex: Int = 0
+    public weak var lgf_FreePTDelegate: LGFSwiftPTDelegate?
+    public weak var lgf_SVC: UIViewController?
+    public var lgf_TitleLine: LGFSwiftPTLine!
+    public var lgf_Style: LGFSwiftPTStyle!
+    public lazy var lgf_TitleButtons: [LGFSwiftPTTitle] = []
+    public var lgf_SelectIndex: Int = 0
+    public var lgf_UnSelectIndex: Int = 0
     
     fileprivate var lgf_PageView: UICollectionView!// 外部分页控制器
     fileprivate var lgf_RealSelectIndex: Int!// 最准确的选中标值
@@ -125,14 +125,14 @@ class LGFSwiftPTView: UIScrollView {
     }// 操作中是否禁用手势
     
     // MARK: - 初始化配置
-    class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ SV: UIView!, _ PV: UICollectionView!) -> LGFSwiftPTView {
+    public class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ SV: UIView!, _ PV: UICollectionView!) -> LGFSwiftPTView {
         return lgf(style, SVC, SV, PV, .zero)
     }
     // MARK: - 初始化配置(纯代码)
-    class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ PV: UICollectionView!, _ frame: CGRect) -> LGFSwiftPTView {
+    public class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ PV: UICollectionView!, _ frame: CGRect) -> LGFSwiftPTView {
         return lgf(style, SVC, nil, PV, frame)
     }
-    class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ SV: UIView!, _ PV: UICollectionView!, _ frame: CGRect) -> LGFSwiftPTView {
+    public class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ SV: UIView!, _ PV: UICollectionView!, _ frame: CGRect) -> LGFSwiftPTView {
         assert(style.lgf_UnSelectImageNames.count == style.lgf_SelectImageNames.count, "🤖️:选中图片数组和未选中图片数组count必须一致")
         let freePT = LGFPTBundle.loadNibNamed(String(describing: LGFSwiftPTView.self.classForCoder()), owner: self, options: nil)?.first as! LGFSwiftPTView
         freePT.lgf_Style = style
@@ -171,16 +171,16 @@ class LGFSwiftPTView: UIScrollView {
     }
     
     // MARK: - 刷新所有标
-    func lgf_ReloadTitle() {
+    public func lgf_ReloadTitle() {
         lgf_ReloadTitleAndSelectIndex(0, false)
     }
-    func lgf_ReloadTitleAndSelectIndex(_ selectIndex: Int, _ animated: Bool) {
+    public func lgf_ReloadTitleAndSelectIndex(_ selectIndex: Int, _ animated: Bool) {
         lgf_ReloadTitleAndSelectIndex(selectIndex, true, animated)
     }
-    func lgf_ReloadTitleAndSelectIndex(_ selectIndex: Int, _ isExecutionDelegate: Bool, _ animated: Bool) {
+    public func lgf_ReloadTitleAndSelectIndex(_ selectIndex: Int, _ isExecutionDelegate: Bool, _ animated: Bool) {
         lgf_ReloadTitleAndSelectIndex(selectIndex, isExecutionDelegate, true, animated)
     }
-    func lgf_ReloadTitleAndSelectIndex(_ selectIndex: Int, _ isExecutionDelegate: Bool, _ isReloadPageCV: Bool, _ animated: Bool) {
+    public func lgf_ReloadTitleAndSelectIndex(_ selectIndex: Int, _ isExecutionDelegate: Bool, _ isReloadPageCV: Bool, _ animated: Bool) {
         if lgf_Style.lgf_Titles.count == 0 { return }
         if lgf_PageView != nil {
             assert(lgf_Style.lgf_Titles.count == lgf_PageView.dataSource?.collectionView(lgf_PageView, numberOfItemsInSection: 0), "🤖️:如果关联 lgf_PageView 外部子控制器/ cell 数量必须和 lgf_Titles 标数量保持一致，如果不关联 lgf_PageView 请传 nil")
@@ -206,16 +206,16 @@ class LGFSwiftPTView: UIScrollView {
     }
     
     // MARK: - 手动选中某个标（如果关联外部 CV 外部 CV 请手动滚动）
-    func lgf_SelectIndex(_ index: Int) {
+    public func lgf_SelectIndex(_ index: Int) {
         lgf_SelectIndex(index, false)
     }
-    func lgf_SelectIndex(_ index: Int, _ isExecutionDelegate: Bool) {
+    public func lgf_SelectIndex(_ index: Int, _ isExecutionDelegate: Bool) {
         lgf_SelectIndex(index, lgf_Style.lgf_TitleClickAnimationDuration, lgf_Style.lgf_TitleScrollToTheMiddleAnimationDuration, isExecutionDelegate)
     }
-    func lgf_SelectIndex(_ index: Int, _ duration: TimeInterval, _ autoScrollDuration: TimeInterval) {
+    public func lgf_SelectIndex(_ index: Int, _ duration: TimeInterval, _ autoScrollDuration: TimeInterval) {
         lgf_SelectIndex(index, duration, autoScrollDuration, false)
     }
-    func lgf_SelectIndex(_ index: Int, _ duration: TimeInterval, _ autoScrollDuration: TimeInterval, _ isExecutionDelegate: Bool) {
+    public func lgf_SelectIndex(_ index: Int, _ duration: TimeInterval, _ autoScrollDuration: TimeInterval, _ isExecutionDelegate: Bool) {
         assert((index <= (lgf_Style.lgf_Titles.count - 1)) && (index >= 0), "🤖️:lgf_ReloadTitleAndSelectIndex -> selectIndex 导致数组越界了")
         DispatchQueue.main.async {
             // 初始化选中值
@@ -226,7 +226,7 @@ class LGFSwiftPTView: UIScrollView {
     }
     
     // MARK: - 添加标
-    func lgf_AddTitles() {
+    fileprivate func lgf_AddTitles() {
         var contentWidth: CGFloat = 0.0
         for (index, value) in lgf_Style.lgf_Titles.enumerated() {
             let title = LGFSwiftPTTitle.lgf_AllocTitle(value, index, lgf_Style, self)
@@ -249,7 +249,7 @@ class LGFSwiftPTView: UIScrollView {
     }
     
     // MARK: - 添加底部线
-    func lgf_AddLine() {
+    fileprivate func lgf_AddLine() {
         if lgf_Style.lgf_IsShowLine {
             lgf_TitleLine = LGFSwiftPTLine.lgf_AllocLine(lgf_Style, self)
             addSubview(lgf_TitleLine)
@@ -272,7 +272,7 @@ class LGFSwiftPTView: UIScrollView {
     }
     
     // MARK: - 删除所有子控件
-    func lgf_RemoveAllSubViews() {
+    public func lgf_RemoveAllSubViews() {
         subviews.forEach { $0.removeFromSuperview() }
         lgf_TitleButtons.removeAll()
     }
@@ -296,7 +296,7 @@ class LGFSwiftPTView: UIScrollView {
 // MARK: - 标点击
 extension LGFSwiftPTView {
     // MARK: - 标点击事件 滚动到指定tag位置
-    @objc func lgf_TitleClick(_ sender: UITapGestureRecognizer) {
+    @objc fileprivate func lgf_TitleClick(_ sender: UITapGestureRecognizer) {
         if !lgf_AutoSelectIndex(sender.view!.tag) {
             return
         }
@@ -307,7 +307,7 @@ extension LGFSwiftPTView {
     }
     
     // MARK: - 更新标view的UI(用于点击标的时候)
-    func lgf_AdjustUIWhenBtnOnClickExecutionDelegate(_ isExecution: Bool, _ duration: TimeInterval, _ autoScrollDuration: TimeInterval) {
+    fileprivate func lgf_AdjustUIWhenBtnOnClickExecutionDelegate(_ isExecution: Bool, _ duration: TimeInterval, _ autoScrollDuration: TimeInterval) {
         lgf_PageViewEnabled = false
         // 外部分页控制器 滚动到对应下标
         if lgf_PageView != nil {
@@ -354,7 +354,7 @@ extension LGFSwiftPTView {
 // MARK: - 外层分页控制器滚动
 extension LGFSwiftPTView {
     // MARK: - 外层分页控制器 contentOffset 转化
-    func lgf_ConvertToProgress(_ contentOffsetX: CGFloat) {
+    fileprivate func lgf_ConvertToProgress(_ contentOffsetX: CGFloat) {
         let selectProgress = contentOffsetX / lgf_PageView.lgfpt_Width
         var progress = selectProgress - floor(selectProgress)
         var selectIndex: CGFloat = 0.0
@@ -386,7 +386,7 @@ extension LGFSwiftPTView {
     }
     
     // MARK: - 更新标view的UI(用于滚动外部分页控制器的时候)
-    func lgf_AdjustUIWithProgress(_ progress: CGFloat, _ unSelectIndex: Int, _ selectIndex: Int) {
+    fileprivate func lgf_AdjustUIWithProgress(_ progress: CGFloat, _ unSelectIndex: Int, _ selectIndex: Int) {
         // 取得 前一个选中的标 和将要选中的标
         let unSelectTitle = lgf_TitleButtons[unSelectIndex]
         let selectTitle = lgf_TitleButtons[selectIndex]
@@ -428,7 +428,7 @@ extension LGFSwiftPTView {
     }
     
     // MARK: - KVO 监听 contentOffset
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentOffset" {
             if lgf_PageView != nil {
                 if lgf_PageView.isTracking || lgf_PageView.isDragging || lgf_PageView.isDecelerating {
@@ -448,7 +448,7 @@ extension LGFSwiftPTView {
     }
     
     // MARK: - 标自动滚动
-    func lgf_AutoScrollTitle(_ selectIndex: Int) {
+    fileprivate func lgf_AutoScrollTitle(_ selectIndex: Int) {
         if !lgf_AutoSelectIndex(selectIndex) {
             return
         }
@@ -459,7 +459,7 @@ extension LGFSwiftPTView {
 // MARK: - 标回位
 extension LGFSwiftPTView {
     // MARK: - 调整title位置 使其滚动到中间
-    func lgf_TitleAutoScrollToTheMiddleExecutionDelegate(_ isExecution: Bool, _ autoScrollDuration: TimeInterval) {
+    fileprivate func lgf_TitleAutoScrollToTheMiddleExecutionDelegate(_ isExecution: Bool, _ autoScrollDuration: TimeInterval) {
         if lgf_SelectIndex > lgf_TitleButtons.count - 1 || lgf_TitleButtons.count == 0 {
             return
         }
@@ -486,7 +486,7 @@ extension LGFSwiftPTView {
 // MARK: - 核心逻辑
 extension LGFSwiftPTView {
     // MARK: - 取得要改变的 X 和 Width 核心逻辑部分(注意：根据 lgf_LineWidthType 的类型，返回的结果会不一样)
-    func lgf_GetXAndW(_ selectTitle: LGFSwiftPTTitle, _ unSelectTitle: LGFSwiftPTTitle) -> (CGFloat, CGFloat, CGFloat, CGFloat) {
+    fileprivate func lgf_GetXAndW(_ selectTitle: LGFSwiftPTTitle, _ unSelectTitle: LGFSwiftPTTitle) -> (CGFloat, CGFloat, CGFloat, CGFloat) {
         var selectX: CGFloat = 0.0
         var selectWidth: CGFloat = 0.0
         var unSelectX: CGFloat = 0.0
@@ -517,7 +517,7 @@ extension LGFSwiftPTView {
     
     // MARK: - 自动 selectIndex 转换
     @discardableResult
-    func lgf_AutoSelectIndex(_ selectIndex: Int) -> Bool {
+    fileprivate func lgf_AutoSelectIndex(_ selectIndex: Int) -> Bool {
         if lgf_SelectIndex == selectIndex {
             return false
         }
@@ -527,7 +527,7 @@ extension LGFSwiftPTView {
     }
     
     // MARK: - 手势是否禁用
-    func lgf_SetViewEnabled(_ enabled: Bool, _ sview: UIScrollView?) {
+    fileprivate func lgf_SetViewEnabled(_ enabled: Bool, _ sview: UIScrollView?) {
         if enabled {
             sview?.isScrollEnabled = ((lgf_Style.lgf_PVAnimationType == .none) && (sview == lgf_PageView)) ? false : true
             sview?.isUserInteractionEnabled = true
@@ -540,25 +540,25 @@ extension LGFSwiftPTView {
 
 // MARK: - 部分功能性代理
 extension LGFSwiftPTView: LGFSwiftPTLineDelegate {
-    func lgf_GetLineNetImage(_ imageView: UIImageView, _ imageUrl: URL!) {
+    public func lgf_GetLineNetImage(_ imageView: UIImageView, _ imageUrl: URL!) {
         lgf_FreePTDelegate?.lgf_GetNetImage?(imageView, imageUrl)
     }
-    func lgf_GetLine(_ lgf_FreePTLine: UIImageView, _ style: LGFSwiftPTStyle) {
+    public func lgf_GetLine(_ lgf_FreePTLine: UIImageView, _ style: LGFSwiftPTStyle) {
         lgf_FreePTDelegate?.lgf_GetLGFSwiftPTLine?(lgf_FreePTLine, style)
     }
 }
 
 extension LGFSwiftPTView: LGFSwiftPTTitleDelegate {
-    func lgf_GetTitleNetImage(_ imageView: UIImageView, _ imageUrl: URL!) {
+    public func lgf_GetTitleNetImage(_ imageView: UIImageView, _ imageUrl: URL!) {
         lgf_FreePTDelegate?.lgf_GetNetImage?(imageView, imageUrl)
     }
-    func lgf_GetTitle(_ lgf_FreePTTitle: UIView, _ index: Int, _ style: LGFSwiftPTStyle) {
+    public func lgf_GetTitle(_ lgf_FreePTTitle: UIView, _ index: Int, _ style: LGFSwiftPTStyle) {
         lgf_FreePTDelegate?.lgf_GetLGFSwiftPTTitle?(lgf_FreePTTitle, index, style)
     }
 }
 
 extension LGFSwiftPTView: LGFSwiftPTFlowLayoutDelegate {
-    func lgf_FreePageViewCustomizeAnimation(_ attributes: [UICollectionViewLayoutAttributes], _ flowLayout: UICollectionViewFlowLayout) {
+    public func lgf_FreePageViewCustomizeAnimation(_ attributes: [UICollectionViewLayoutAttributes], _ flowLayout: UICollectionViewFlowLayout) {
         lgf_FreePTDelegate?.lgf_FreePageViewCustomizeAnimationConfig?(attributes, flowLayout)
     }
 }

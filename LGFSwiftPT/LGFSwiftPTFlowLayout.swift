@@ -8,16 +8,16 @@
 
 import UIKit
 
-protocol LGFSwiftPTFlowLayoutDelegate: NSObjectProtocol {
+public protocol LGFSwiftPTFlowLayoutDelegate: NSObjectProtocol {
     // MARK: - 自定义分页动画（我这里提供一个配置入口，也可以自己在外面配置 UICollectionViewFlowLayout 原理一样，自己在外面配置的话记得配置 self.scrollDirection = .horizontal self.minimumInteritemSpacing = 0 self.minimumLineSpacing = 0 self.sectionInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)）
     func lgf_FreePageViewCustomizeAnimation(_ attributes: [UICollectionViewLayoutAttributes], _ flowLayout: UICollectionViewFlowLayout)
 }
 
-class LGFSwiftPTFlowLayout: UICollectionViewFlowLayout {
+public class LGFSwiftPTFlowLayout: UICollectionViewFlowLayout {
     weak var lgf_FreePTFlowLayoutDelegate: LGFSwiftPTFlowLayoutDelegate?
     var lgf_PVAnimationType: lgf_FreePageViewAnimationType!
     
-    override func prepare() {
+    override public func prepare() {
         super.prepare()
         scrollDirection = .horizontal
         minimumInteritemSpacing = 0;
@@ -25,11 +25,11 @@ class LGFSwiftPTFlowLayout: UICollectionViewFlowLayout {
         sectionInset = .zero
     }
     
-    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+    override public func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
     
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let attrs = super.layoutAttributesForElements(in: rect)
         if lgf_PVAnimationType == .topToBottom {
             lgf_FreePageViewTopToBottomAnimationConfig(attrs ?? [], self)

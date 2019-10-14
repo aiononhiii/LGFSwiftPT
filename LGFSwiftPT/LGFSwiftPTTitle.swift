@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol LGFSwiftPTTitleDelegate: NSObjectProtocol {
+public protocol LGFSwiftPTTitleDelegate: NSObjectProtocol {
     // MARK: - 加载 title 网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架，使用前请打开 lgf_IsNetImage
     /**
      imageView 要加载网络图片的 imageView
@@ -24,7 +24,7 @@ protocol LGFSwiftPTTitleDelegate: NSObjectProtocol {
     func lgf_GetTitle(_ lgf_FreePTTitle: UIView, _ index: Int, _ style: LGFSwiftPTStyle)
 }
 
-class LGFSwiftPTTitle: UIView {
+public class LGFSwiftPTTitle: UIView {
     
     weak var lgf_FreePTTitleDelegate: LGFSwiftPTTitleDelegate?
     
@@ -59,10 +59,10 @@ class LGFSwiftPTTitle: UIView {
     @IBOutlet weak var lgf_RightImageWidth: NSLayoutConstraint!// 标右图片宽度
     @IBOutlet weak var lgf_RightImageHeight: NSLayoutConstraint!// 标右图片高度
     
-    lazy var lgf_SelectImageNames: [String] = []// 选中图片数组
-    lazy var lgf_UnSelectImageNames: [String] = []// 未选中图片数组
+    fileprivate lazy var lgf_SelectImageNames: [String] = []// 选中图片数组
+    fileprivate lazy var lgf_UnSelectImageNames: [String] = []// 未选中图片数组
     
-    var lgf_IsHaveImage: Bool = false// 是否有标图片
+    fileprivate var lgf_IsHaveImage: Bool = false// 是否有标图片
     var lgf_CurrentTransformSX: CGFloat = 0.0// 放大缩小倍数
     var lgf_MainTitleCurrentTransformSX: CGFloat = 0.0// 主标题放大缩小倍数
     var lgf_MainTitleCurrentTransformTY: CGFloat = 0.0// 主标题上下位移
@@ -71,17 +71,17 @@ class LGFSwiftPTTitle: UIView {
     var lgf_SubTitleCurrentTransformTY: CGFloat = 0.0// 子标题上下位移
     var lgf_SubTitleCurrentTransformTX: CGFloat = 0.0// 子标题左右位移
     // 标字体渐变色用数组
-    lazy var lgf_SelectColorRGBA: [CGFloat] = {
+    fileprivate lazy var lgf_SelectColorRGBA: [CGFloat] = {
         let (r, g, b, a) = lgf_Style.lgf_TitleSelectColor.lgfpt_Components.rgba
         let arr = [r, g, b, a]
         return arr
     }()
-    lazy var lgf_UnSelectColorRGBA: [CGFloat] = {
+    fileprivate lazy var lgf_UnSelectColorRGBA: [CGFloat] = {
         let (r, g, b, a) = lgf_Style.lgf_UnTitleSelectColor.lgfpt_Components.rgba
         let arr = [r, g, b, a]
         return arr
     }()
-    lazy var lgf_DeltaRGBA: [CGFloat] = {
+    fileprivate lazy var lgf_DeltaRGBA: [CGFloat] = {
         let r = lgf_UnSelectColorRGBA[0] - lgf_SelectColorRGBA[0]
         let g = lgf_UnSelectColorRGBA[1] - lgf_SelectColorRGBA[1]
         let b = lgf_UnSelectColorRGBA[2] - lgf_SelectColorRGBA[2]
@@ -89,17 +89,17 @@ class LGFSwiftPTTitle: UIView {
         let arr = [r, g, b, a]
         return arr
     }()
-    lazy var lgf_SubSelectColorRGBA: [CGFloat] = {
+    fileprivate lazy var lgf_SubSelectColorRGBA: [CGFloat] = {
         let (r, g, b, a) = lgf_Style.lgf_SubTitleSelectColor.lgfpt_Components.rgba
         let arr = [r, g, b, a]
         return arr
     }()
-    lazy var lgf_SubUnSelectColorRGBA: [CGFloat] = {
+    fileprivate lazy var lgf_SubUnSelectColorRGBA: [CGFloat] = {
         let (r, g, b, a) = lgf_Style.lgf_UnSubTitleSelectColor.lgfpt_Components.rgba
         let arr = [r, g, b, a]
         return arr
     }()
-    lazy var lgf_SubDeltaRGBA: [CGFloat] = {
+    fileprivate lazy var lgf_SubDeltaRGBA: [CGFloat] = {
         let r = lgf_SubUnSelectColorRGBA[0] - lgf_SubSelectColorRGBA[0]
         let g = lgf_SubUnSelectColorRGBA[1] - lgf_SubSelectColorRGBA[1]
         let b = lgf_SubUnSelectColorRGBA[2] - lgf_SubSelectColorRGBA[2]
@@ -312,7 +312,7 @@ class LGFSwiftPTTitle: UIView {
         // 根据特殊 title 数组 和 特殊 title 的 tag 判断某个 index 是否要替换特殊 title
         if style.lgf_FreePTSpecialTitleArray.count > 0 {
             style.lgf_FreePTSpecialTitleArray.forEach {
-                let propertyArray = $0.lgf_FreePTSpecialTitleProperty?.components(separatedBy: "~~~")
+                let propertyArray = $0.lgfpt_FreePTSpecialTitleProperty?.components(separatedBy: "~~~")
                 if propertyArray!.count == 2 {
                     let specialTitleIndex = Int(propertyArray!.first ?? "0")
                     if index == specialTitleIndex {

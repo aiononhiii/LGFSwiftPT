@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 // MARK: ------------------- 我自己原配的 line 滚动动画逻辑代码
-func lgf_PageLineAnimationDefultScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
+public func lgf_PageLineAnimationDefultScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
     line.lgfpt_X = selectX * progress + unSelectX * (1.0 - progress)
     line.lgfpt_Width = selectWidth * progress + unSelectWidth * (1.0 - progress)
 }
 
-func lgf_PageLineAnimationShortToLongScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
+public func lgf_PageLineAnimationShortToLongScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
     let space = (unSelectTitle.lgfpt_Width / unSelectTitle.lgf_CurrentTransformSX - unSelectWidth) / 2.0 + (selectTitle.lgfpt_Width / selectTitle.lgf_CurrentTransformSX - selectWidth) / 2.0
     if progress > 0.5 {
         if unSelectIndex < selectIndex {
@@ -37,7 +37,7 @@ func lgf_PageLineAnimationShortToLongScrollLineAnimationConfig(_ style: LGFSwift
     }
 }
 
-func lgf_PageLineAnimationHideShowScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
+public func lgf_PageLineAnimationHideShowScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
     if progress > 0.5 {
         line.lgfpt_X = selectX
         line.lgfpt_Width = selectWidth
@@ -49,7 +49,7 @@ func lgf_PageLineAnimationHideShowScrollLineAnimationConfig(_ style: LGFSwiftPTS
     }
 }
 
-func lgf_PageLineAnimationSmallToBigScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
+public func lgf_PageLineAnimationSmallToBigScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
     line.transform = CGAffineTransform.identity
     if progress > 0.5 {
         let num = 1.0 - (2.0 * (1.0 - progress))
@@ -64,7 +64,7 @@ func lgf_PageLineAnimationSmallToBigScrollLineAnimationConfig(_ style: LGFSwiftP
     }
 }
 
-func lgf_PageLineAnimationTortoiseDownScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
+public func lgf_PageLineAnimationTortoiseDownScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
     let space = style.lgf_LineBottom + line.lgfpt_Height
     if progress > 0.5 {
         line.lgfpt_X = selectX
@@ -79,7 +79,7 @@ func lgf_PageLineAnimationTortoiseDownScrollLineAnimationConfig(_ style: LGFSwif
     }
 }
 
-func lgf_PageLineAnimationTortoiseUpScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
+public func lgf_PageLineAnimationTortoiseUpScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
     let space = style.lgf_LineBottom - style.lgf_PVTitleView.lgfpt_Height
     if progress > 0.5 {
         line.lgfpt_X = selectX
@@ -95,17 +95,17 @@ func lgf_PageLineAnimationTortoiseUpScrollLineAnimationConfig(_ style: LGFSwiftP
 }
 
 // MARK: ------------------- 我自己原配的 line 点击动画逻辑代码
-func lgf_PageLineAnimationDefultClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval) {
+public func lgf_PageLineAnimationDefultClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval) {
     line.lgfpt_X = selectX
     line.lgfpt_Width = selectWidth
 }
 
-func lgf_PageLineAnimationShortToLongClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval) {
+public func lgf_PageLineAnimationShortToLongClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval) {
     line.lgfpt_X = selectX
     line.lgfpt_Width = selectWidth
 }
 
-func lgf_PageLineAnimationHideShowClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval) {
+public func lgf_PageLineAnimationHideShowClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval) {
     // 通过关键帧动画配合我给你的 duration，你应该可以实现很多你想要的独有的效果
     UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5 - (0.0001 / duration)) {
         line.alpha = 0.0
@@ -119,7 +119,7 @@ func lgf_PageLineAnimationHideShowClickLineAnimationConfig(_ style: LGFSwiftPTSt
     }
 }
 
-func lgf_PageLineAnimationSmallToBigClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval) {
+public func lgf_PageLineAnimationSmallToBigClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval) {
     // 通过关键帧动画配合我给你的 duration，你应该可以实现很多你想要的独有的效果
     UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5 - (0.0001 / duration)) {
         line.transform = CGAffineTransform.init(scaleX: 0.0001, y: 0.0001)
@@ -133,7 +133,7 @@ func lgf_PageLineAnimationSmallToBigClickLineAnimationConfig(_ style: LGFSwiftPT
     }
 }
 
-func lgf_PageLineAnimationTortoiseDownClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval) {
+public func lgf_PageLineAnimationTortoiseDownClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval) {
     let space = style.lgf_LineBottom + line.lgfpt_Height
     // 通过关键帧动画配合我给你的 duration，你应该可以实现很多你想要的独有的效果
     UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5 - (0.0001 / duration)) {
@@ -148,7 +148,7 @@ func lgf_PageLineAnimationTortoiseDownClickLineAnimationConfig(_ style: LGFSwift
     }
 }
 
-func lgf_PageLineAnimationTortoiseUpClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval) {
+public func lgf_PageLineAnimationTortoiseUpClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval) {
     let space = style.lgf_LineBottom - style.lgf_PVTitleView.lgfpt_Height
     // 通过关键帧动画配合我给你的 duration，你应该可以实现很多你想要的独有的效果
     UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5 - (0.0001 / duration)) {
@@ -164,7 +164,7 @@ func lgf_PageLineAnimationTortoiseUpClickLineAnimationConfig(_ style: LGFSwiftPT
 }
 
 // MARK: ------------------- 我自己原配的 标 跟随动画逻辑代码
-func lgf_TitleScrollFollowDefultAnimationConfig(_ style: LGFSwiftPTStyle, _ lgf_TitleButtons: [LGFSwiftPTTitle], _ unSelectIndex: Int, _ selectIndex: Int, _ duration: TimeInterval) {
+public func lgf_TitleScrollFollowDefultAnimationConfig(_ style: LGFSwiftPTStyle, _ lgf_TitleButtons: [LGFSwiftPTTitle], _ unSelectIndex: Int, _ selectIndex: Int, _ duration: TimeInterval) {
     let selectTitle = lgf_TitleButtons[selectIndex]
     let offSetx = min(max(selectTitle.center.x - style.lgf_PVTitleView.lgfpt_Width * 0.5, 0.0), max(style.lgf_PVTitleView.contentSize.width - style.lgf_PVTitleView.lgfpt_Width, 0.0))
     UIView.animate(withDuration: duration) {
@@ -172,7 +172,7 @@ func lgf_TitleScrollFollowDefultAnimationConfig(_ style: LGFSwiftPTStyle, _ lgf_
     }
 }
 
-func lgf_TitleScrollFollowLeftRightAnimationConfig(_ style: LGFSwiftPTStyle, _ lgf_TitleButtons: [LGFSwiftPTTitle], _ unSelectIndex: Int, _ selectIndex: Int, _ duration: TimeInterval) {
+public func lgf_TitleScrollFollowLeftRightAnimationConfig(_ style: LGFSwiftPTStyle, _ lgf_TitleButtons: [LGFSwiftPTTitle], _ unSelectIndex: Int, _ selectIndex: Int, _ duration: TimeInterval) {
     let isRight = selectIndex > unSelectIndex
     let title = lgf_TitleButtons[isRight ? min(selectIndex + 1, lgf_TitleButtons.count - 1) : max(selectIndex - 1, 0)]
     UIView.animate(withDuration: duration) {
@@ -197,7 +197,7 @@ func lgf_TitleScrollFollowLeftRightAnimationConfig(_ style: LGFSwiftPTStyle, _ l
 }
 
 // MARK: ------------------- 我自己原配分页动画(你可以参考我的来实现独一无二的自定义，当然你可以在我的GitHub首页把这些珍贵的代码分享给大家)
-func lgf_FreePageViewTopToBottomAnimationConfig(_ attributes: [UICollectionViewLayoutAttributes], _ flowLayout: UICollectionViewFlowLayout) {
+public func lgf_FreePageViewTopToBottomAnimationConfig(_ attributes: [UICollectionViewLayoutAttributes], _ flowLayout: UICollectionViewFlowLayout) {
     let contentOffsetX = flowLayout.collectionView!.contentOffset.x
     let collectionViewCenterX = flowLayout.collectionView!.lgfpt_Width * 0.5
     attributes.forEach { (attr) in
@@ -217,7 +217,7 @@ func lgf_FreePageViewTopToBottomAnimationConfig(_ attributes: [UICollectionViewL
     }
 }
 
-func lgf_FreePageViewSmallToBigAnimationConfig(_ attributes: [UICollectionViewLayoutAttributes], _ flowLayout: UICollectionViewFlowLayout) {
+public func lgf_FreePageViewSmallToBigAnimationConfig(_ attributes: [UICollectionViewLayoutAttributes], _ flowLayout: UICollectionViewFlowLayout) {
     let contentOffsetX = flowLayout.collectionView!.contentOffset.x
     let collectionViewCenterX = flowLayout.collectionView!.lgfpt_Width * 0.5
     attributes.forEach { (attr) in
@@ -227,7 +227,7 @@ func lgf_FreePageViewSmallToBigAnimationConfig(_ attributes: [UICollectionViewLa
 }
 
 // MARK: ------------------- 部分项目内扩展
-extension String {
+public extension String {
     func lgfpt_Width(_ font: UIFont, _ height: CGFloat) -> CGFloat {
         return self.lgfpt_TextSizeWithFont(font: font, constrainedToSize:CGSize.init(width: CGFloat.greatestFiniteMagnitude, height: height)).width + 1.0
     }
@@ -249,7 +249,7 @@ extension String {
     }
 }
 
-extension UIColor {
+public extension UIColor {
     struct LGFPTComponents {
         var _base: UIColor
         public var rgba: (CGFloat, CGFloat, CGFloat, CGFloat) {
@@ -271,24 +271,24 @@ extension UIColor {
     }
 }
 
-extension UIScrollView {
+public extension UIScrollView {
     // MARK: - 获取横向滚动index
     func lgfpt_HorizontalIndex() -> Int {
         return Int(self.contentOffset.x / self.bounds.size.width)
     }
 }
 
-private var lgf_FreePTSpecialTitlePropertyKey: String = "lgf_FreePTSpecialTitlePropertyKey"
+private var lgfpt_FreePTSpecialTitlePropertyKey: String = "lgfpt_FreePTSpecialTitlePropertyKey"
 
-extension UIView {
+public extension UIView {
     
     // MARK: - 用于特殊 title 赋值属性用
-    var lgf_FreePTSpecialTitleProperty: String? {
+    var lgfpt_FreePTSpecialTitleProperty: String? {
         get {
-            return (objc_getAssociatedObject(self, &lgf_FreePTSpecialTitlePropertyKey) as? String)
+            return (objc_getAssociatedObject(self, &lgfpt_FreePTSpecialTitlePropertyKey) as? String)
         }
         set {
-            objc_setAssociatedObject(self, &lgf_FreePTSpecialTitlePropertyKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY)
+            objc_setAssociatedObject(self, &lgfpt_FreePTSpecialTitlePropertyKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY)
         }
     }
     
