@@ -225,17 +225,15 @@ public class LGFSwiftPT: UIScrollView {
     
     // MARK: - 添加标
     fileprivate func lgf_AddTitles() {
-        var contentWidth: CGFloat = 0.0
         for (index, value) in lgf_Style.lgf_Titles.enumerated() {
             let title = LGFSwiftPTTitle.lgf_AllocTitle(value, index, lgf_Style, self)
             let tap = UITapGestureRecognizer.init(target: self, action: #selector(lgf_TitleClick(_:)))
             tap.cancelsTouchesInView = false
             title.addGestureRecognizer(tap)
             lgf_TitleButtons.append(title)
-            contentWidth += title.lgfpt_Width
         }
         // 标view 滚动区域配置
-        contentSize = CGSize.init(width: contentWidth + lgf_Style.lgf_PageLeftRightSpace * 2.0, height: -lgfpt_Height)
+        lgf_AutoSwiftPTContentSize()
         // 设置标总长度小于 LGFSwiftPT 宽度的情况下是否居中
         if lgf_Style.lgf_IsTitleCenter {
             if contentSize.width < lgfpt_Width {
@@ -256,7 +254,7 @@ public class LGFSwiftPT: UIScrollView {
     }
     
     // MARK: - 配置 lgf_PageView
-    func lgf_PageViewConfig() {
+    fileprivate func lgf_PageViewConfig() {
         if lgf_PageView != nil {
             let layout = LGFSwiftPTFlowLayout()
             layout.lgf_PVAnimationType = lgf_Style.lgf_PVAnimationType
@@ -267,6 +265,13 @@ public class LGFSwiftPT: UIScrollView {
             lgf_PageView.scrollsToTop = false
             lgf_PageView.tag = 333333
         }
+    }
+    
+    // MARK: - 自动计算 contentSize
+    public func lgf_AutoSwiftPTContentSize() {
+        var contentWidth: CGFloat = 0.0
+        lgf_TitleButtons.forEach { contentWidth += $0.lgfpt_Width }
+        contentSize = CGSize.init(width: contentWidth, height: -lgfpt_Height)
     }
     
     // MARK: - 删除所有子控件
@@ -318,11 +323,13 @@ extension LGFSwiftPT {
         let animatedDuration = lgf_Style.lgf_TitleHaveAnimation ? duration : 0.0
         UIView.animateKeyframes(withDuration: animatedDuration, delay: 0.0, options: .calculationModeLinear, animations: {
             // 标整体状态改变
+            unSelectTitle.lgf_SetMainTitleTransform(1.0, false, self.lgf_SelectIndex, self.lgf_UnSelectIndex)
+            selectTitle.lgf_SetMainTitleTransform(1.0, true, self.lgf_SelectIndex, self.lgf_UnSelectIndex)
+            if self.lgf_Style.lgf_IsZoomExtruding {
+                lgf_ZoomExtruding(self.lgf_TitleButtons, self.lgf_Style, selectTitle, unSelectTitle, self.lgf_SelectIndex, self.lgf_UnSelectIndex, 1.0)
+            }
             if self.lgf_SwiftPTDelegate?.responds(to: #selector(self.lgf_SwiftPTDelegate!.lgf_SetAllTitleClickState(_:_:_:_:_:_:_:))) ?? false {
                 self.lgf_SwiftPTDelegate?.lgf_SetAllTitleClickState?(self.lgf_TitleButtons, self.lgf_Style, selectTitle, unSelectTitle, self.lgf_SelectIndex, self.lgf_UnSelectIndex, 1.0)
-            } else {
-                unSelectTitle.lgf_SetMainTitleTransform(1.0, false, self.lgf_SelectIndex, self.lgf_UnSelectIndex)
-                selectTitle.lgf_SetMainTitleTransform(1.0, true, self.lgf_SelectIndex, self.lgf_UnSelectIndex)
             }
             
             let (selectX, selectWidth, unSelectX, unSelectWidth) = self.lgf_GetXAndW(selectTitle, unSelectTitle)
@@ -362,14 +369,8 @@ extension LGFSwiftPT {
             unSelectIndex = selectProgress - 1.0
             selectIndex = selectProgress
         } else {
-            if (lgf_TitleLine.lgfpt_X < contentOffsetX) {
-                selectIndex = selectProgress + 1.0
-                unSelectIndex = selectProgress
-            } else {
-                progress = 1.0 - progress
-                unSelectIndex = selectProgress + 1.0
-                selectIndex = selectProgress
-            }
+            selectIndex = selectProgress + 1.0
+            unSelectIndex = selectProgress
         }
         // 获取精确 lgf_RealSelectIndex
         if lgf_RealSelectIndex != Int(roundf(Float(selectProgress))) {
@@ -390,14 +391,16 @@ extension LGFSwiftPT {
         let selectTitle = lgf_TitleButtons[selectIndex]
         
         // 标整体状态改变
+        unSelectTitle.lgf_SetMainTitleTransform(progress, false, selectIndex, unSelectIndex)
+        selectTitle.lgf_SetMainTitleTransform(progress, true, selectIndex, unSelectIndex)
+        if lgf_Style.lgf_IsZoomExtruding {
+            lgf_ZoomExtruding(lgf_TitleButtons, lgf_Style, selectTitle, unSelectTitle, lgf_SelectIndex, lgf_UnSelectIndex, 1.0)
+        }
         if lgf_SwiftPTDelegate?.responds(to: #selector(lgf_SwiftPTDelegate?.lgf_SetAllTitleState(_:_:_:_:_:_:_:))) ?? false {
             lgf_SwiftPTDelegate?.lgf_SetAllTitleState?(lgf_TitleButtons, lgf_Style, selectTitle, unSelectTitle, selectIndex, unSelectIndex, progress)
             if lgf_Style.lgf_ShowPrint {
                 debugPrint(String.init(format: "🤖️:自定义标动效状态 progress:%f", progress))
             }
-        } else {
-            unSelectTitle.lgf_SetMainTitleTransform(progress, false, selectIndex, unSelectIndex)
-            selectTitle.lgf_SetMainTitleTransform(progress, true, selectIndex, unSelectIndex)
         }
         
         // 标底部滚动条 更新位置

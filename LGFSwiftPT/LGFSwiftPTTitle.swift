@@ -63,11 +63,11 @@ public class LGFSwiftPTTitle: UIView {
     fileprivate lazy var lgf_UnSelectImageNames: [String] = []// 未选中图片数组
     
     fileprivate var lgf_IsHaveImage: Bool = false// 是否有标图片
-    var lgf_CurrentTransformSX: CGFloat = 0.0// 放大缩小倍数
-    var lgf_MainTitleCurrentTransformSX: CGFloat = 0.0// 主标题放大缩小倍数
+    var lgf_CurrentTransformSX: CGFloat = 1.0// 放大缩小倍数
+    var lgf_MainTitleCurrentTransformSX: CGFloat = 1.0// 主标题放大缩小倍数
     var lgf_MainTitleCurrentTransformTY: CGFloat = 0.0// 主标题上下位移
     var lgf_MainTitleCurrentTransformTX: CGFloat = 0.0// 主标题左右位移
-    var lgf_SubTitleCurrentTransformSX: CGFloat = 0.0// 子标题放大缩小倍数
+    var lgf_SubTitleCurrentTransformSX: CGFloat = 1.0// 子标题放大缩小倍数
     var lgf_SubTitleCurrentTransformTY: CGFloat = 0.0// 子标题上下位移
     var lgf_SubTitleCurrentTransformTX: CGFloat = 0.0// 子标题左右位移
     // 标字体渐变色用数组
@@ -316,7 +316,6 @@ public class LGFSwiftPTTitle: UIView {
                 if propertyArray!.count == 2 {
                     let specialTitleIndex = Int(propertyArray!.first ?? "0")
                     if index == specialTitleIndex {
-                        title.subviews.forEach { $0.removeFromSuperview() }
                         title.lgfpt_Width = CGFloat(Int(propertyArray!.last ?? "0") ?? 0)
                         $0.frame = title.bounds
                         title.addSubview($0)

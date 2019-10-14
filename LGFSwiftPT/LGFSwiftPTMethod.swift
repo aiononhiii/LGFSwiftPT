@@ -16,7 +16,12 @@ public func lgf_PageLineAnimationDefultScrollLineAnimationConfig(_ style: LGFSwi
 }
 
 public func lgf_PageLineAnimationShortToLongScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
-    let space = (unSelectTitle.lgfpt_Width / unSelectTitle.lgf_CurrentTransformSX - unSelectWidth) / 2.0 + (selectTitle.lgfpt_Width / selectTitle.lgf_CurrentTransformSX - selectWidth) / 2.0
+    var space: CGFloat = 0.0
+    if style.lgf_IsZoomExtruding {
+        space = (unSelectTitle.lgfpt_Width - unSelectWidth) / 2.0 + (selectTitle.lgfpt_Width - selectWidth) / 2.0
+    } else {
+        space = (unSelectTitle.lgfpt_Width / unSelectTitle.lgf_CurrentTransformSX - unSelectWidth) / 2.0 + (selectTitle.lgfpt_Width / selectTitle.lgf_CurrentTransformSX - selectWidth) / 2.0
+    }
     if progress > 0.5 {
         if unSelectIndex < selectIndex {
             line.lgfpt_X = selectX - (space + unSelectWidth) * 2.0 * (1.0 - progress)
@@ -194,6 +199,24 @@ public func lgf_TitleScrollFollowLeftRightAnimationConfig(_ style: LGFSwiftPTSty
             }
         }
     }
+}
+
+// MARK: ------------------- 新增的放大缩小后紧紧贴着左右（互相挤压）（类似汽车之家效果）
+public func lgf_ZoomExtruding(_ allTitles: [LGFSwiftPTTitle], _ style: LGFSwiftPTStyle, _ selectTitle: LGFSwiftPTTitle, _ unSelectTitle: LGFSwiftPTTitle, _ selectIndex: Int, _ unSelectIndex: Int, _ progress: CGFloat) {
+    for (index, title) in allTitles.enumerated() {
+        if index == 0 {
+            title.lgfpt_X = 0.0
+        }
+        if index - 1 > 0 {
+            let left = allTitles[index - 1]
+            left.lgfpt_X = title.lgfpt_X - left.lgfpt_Width
+        }
+        if index + 1 < allTitles.count {
+            let right = allTitles[index + 1]
+            right.lgfpt_X = title.lgfpt_X + title.lgfpt_Width
+        }
+    }
+    style.lgf_PVTitleView.lgf_AutoSwiftPTContentSize()
 }
 
 // MARK: ------------------- 我自己原配分页动画(你可以参考我的来实现独一无二的自定义，当然你可以在我的GitHub首页把这些珍贵的代码分享给大家)

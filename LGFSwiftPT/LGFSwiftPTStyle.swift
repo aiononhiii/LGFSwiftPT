@@ -55,7 +55,7 @@ public class LGFSwiftPTStyle: NSObject {
     
     // MARK: ------------------- 主 lgf_PVTitleView -------------------
     // lgf_PVTitleView
-    public weak var lgf_PVTitleView: UIScrollView!
+    public weak var lgf_PVTitleView: LGFSwiftPT!
     // lgf_PVTitleView 父视图背景色
     public var lgf_PVTitleViewBackgroundColor: UIColor = UIColor.clear
     // 主 lgf_PVTitleView 在父控件上的frame 默认等于父控件
@@ -87,6 +87,8 @@ public class LGFSwiftPTStyle: NSObject {
             lgf_TitleTransformSX = lgf_TitleTransformSX == 0.0 ? 0.00001 : lgf_TitleTransformSX
         }
     }
+    // 选中 title 放大缩小后紧紧贴着左右（互相挤压）（类似汽车之家效果）
+    public var lgf_IsZoomExtruding: Bool = true
     // 选中 title 字体颜色 默认 blackColor 黑色 (对应 lgf_TitleUnSelectColor 两个颜色一样则取消渐变效果)
     public var lgf_TitleSelectColor: UIColor = UIColor.black
     // 未选中 title 字体颜色 默认 lightGrayColor 淡灰色 (对应 lgf_TitleSelectColor 两个颜色一样则取消渐变效果)

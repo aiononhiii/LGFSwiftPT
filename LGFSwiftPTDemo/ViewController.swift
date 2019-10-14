@@ -42,18 +42,24 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
         sview = UIView.init(frame: CGRect.init(x: 0, y: 20, width: UIScreen.main.bounds.width, height: 50))
         view.addSubview(sview)
         let style = LGFSwiftPTStyle()
-        style.lgf_TitleFixedWidth = 50
         style.lgf_LineHeight = 5
-        style.lgf_LineWidth = 5
+        style.lgf_LineWidth = 20
         style.lgf_LineAnimation = .shortToLong
         style.lgf_LineWidthType = .equalTitleSTR
         style.lgf_StartDebug = true
-        style.lgf_TitleTransformSX = 1.2
+        style.lgf_TitleTransformSX = 2.0
         style.lgf_PVAnimationType = .smallToBig
+        style.lgf_TitleLeftRightSpace = 10
+        
+        let lab = UILabel.init()
+        lab.lgfpt_SwiftPTSpecialTitleProperty = "4~~~100"
+        lab.text = "来国锋"
+        lab.textColor = UIColor.red
+        style.lgf_SwiftPTSpecialTitleArray = [lab]
         
         swiftPT = LGFSwiftPT.lgf(style, self, sview, collectionView)
         swiftPT.lgf_SwiftPTDelegate = self
-        swiftPT.lgf_Style?.lgf_Titles = ["转入", "转出", "转入", "转出","转入", "转出","转入", "转出", "转出","转入", "转出","转入", "转出", "转出","转入", "转出","转入", "转出"]
+        swiftPT.lgf_Style?.lgf_Titles = ["转入", "转出转闪电", "转入", "出", "", "转出", "转出", "转出", "转出", "转出", "转出", "转出", "转出"]
         swiftPT.lgf_ReloadTitle()
         
     }
