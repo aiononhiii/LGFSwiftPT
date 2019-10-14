@@ -144,8 +144,8 @@ public class LGFSwiftPTStyle: NSObject {
     public var lgf_TitleBorderColor: UIColor = UIColor.clear
     
     // MARK: ------------------- ******** 特殊 title 设置 ******* -------------------
-    // 要替换的特殊 title 数组（数组中元素 view (改 view 最好为单列，以方便设置 选中状态/动效/动画 等特殊处理) 的 lgf_FreePTSpecialTitleArray（值格式：@"0~~~80"） 字符串属性转化为数组后 数组的 firstObject（0） 即为要替换 title 的 index, 数组的 lastObject（80） 即为要替换 title 的自定义宽度）（记住这只是障眼法替换，因此原数据源支撑 UI 展示的数据必须存在，可设置为空字符串）
-    public lazy var lgf_FreePTSpecialTitleArray: [UIView] = []
+    // 要替换的特殊 title 数组（数组中元素 view (改 view 最好为单列，以方便设置 选中状态/动效/动画 等特殊处理) 的 lgf_SwiftPTSpecialTitleArray（值格式：@"0~~~80"） 字符串属性转化为数组后 数组的 firstObject（0） 即为要替换 title 的 index, 数组的 lastObject（80） 即为要替换 title 的自定义宽度）（记住这只是障眼法替换，因此原数据源支撑 UI 展示的数据必须存在，可设置为空字符串）
+    public lazy var lgf_SwiftPTSpecialTitleArray: [UIView] = []
     
     // MARK: ------------------- title 图片设置 -------------------
     // 图片Bundle 如果图片不在本控件bundel里请设置

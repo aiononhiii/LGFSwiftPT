@@ -17,16 +17,16 @@ public protocol LGFSwiftPTTitleDelegate: NSObjectProtocol {
     func lgf_GetTitleNetImage(_ imageView: UIImageView, _ imageUrl: URL!)
     // MARK: - 实现这个代理来对 LGFSwiftPTTitle 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等
     /**
-     lgf_FreePTTitle LGFSwiftPTTitle 本体
+     lgf_SwiftPTTitle LGFSwiftPTTitle 本体
      index 所在的 index
      style LGFSwiftPTStyle
      */
-    func lgf_GetTitle(_ lgf_FreePTTitle: UIView, _ index: Int, _ style: LGFSwiftPTStyle)
+    func lgf_GetTitle(_ lgf_SwiftPTTitle: UIView, _ index: Int, _ style: LGFSwiftPTStyle)
 }
 
 public class LGFSwiftPTTitle: UIView {
     
-    weak var lgf_FreePTTitleDelegate: LGFSwiftPTTitleDelegate?
+    weak var lgf_SwiftPTTitleDelegate: LGFSwiftPTTitleDelegate?
     
     @IBOutlet weak var lgf_Title: UILabel!// 标
     @IBOutlet weak var lgf_SubTitle: UILabel!// 子标
@@ -171,7 +171,7 @@ public class LGFSwiftPTTitle: UIView {
                 lgf_LeftImageWidth.constant = min(lgf_Style.lgf_LeftImageWidth, lgf_Style.lgf_PVTitleView.lgfpt_Height)
                 lgf_LeftImageHeight.constant = min(lgf_Style.lgf_LeftImageHeight, lgf_Style.lgf_PVTitleView.lgfpt_Height)
                 if (lgf_Style.lgf_IsNetImage) {
-                    lgf_FreePTTitleDelegate?.lgf_GetTitleNetImage(lgf_LeftImage, URL.init(string: lgf_Style.lgf_UnSelectImageNames[tag]))
+                    lgf_SwiftPTTitleDelegate?.lgf_GetTitleNetImage(lgf_LeftImage, URL.init(string: lgf_Style.lgf_UnSelectImageNames[tag]))
                 } else {
                     lgf_LeftImage.image = UIImage.init(named: lgf_Style.lgf_UnSelectImageNames[tag], in: lgf_Style.lgf_ImageBundel, compatibleWith: nil)
                 }
@@ -191,7 +191,7 @@ public class LGFSwiftPTTitle: UIView {
                 lgf_RightImageWidth.constant = min(lgf_Style.lgf_RightImageWidth, lgf_Style.lgf_PVTitleView.lgfpt_Height)
                 lgf_RightImageHeight.constant = min(lgf_Style.lgf_RightImageHeight, lgf_Style.lgf_PVTitleView.lgfpt_Height)
                 if (lgf_Style.lgf_IsNetImage) {
-                    lgf_FreePTTitleDelegate?.lgf_GetTitleNetImage(lgf_RightImage, URL.init(string: lgf_Style.lgf_UnSelectImageNames[tag]))
+                    lgf_SwiftPTTitleDelegate?.lgf_GetTitleNetImage(lgf_RightImage, URL.init(string: lgf_Style.lgf_UnSelectImageNames[tag]))
                 } else {
                     lgf_RightImage.image = UIImage.init(named: lgf_Style.lgf_UnSelectImageNames[tag], in: lgf_Style.lgf_ImageBundel, compatibleWith: nil)
                 }
@@ -211,7 +211,7 @@ public class LGFSwiftPTTitle: UIView {
                 lgf_TopImageWidth.constant = min(lgf_Style.lgf_TopImageWidth, lgf_Style.lgf_PVTitleView.lgfpt_Width)
                 lgf_TopImageHeight.constant = min(lgf_Style.lgf_TopImageHeight, lgf_Style.lgf_PVTitleView.lgfpt_Height)
                 if (lgf_Style.lgf_IsNetImage) {
-                    lgf_FreePTTitleDelegate?.lgf_GetTitleNetImage(lgf_TopImage, URL.init(string: lgf_Style.lgf_UnSelectImageNames[tag]))
+                    lgf_SwiftPTTitleDelegate?.lgf_GetTitleNetImage(lgf_TopImage, URL.init(string: lgf_Style.lgf_UnSelectImageNames[tag]))
                 } else {
                     lgf_TopImage.image = UIImage.init(named: lgf_Style.lgf_UnSelectImageNames[tag], in: lgf_Style.lgf_ImageBundel, compatibleWith: nil)
                 }
@@ -231,7 +231,7 @@ public class LGFSwiftPTTitle: UIView {
                 lgf_BottomImageWidth.constant = min(lgf_Style.lgf_BottomImageWidth, lgf_Style.lgf_PVTitleView.lgfpt_Width)
                 lgf_BottomImageHeight.constant = min(lgf_Style.lgf_BottomImageHeight, lgf_Style.lgf_PVTitleView.lgfpt_Height)
                 if (lgf_Style.lgf_IsNetImage) {
-                    lgf_FreePTTitleDelegate?.lgf_GetTitleNetImage(lgf_BottomImage, URL.init(string: lgf_Style.lgf_UnSelectImageNames[tag]))
+                    lgf_SwiftPTTitleDelegate?.lgf_GetTitleNetImage(lgf_BottomImage, URL.init(string: lgf_Style.lgf_UnSelectImageNames[tag]))
                 } else {
                     lgf_BottomImage.image = UIImage.init(named: lgf_Style.lgf_UnSelectImageNames[tag], in: lgf_Style.lgf_ImageBundel, compatibleWith: nil)
                 }
@@ -256,7 +256,7 @@ public class LGFSwiftPTTitle: UIView {
         // 初始化标
         let title = LGFPTBundle.loadNibNamed(String(describing: LGFSwiftPTTitle.self.classForCoder()), owner: self, options: nil)?.first as! LGFSwiftPTTitle
         title.tag = index
-        title.lgf_FreePTTitleDelegate = delegate
+        title.lgf_SwiftPTTitleDelegate = delegate
         title.lgf_Style = style
         
         // 开启调试模式所有背景将设置随机颜色方便调试
@@ -310,9 +310,9 @@ public class LGFSwiftPTTitle: UIView {
         title.lgf_Style.lgf_PVTitleView.addSubview(title)
         
         // 根据特殊 title 数组 和 特殊 title 的 tag 判断某个 index 是否要替换特殊 title
-        if style.lgf_FreePTSpecialTitleArray.count > 0 {
-            style.lgf_FreePTSpecialTitleArray.forEach {
-                let propertyArray = $0.lgfpt_FreePTSpecialTitleProperty?.components(separatedBy: "~~~")
+        if style.lgf_SwiftPTSpecialTitleArray.count > 0 {
+            style.lgf_SwiftPTSpecialTitleArray.forEach {
+                let propertyArray = $0.lgfpt_SwiftPTSpecialTitleProperty?.components(separatedBy: "~~~")
                 if propertyArray!.count == 2 {
                     let specialTitleIndex = Int(propertyArray!.first ?? "0")
                     if index == specialTitleIndex {
@@ -325,7 +325,7 @@ public class LGFSwiftPTTitle: UIView {
             }
         }
         // 这个代理放在最下面，对一些 LGFSwiftPTStyle 配置的属性拥有最终修改权
-        title.lgf_FreePTTitleDelegate?.lgf_GetTitle(title, index, style)
+        title.lgf_SwiftPTTitleDelegate?.lgf_GetTitle(title, index, style)
         return title
     }
     
@@ -397,28 +397,28 @@ public class LGFSwiftPTTitle: UIView {
             let imageName = (isSelectTitle ? (progress > 0.5 ? ssImageName : usImageName) : (progress > 0.5 ? uuImageName : suImageName))
             if lgf_Style.lgf_LeftImageWidth > 0.0 && lgf_Style.lgf_LeftImageHeight > 0.0 {
                 if lgf_Style.lgf_IsNetImage {
-                    lgf_FreePTTitleDelegate?.lgf_GetTitleNetImage(lgf_LeftImage, URL.init(string: imageName))
+                    lgf_SwiftPTTitleDelegate?.lgf_GetTitleNetImage(lgf_LeftImage, URL.init(string: imageName))
                 } else {
                     lgf_LeftImage.image = UIImage.init(named: imageName, in: lgf_Style.lgf_ImageBundel, compatibleWith: nil)
                 }
             }
             if lgf_Style.lgf_RightImageWidth > 0.0 && lgf_Style.lgf_RightImageHeight > 0.0 {
                 if lgf_Style.lgf_IsNetImage {
-                    lgf_FreePTTitleDelegate?.lgf_GetTitleNetImage(lgf_RightImage, URL.init(string: imageName))
+                    lgf_SwiftPTTitleDelegate?.lgf_GetTitleNetImage(lgf_RightImage, URL.init(string: imageName))
                 } else {
                     lgf_RightImage.image = UIImage.init(named: imageName, in: lgf_Style.lgf_ImageBundel, compatibleWith: nil)
                 }
             }
             if lgf_Style.lgf_TopImageHeight > 0.0 && lgf_Style.lgf_TopImageWidth > 0.0 {
                 if lgf_Style.lgf_IsNetImage {
-                    lgf_FreePTTitleDelegate?.lgf_GetTitleNetImage(lgf_TopImage, URL.init(string: imageName))
+                    lgf_SwiftPTTitleDelegate?.lgf_GetTitleNetImage(lgf_TopImage, URL.init(string: imageName))
                 } else {
                     lgf_TopImage.image = UIImage.init(named: imageName, in: lgf_Style.lgf_ImageBundel, compatibleWith: nil)
                 }
             }
             if lgf_Style.lgf_BottomImageHeight > 0.0 && lgf_Style.lgf_BottomImageWidth > 0.0 {
                 if lgf_Style.lgf_IsNetImage {
-                    lgf_FreePTTitleDelegate?.lgf_GetTitleNetImage(lgf_BottomImage, URL.init(string: imageName))
+                    lgf_SwiftPTTitleDelegate?.lgf_GetTitleNetImage(lgf_BottomImage, URL.init(string: imageName))
                 } else {
                     lgf_BottomImage.image = UIImage.init(named: imageName, in: lgf_Style.lgf_ImageBundel, compatibleWith: nil)
                 }

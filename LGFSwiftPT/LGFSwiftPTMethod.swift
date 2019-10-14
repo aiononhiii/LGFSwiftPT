@@ -278,17 +278,17 @@ public extension UIScrollView {
     }
 }
 
-private var lgfpt_FreePTSpecialTitlePropertyKey: String = "lgfpt_FreePTSpecialTitlePropertyKey"
+private var lgfpt_SwiftPTSpecialTitlePropertyKey: String = "lgfpt_SwiftPTSpecialTitlePropertyKey"
 
 public extension UIView {
     
     // MARK: - 用于特殊 title 赋值属性用
-    var lgfpt_FreePTSpecialTitleProperty: String? {
+    var lgfpt_SwiftPTSpecialTitleProperty: String? {
         get {
-            return (objc_getAssociatedObject(self, &lgfpt_FreePTSpecialTitlePropertyKey) as? String)
+            return (objc_getAssociatedObject(self, &lgfpt_SwiftPTSpecialTitlePropertyKey) as? String)
         }
         set {
-            objc_setAssociatedObject(self, &lgfpt_FreePTSpecialTitlePropertyKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY)
+            objc_setAssociatedObject(self, &lgfpt_SwiftPTSpecialTitlePropertyKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY)
         }
     }
     

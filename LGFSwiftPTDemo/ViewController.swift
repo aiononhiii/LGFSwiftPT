@@ -9,15 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController, LGFSwiftPTDelegate {
-    func lgf_SelectFreePTTitle(_ selectIndex: Int) {
+    func lgf_SelectSwiftPTTitle(_ selectIndex: Int) {
         
+    }
+    
+    func lgf_RealSelectSwiftPTTitle(_ selectIndex: Int) {
+        debugPrint(selectIndex)
     }
     
     var sview: UIView!
     
     var collectionView: UICollectionView!
     
-    var freePT: LGFSwiftPT!
+    var swiftPT: LGFSwiftPT!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,12 +49,12 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
         style.lgf_LineWidthType = .equalTitleSTR
         style.lgf_StartDebug = true
         style.lgf_TitleTransformSX = 1.2
-        style.lgf_PVAnimationType = .topToBottom
+        style.lgf_PVAnimationType = .smallToBig
         
-        freePT = LGFSwiftPT.lgf(style, self, sview, collectionView)
-        freePT.lgf_FreePTDelegate = self
-        freePT.lgf_Style?.lgf_Titles = ["转入", "转出", "转入", "转出","转入", "转出","转入", "转出", "转出","转入", "转出","转入", "转出", "转出","转入", "转出","转入", "转出"]
-        freePT.lgf_ReloadTitle()
+        swiftPT = LGFSwiftPT.lgf(style, self, sview, collectionView)
+        swiftPT.lgf_SwiftPTDelegate = self
+        swiftPT.lgf_Style?.lgf_Titles = ["转入", "转出", "转入", "转出","转入", "转出","转入", "转出", "转出","转入", "转出","转入", "转出", "转出","转入", "转出","转入", "转出"]
+        swiftPT.lgf_ReloadTitle()
         
     }
 }
@@ -63,7 +67,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDe
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return freePT.lgf_Style?.lgf_Titles.count ?? 0
+        return swiftPT.lgf_Style?.lgf_Titles.count ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UICollectionViewCell", for: indexPath)

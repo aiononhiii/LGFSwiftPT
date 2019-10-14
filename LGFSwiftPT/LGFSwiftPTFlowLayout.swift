@@ -14,14 +14,14 @@ public protocol LGFSwiftPTFlowLayoutDelegate: NSObjectProtocol {
 }
 
 public class LGFSwiftPTFlowLayout: UICollectionViewFlowLayout {
-    weak var lgf_FreePTFlowLayoutDelegate: LGFSwiftPTFlowLayoutDelegate?
+    weak var lgf_SwiftPTFlowLayoutDelegate: LGFSwiftPTFlowLayoutDelegate?
     var lgf_PVAnimationType: lgf_FreePageViewAnimationType!
     
     override public func prepare() {
         super.prepare()
         scrollDirection = .horizontal
-        minimumInteritemSpacing = 0;
-        minimumLineSpacing = 0;
+        minimumInteritemSpacing = 0.0
+        minimumLineSpacing = 0.0
         sectionInset = .zero
     }
     
@@ -30,17 +30,17 @@ public class LGFSwiftPTFlowLayout: UICollectionViewFlowLayout {
     }
     
     override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        let attrs = super.layoutAttributesForElements(in: rect)
+        let attrs = super.layoutAttributesForElements(in: rect)?.map { ($0.copy() as! UICollectionViewLayoutAttributes) } ?? []
         if lgf_PVAnimationType == .topToBottom {
-            lgf_FreePageViewTopToBottomAnimationConfig(attrs ?? [], self)
-            return attrs;
+            lgf_FreePageViewTopToBottomAnimationConfig(attrs, self)
+            return attrs
         } else if lgf_PVAnimationType == .smallToBig {
-            lgf_FreePageViewSmallToBigAnimationConfig(attrs ?? [], self)
-            return attrs;
+            lgf_FreePageViewSmallToBigAnimationConfig(attrs, self)
+            return attrs
         } else if lgf_PVAnimationType == .customize {
-            lgf_FreePTFlowLayoutDelegate?.lgf_FreePageViewCustomizeAnimation(attrs ?? [], self)
+            lgf_SwiftPTFlowLayoutDelegate?.lgf_FreePageViewCustomizeAnimation(attrs, self)
             debugPrint(String.init(format: "自定义分页动画的 contentOffset.x:%f", collectionView!.contentOffset.x))
-            return attrs;
+            return attrs
         } else {
             return attrs
         }

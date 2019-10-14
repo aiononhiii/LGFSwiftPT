@@ -17,15 +17,15 @@ public protocol LGFSwiftPTLineDelegate: NSObjectProtocol {
     func lgf_GetLineNetImage(_ imageView: UIImageView, _ imageUrl: URL!)
     // MARK: - 实现这个代理来对 LGFSwiftPTLine 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等
     /**
-     lgf_FreePTLine LGFSwiftPTLine 本体
+     lgf_SwiftPTLine LGFSwiftPTLine 本体
      style LGFSwiftPTStyle
      */
-    func lgf_GetLine(_ lgf_FreePTLine: UIImageView, _ style: LGFSwiftPTStyle)
+    func lgf_GetLine(_ lgf_SwiftPTLine: UIImageView, _ style: LGFSwiftPTStyle)
 }
 
 public class LGFSwiftPTLine: UIImageView {
     
-    weak var lgf_FreePTLineDelegate: LGFSwiftPTLineDelegate?
+    weak var lgf_SwiftPTLineDelegate: LGFSwiftPTLineDelegate?
     
     weak var lgf_Style: LGFSwiftPTStyle! {// 配置用模型
         didSet {
@@ -42,7 +42,7 @@ public class LGFSwiftPTLine: UIImageView {
             // 添加 line 图片
             if lgf_Style.lgf_LineImageName.count > 0 && subviews.count == 0 {
                 if (lgf_Style.lgf_IsLineNetImage) {
-                    lgf_FreePTLineDelegate?.lgf_GetLineNetImage(self, URL.init(string: lgf_Style.lgf_LineImageName))
+                    lgf_SwiftPTLineDelegate?.lgf_GetLineNetImage(self, URL.init(string: lgf_Style.lgf_LineImageName))
                 } else {
                     image = UIImage.init(named: lgf_Style.lgf_LineImageName, in: lgf_Style.lgf_ImageBundel, compatibleWith: nil)
                 }
@@ -66,10 +66,10 @@ public class LGFSwiftPTLine: UIImageView {
     // MARK: - 初始化
     class func lgf_AllocLine(_ style: LGFSwiftPTStyle, _ delegate: LGFSwiftPTLineDelegate) -> LGFSwiftPTLine {
         let line = LGFPTBundle.loadNibNamed(String(describing: LGFSwiftPTLine.self.classForCoder()), owner: self, options: nil)?.first as! LGFSwiftPTLine
-        line.lgf_FreePTLineDelegate = delegate
+        line.lgf_SwiftPTLineDelegate = delegate
         line.lgf_Style = style
         // 这个代理放在最下面，对一些 LGFSwiftPTStyle 配置的属性拥有最终修改权
-        line.lgf_FreePTLineDelegate?.lgf_GetLine(line, style)
+        line.lgf_SwiftPTLineDelegate?.lgf_GetLine(line, style)
         return line
     }
     
