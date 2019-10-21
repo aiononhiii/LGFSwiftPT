@@ -7,7 +7,7 @@ s.homepage    = "https://github.com/aiononhiii/LGFSwiftPT.git"
 s.license     = { :type => 'MIT', :file => 'LICENSE' }
 s.authors     = { "aiononhiii" => "452354033@qq.com" }
 s.requires_arc = true
-s.platform     = :ios, "8.0"
+s.platform     = :ios, "9.0"
 s.source   = { :git => "https://github.com/aiononhiii/LGFSwiftPT.git", :tag => s.version }
 s.framework  = "UIKit"
 s.source_files = 'LGFSwiftPT/*.swift'

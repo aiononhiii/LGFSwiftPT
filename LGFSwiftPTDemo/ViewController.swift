@@ -9,6 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController, LGFSwiftPTDelegate {
+    
+    @IBOutlet weak var showAliPayBtn: UIButton!
+    
     func lgf_SelectSwiftPTTitle(_ selectIndex: Int) {
         
     }
@@ -22,6 +25,16 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
     var collectionView: UICollectionView!
     
     var swiftPT: LGFSwiftPT!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +75,13 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
         swiftPT.lgf_Style?.lgf_Titles = ["转入", "转出转闪电", "转入", "出", "", "转出", "转出", "转出", "转出", "转出", "转出", "转出", "转出"]
         swiftPT.lgf_ReloadTitle()
         
+        view.bringSubviewToFront(showAliPayBtn)
+    }
+    
+    
+    @IBAction func showAliPay(_ sender: Any) {
+        let vc = UIStoryboard.init(name: "VerticalViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "VerticalViewController")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

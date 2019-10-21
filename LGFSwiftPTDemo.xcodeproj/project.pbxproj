@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		2B1055832351D80700CD5B1A /* LGFSwiftPT.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 2B1055822351D80700CD5B1A /* LGFSwiftPT.podspec */; };
+		2B21887C235CAEE20038BDE3 /* VerticalViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B21887B235CAEE20038BDE3 /* VerticalViewController.storyboard */; };
+		2B21887E235CAF160038BDE3 /* VerticalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21887D235CAF160038BDE3 /* VerticalViewController.swift */; };
+		2B218881235CAF4A0038BDE3 /* VerticalViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B218880235CAF4A0038BDE3 /* VerticalViewControllerCell.swift */; };
+		2B218883235CAF730038BDE3 /* VerticalViewControllerReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B218882235CAF730038BDE3 /* VerticalViewControllerReusableView.swift */; };
+		2B218885235CAF880038BDE3 /* VerticalViewControllerOneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B218884235CAF880038BDE3 /* VerticalViewControllerOneCell.swift */; };
+		2B218887235CAF980038BDE3 /* VerticalViewControllerThreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B218886235CAF980038BDE3 /* VerticalViewControllerThreeCell.swift */; };
+		2B21888B235CB8660038BDE3 /* LGF+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B218889235CB8660038BDE3 /* LGF+UIDevice.swift */; };
+		2B21888C235CB8660038BDE3 /* LGF+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21888A235CB8660038BDE3 /* LGF+UIColor.swift */; };
+		2B218892235D57820038BDE3 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B218891235D57810038BDE3 /* Toast.swift */; };
 		2B394E86234F44660067AD69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394E85234F44660067AD69 /* AppDelegate.swift */; };
 		2B394E88234F44660067AD69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B394E87234F44660067AD69 /* ViewController.swift */; };
 		2B394E8B234F44660067AD69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B394E89234F44660067AD69 /* Main.storyboard */; };
@@ -26,6 +35,15 @@
 
 /* Begin PBXFileReference section */
 		2B1055822351D80700CD5B1A /* LGFSwiftPT.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LGFSwiftPT.podspec; sourceTree = SOURCE_ROOT; };
+		2B21887B235CAEE20038BDE3 /* VerticalViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VerticalViewController.storyboard; sourceTree = "<group>"; };
+		2B21887D235CAF160038BDE3 /* VerticalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalViewController.swift; sourceTree = "<group>"; };
+		2B218880235CAF4A0038BDE3 /* VerticalViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalViewControllerCell.swift; sourceTree = "<group>"; };
+		2B218882235CAF730038BDE3 /* VerticalViewControllerReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalViewControllerReusableView.swift; sourceTree = "<group>"; };
+		2B218884235CAF880038BDE3 /* VerticalViewControllerOneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalViewControllerOneCell.swift; sourceTree = "<group>"; };
+		2B218886235CAF980038BDE3 /* VerticalViewControllerThreeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalViewControllerThreeCell.swift; sourceTree = "<group>"; };
+		2B218889235CB8660038BDE3 /* LGF+UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LGF+UIDevice.swift"; sourceTree = "<group>"; };
+		2B21888A235CB8660038BDE3 /* LGF+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LGF+UIColor.swift"; sourceTree = "<group>"; };
+		2B218891235D57810038BDE3 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		2B394E82234F44660067AD69 /* LGFSwiftPTDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGFSwiftPTDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B394E85234F44660067AD69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B394E87234F44660067AD69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +73,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B21887A235CAEB30038BDE3 /* 支付宝编辑页效果 */ = {
+			isa = PBXGroup;
+			children = (
+				2B21887F235CAF2B0038BDE3 /* View */,
+				2B21887D235CAF160038BDE3 /* VerticalViewController.swift */,
+				2B21887B235CAEE20038BDE3 /* VerticalViewController.storyboard */,
+			);
+			path = "支付宝编辑页效果";
+			sourceTree = "<group>";
+		};
+		2B21887F235CAF2B0038BDE3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2B218880235CAF4A0038BDE3 /* VerticalViewControllerCell.swift */,
+				2B218882235CAF730038BDE3 /* VerticalViewControllerReusableView.swift */,
+				2B218884235CAF880038BDE3 /* VerticalViewControllerOneCell.swift */,
+				2B218886235CAF980038BDE3 /* VerticalViewControllerThreeCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2B218888235CB84E0038BDE3 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				2B218891235D57810038BDE3 /* Toast.swift */,
+				2B21888A235CB8660038BDE3 /* LGF+UIColor.swift */,
+				2B218889235CB8660038BDE3 /* LGF+UIDevice.swift */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 		2B394E79234F44660067AD69 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +124,8 @@
 		2B394E84234F44660067AD69 /* LGFSwiftPTDemo */ = {
 			isa = PBXGroup;
 			children = (
+				2B218888235CB84E0038BDE3 /* Tool */,
+				2B21887A235CAEB30038BDE3 /* 支付宝编辑页效果 */,
 				2B1055822351D80700CD5B1A /* LGFSwiftPT.podspec */,
 				2B394E85234F44660067AD69 /* AppDelegate.swift */,
 				2B394E87234F44660067AD69 /* ViewController.swift */,
@@ -134,6 +185,7 @@
 				TargetAttributes = {
 					2B394E81234F44660067AD69 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -163,6 +215,7 @@
 				2B394EC9234F45780067AD69 /* LGFSwiftPTTitle.xib in Resources */,
 				2B394ECC234F45780067AD69 /* LGFSwiftPTLine.xib in Resources */,
 				2B1055832351D80700CD5B1A /* LGFSwiftPT.podspec in Resources */,
+				2B21887C235CAEE20038BDE3 /* VerticalViewController.storyboard in Resources */,
 				2B394E90234F44660067AD69 /* LaunchScreen.storyboard in Resources */,
 				2B394ECB234F45780067AD69 /* LGFSwiftPT.xib in Resources */,
 				2B394E8D234F44660067AD69 /* Assets.xcassets in Resources */,
@@ -178,13 +231,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B394ECF234F45780067AD69 /* LGFSwiftPT.swift in Sources */,
+				2B218892235D57820038BDE3 /* Toast.swift in Sources */,
 				2B394ECD234F45780067AD69 /* LGFSwiftPTTitle.swift in Sources */,
+				2B21887E235CAF160038BDE3 /* VerticalViewController.swift in Sources */,
 				2B394ECE234F45780067AD69 /* LGFSwiftPTStyle.swift in Sources */,
 				2B394E88234F44660067AD69 /* ViewController.swift in Sources */,
+				2B21888B235CB8660038BDE3 /* LGF+UIDevice.swift in Sources */,
+				2B218885235CAF880038BDE3 /* VerticalViewControllerOneCell.swift in Sources */,
 				2B394EC8234F45780067AD69 /* LGFSwiftPTLine.swift in Sources */,
 				2B394E86234F44660067AD69 /* AppDelegate.swift in Sources */,
+				2B218887235CAF980038BDE3 /* VerticalViewControllerThreeCell.swift in Sources */,
+				2B21888C235CB8660038BDE3 /* LGF+UIColor.swift in Sources */,
 				2B394EC7234F45780067AD69 /* LGFSwiftPTFlowLayout.swift in Sources */,
+				2B218881235CAF4A0038BDE3 /* VerticalViewControllerCell.swift in Sources */,
 				2B394ECA234F45780067AD69 /* LGFSwiftPTMethod.swift in Sources */,
+				2B218883235CAF730038BDE3 /* VerticalViewControllerReusableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +391,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU3566C3NH;
 				INFOPLIST_FILE = LGFSwiftPTDemo/Info.plist;
@@ -340,6 +402,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "laiguofeng.-LGFSwiftPT.LGFSwiftPTDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -349,6 +413,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU3566C3NH;
 				INFOPLIST_FILE = LGFSwiftPTDemo/Info.plist;
@@ -359,6 +424,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "laiguofeng.-LGFSwiftPT.LGFSwiftPTDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
