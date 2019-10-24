@@ -107,6 +107,7 @@
 		2B394E79234F44660067AD69 = {
 			isa = PBXGroup;
 			children = (
+				2B1055822351D80700CD5B1A /* LGFSwiftPT.podspec */,
 				2B394EBD234F45780067AD69 /* LGFSwiftPT */,
 				2B394E84234F44660067AD69 /* LGFSwiftPTDemo */,
 				2B394E83234F44660067AD69 /* Products */,
@@ -126,7 +127,6 @@
 			children = (
 				2B218888235CB84E0038BDE3 /* Tool */,
 				2B21887A235CAEB30038BDE3 /* 支付宝编辑页效果 */,
-				2B1055822351D80700CD5B1A /* LGFSwiftPT.podspec */,
 				2B394E85234F44660067AD69 /* AppDelegate.swift */,
 				2B394E87234F44660067AD69 /* ViewController.swift */,
 				2B394E89234F44660067AD69 /* Main.storyboard */,
@@ -392,6 +392,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU3566C3NH;
 				INFOPLIST_FILE = LGFSwiftPTDemo/Info.plist;
@@ -400,8 +401,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "laiguofeng.-LGFSwiftPT.LGFSwiftPTDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -414,6 +417,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YU3566C3NH;
 				INFOPLIST_FILE = LGFSwiftPTDemo/Info.plist;
@@ -422,8 +426,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "laiguofeng.-LGFSwiftPT.LGFSwiftPTDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

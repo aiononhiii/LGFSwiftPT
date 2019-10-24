@@ -55,6 +55,16 @@ class VerticalViewController: UIViewController {
     // 是否编辑
     var isEdit: Bool = false
     var isSelectTitle: Bool = false
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+        if #available(iOS 13.0, *) {
+            UIApplication.shared.statusBarStyle = .lightContent
+        } else {
+            
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

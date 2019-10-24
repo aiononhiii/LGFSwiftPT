@@ -28,12 +28,12 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.navigationBar.isHidden = true
+        if #available(iOS 13.0, *) {
+            UIApplication.shared.statusBarStyle = .lightContent
+        } else {
+            
+        }
     }
     
     override func viewDidLoad() {

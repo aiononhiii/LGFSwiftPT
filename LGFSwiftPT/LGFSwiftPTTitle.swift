@@ -304,7 +304,8 @@ public class LGFSwiftPTTitle: UIView {
         
         // 标宽度
         let maxWidth = max(titleSize.width, subTitleSize.width)
-        let totalWidth = (maxWidth + (style.lgf_TitleLeftRightSpace * 2.0) + title.lgf_Style.lgf_LeftImageWidth + title.lgf_Style.lgf_RightImageWidth + title.lgf_Style.lgf_LeftImageSpace + title.lgf_Style.lgf_RightImageSpace)
+        let leftRightSpace = style.lgf_TitleLeftRightSpace * 2.0
+        let totalWidth = maxWidth + title.lgf_Style.lgf_LeftImageWidth + title.lgf_Style.lgf_RightImageWidth + title.lgf_Style.lgf_LeftImageSpace + title.lgf_Style.lgf_RightImageSpace + leftRightSpace
         let titleWidth = title.lgf_Style.lgf_TitleFixedWidth > 0.0 ? title.lgf_Style.lgf_TitleFixedWidth : totalWidth
         title.frame = CGRect.init(x: titleX, y: 0.0, width: titleWidth, height: title.lgf_Style.lgf_PVTitleView.lgfpt_Height)
         title.lgf_Style.lgf_PVTitleView.addSubview(title)
