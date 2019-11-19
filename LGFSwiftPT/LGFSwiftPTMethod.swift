@@ -9,7 +9,27 @@
 import Foundation
 import UIKit
 
+/*
+ LGFSwiftPTMethod 这里的所有代码都可以用自定义来代替（可用作自定义动画时的参考）
+ */
+
 // MARK: ------------------- 我自己原配的 line 滚动动画逻辑代码
+public func lgf_AutoScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
+    if style.lgf_LineAnimation == .defult {
+        lgf_PageLineAnimationDefultScrollLineAnimationConfig(style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, line, progress)
+    } else if style.lgf_LineAnimation == .shortToLong {
+        lgf_PageLineAnimationShortToLongScrollLineAnimationConfig(style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, line, progress)
+    } else if style.lgf_LineAnimation == .hideShow {
+        lgf_PageLineAnimationHideShowScrollLineAnimationConfig(style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, line, progress)
+    } else if style.lgf_LineAnimation == .smallToBig {
+        lgf_PageLineAnimationSmallToBigScrollLineAnimationConfig(style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, line, progress)
+    } else if style.lgf_LineAnimation == .tortoiseDown {
+        lgf_PageLineAnimationTortoiseDownScrollLineAnimationConfig(style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, line, progress)
+    } else if style.lgf_LineAnimation == .tortoiseUp {
+        lgf_PageLineAnimationTortoiseUpScrollLineAnimationConfig(style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, line, progress)
+    }
+}
+
 public func lgf_PageLineAnimationDefultScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat) {
     line.lgfpt_X = selectX * progress + unSelectX * (1.0 - progress)
     line.lgfpt_Width = selectWidth * progress + unSelectWidth * (1.0 - progress)
@@ -100,6 +120,22 @@ public func lgf_PageLineAnimationTortoiseUpScrollLineAnimationConfig(_ style: LG
 }
 
 // MARK: ------------------- 我自己原配的 line 点击动画逻辑代码
+public func lgf_AutoClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval) {
+    if (style.lgf_LineAnimation == .defult) {
+        lgf_PageLineAnimationDefultClickLineAnimationConfig(style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, line, duration)
+    } else if (style.lgf_LineAnimation == .shortToLong) {
+        lgf_PageLineAnimationShortToLongClickLineAnimationConfig(style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, line, duration)
+    } else if (style.lgf_LineAnimation == .hideShow) {
+        lgf_PageLineAnimationHideShowClickLineAnimationConfig(style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, line, duration)
+    } else if (style.lgf_LineAnimation == .smallToBig) {
+        lgf_PageLineAnimationSmallToBigClickLineAnimationConfig(style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, line, duration)
+    } else if (style.lgf_LineAnimation == .tortoiseDown) {
+        lgf_PageLineAnimationTortoiseDownClickLineAnimationConfig(style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, line, duration)
+    } else if (style.lgf_LineAnimation == .tortoiseUp) {
+        lgf_PageLineAnimationTortoiseUpClickLineAnimationConfig(style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, line, duration)
+    }
+}
+
 public func lgf_PageLineAnimationDefultClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval) {
     line.lgfpt_X = selectX
     line.lgfpt_Width = selectWidth
@@ -169,6 +205,14 @@ public func lgf_PageLineAnimationTortoiseUpClickLineAnimationConfig(_ style: LGF
 }
 
 // MARK: ------------------- 我自己原配的 标 跟随动画逻辑代码
+public func lgf_AutoTitleScrollFollowAnimationConfig(_ style: LGFSwiftPTStyle, _ lgf_TitleButtons: [LGFSwiftPTTitle], _ unSelectIndex: Int, _ selectIndex: Int, _ duration: TimeInterval) {
+    if style.lgf_TitleScrollFollowType == .defult {
+        lgf_TitleScrollFollowDefultAnimationConfig(style, lgf_TitleButtons, unSelectIndex, selectIndex, duration)
+    } else if style.lgf_TitleScrollFollowType == .leftRight {
+        lgf_TitleScrollFollowLeftRightAnimationConfig(style, lgf_TitleButtons, unSelectIndex, selectIndex, duration)
+    }
+}
+
 public func lgf_TitleScrollFollowDefultAnimationConfig(_ style: LGFSwiftPTStyle, _ lgf_TitleButtons: [LGFSwiftPTTitle], _ unSelectIndex: Int, _ selectIndex: Int, _ duration: TimeInterval) {
     let selectTitle = lgf_TitleButtons[selectIndex]
     let offSetx = min(max(selectTitle.center.x - style.lgf_PVTitleView.lgfpt_Width * 0.5, 0.0), max(style.lgf_PVTitleView.contentSize.width - style.lgf_PVTitleView.lgfpt_Width, 0.0))

@@ -35,8 +35,8 @@ import UIKit
     // MARK: - 实现这个代理来对所有标的滚动动效状态进行配置（为了某些标队列特殊物理效果的需求）（注意：实现这个代理后我的默认效果将无效）
     /**
      allTitles 所有标数组
-     selectTitle 选中标
-     unSelectTitle 未选中标
+     selectTitle 选中标本体
+     unSelectTitle 未选中标本体
      selectIndex  选中 index
      unSelectIndex 未选中 index
      progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计)
@@ -45,8 +45,8 @@ import UIKit
     // MARK: - 实现这个代理来对所有标的点击动效状态进行配置（为了某些标队列特殊物理效果的需求）（注意：实现这个代理后我的默认效果将无效）
     /**
      allTitles 所有标数组
-     selectTitle 选中标
-     unSelectTitle 未选中标
+     selectTitle 选中标本体
+     unSelectTitle 未选中标本体
      selectIndex  选中 index
      unSelectIndex 未选中 index
      progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计)
@@ -263,7 +263,7 @@ public class LGFSwiftPT: UIScrollView {
             lgf_PageView.addObserver(self, forKeyPath: "contentOffset", options: .new, context: nil)
             lgf_PageView.isPagingEnabled = true
             lgf_PageView.scrollsToTop = false
-            lgf_PageView.tag = 333333
+            lgf_PageView.tag = 333333// 用来解决侧滑返回手势冲突
         }
     }
     
@@ -333,21 +333,11 @@ extension LGFSwiftPT {
             }
             
             let (selectX, selectWidth, unSelectX, unSelectWidth) = self.lgf_GetXAndW(selectTitle, unSelectTitle)
-            // 下面有部分重复动画代码，为了直观的鼓励你们使用我的代理来自定义自己的动画，如果可以能够结合 LGFSwiftPTStyle 分享给大家那是极好的（我的动画代码不一定是最精简的，效果也不一定是最惊艳的～）
-            if (self.lgf_Style.lgf_LineAnimation == .defult) {
-                lgf_PageLineAnimationDefultClickLineAnimationConfig(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, duration)
-            } else if (self.lgf_Style.lgf_LineAnimation == .shortToLong) {
-                lgf_PageLineAnimationShortToLongClickLineAnimationConfig(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, duration)
-            } else if (self.lgf_Style.lgf_LineAnimation == .hideShow) {
-                lgf_PageLineAnimationHideShowClickLineAnimationConfig(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, duration)
-            } else if (self.lgf_Style.lgf_LineAnimation == .smallToBig) {
-                lgf_PageLineAnimationSmallToBigClickLineAnimationConfig(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, duration)
-            } else if (self.lgf_Style.lgf_LineAnimation == .tortoiseDown) {
-                lgf_PageLineAnimationTortoiseDownClickLineAnimationConfig(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, duration)
-            } else if (self.lgf_Style.lgf_LineAnimation == .tortoiseUp) {
-                lgf_PageLineAnimationTortoiseUpClickLineAnimationConfig(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, duration)
-            } else if (self.lgf_Style.lgf_LineAnimation == .customize) {
+            // LGFSwiftPTMethod 类里是所有我已经实现的动画代码，也希望你们使用我的代理来自定义自己的动画，如果可以能够结合 LGFSwiftPTStyle 分享给大家那是极好的（我的动画代码不一定是最精简的，效果也不一定是最惊艳的～）
+            if (self.lgf_Style.lgf_LineAnimation == .customize) {
                 self.lgf_SwiftPTDelegate?.lgf_SwiftPTViewCustomizeClickLineAnimationConfig?(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, animatedDuration)
+            } else {
+                lgf_AutoClickLineAnimationConfig(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, duration)
             }
         }) { (finish) in
             self.lgf_TitleAutoScrollToTheMiddleExecutionDelegate(isExecution, autoScrollDuration)
@@ -406,24 +396,14 @@ extension LGFSwiftPT {
         // 标底部滚动条 更新位置
         if (lgf_TitleLine != nil) && lgf_Style.lgf_IsShowLine {
             let (selectX, selectWidth, unSelectX, unSelectWidth) = lgf_GetXAndW(selectTitle, unSelectTitle)
-            // 下面有部分重复动画代码，为了直观的鼓励你们使用我的代理来自定义自己的动画，如果可以能够结合 LGFSwiftPTStyle 分享给大家那是极好的（我的动画代码不一定是最精简的，效果也不一定是最惊艳的～）
-            if lgf_Style.lgf_LineAnimation == .defult {
-                lgf_PageLineAnimationDefultScrollLineAnimationConfig(lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, lgf_TitleLine, progress)
-            } else if lgf_Style.lgf_LineAnimation == .shortToLong {
-                lgf_PageLineAnimationShortToLongScrollLineAnimationConfig(lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, lgf_TitleLine, progress)
-            } else if lgf_Style.lgf_LineAnimation == .hideShow {
-                lgf_PageLineAnimationHideShowScrollLineAnimationConfig(lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, lgf_TitleLine, progress)
-            } else if lgf_Style.lgf_LineAnimation == .smallToBig {
-                lgf_PageLineAnimationSmallToBigScrollLineAnimationConfig(lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, lgf_TitleLine, progress)
-            } else if lgf_Style.lgf_LineAnimation == .tortoiseDown {
-                lgf_PageLineAnimationTortoiseDownScrollLineAnimationConfig(lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, lgf_TitleLine, progress)
-            } else if lgf_Style.lgf_LineAnimation == .tortoiseUp {
-                lgf_PageLineAnimationTortoiseUpScrollLineAnimationConfig(lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, lgf_TitleLine, progress)
-            } else if lgf_Style.lgf_LineAnimation == .customize {
+            // LGFSwiftPTMethod 类里是所有我已经实现的动画代码，希望你们使用我的代理来自定义自己的动画，如果可以能够结合 LGFSwiftPTStyle 分享给大家那是极好的（我的动画代码不一定是最精简的，效果也不一定是最惊艳的～）
+             if lgf_Style.lgf_LineAnimation == .customize {
                 lgf_SwiftPTDelegate?.lgf_SwiftPTViewCustomizeScrollLineAnimationConfig?(lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, lgf_TitleLine, progress)
                 if lgf_Style.lgf_ShowPrint {
                     debugPrint(String.init(format: "🤖️:自定义 line 动画 progress:%f", progress))
                 }
+             } else {
+                lgf_AutoScrollLineAnimationConfig(lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, lgf_TitleLine, progress)
             }
         }
     }
@@ -463,17 +443,15 @@ extension LGFSwiftPT {
         if lgf_SelectIndex > lgf_TitleButtons.count - 1 || lgf_TitleButtons.count == 0 {
             return
         }
-        // 下面有部分重复动画代码，为了直观的鼓励你们使用我的代理来自定义自己的效果，如果可以能够结合 LGFSwiftPTStyle 分享给大家那是极好的（我的动画代码不一定是最精简的，效果也不一定是最惊艳的～）
+        // LGFSwiftPTMethod 类里是所有我已经实现的动画代码，希望你们使用我的代理来自定义自己的动画，如果可以能够结合 LGFSwiftPTStyle 分享给大家那是极好的（我的动画代码不一定是最精简的，效果也不一定是最惊艳的～）
         if !(contentSize.width < lgfpt_Width) {
-            if lgf_Style.lgf_TitleScrollFollowType == .defult {
-                lgf_TitleScrollFollowDefultAnimationConfig(lgf_Style, lgf_TitleButtons, lgf_UnSelectIndex, lgf_SelectIndex, autoScrollDuration)
-            } else if lgf_Style.lgf_TitleScrollFollowType == .leftRight {
-                lgf_TitleScrollFollowLeftRightAnimationConfig(lgf_Style, lgf_TitleButtons, lgf_UnSelectIndex, lgf_SelectIndex, autoScrollDuration)
-            } else if lgf_Style.lgf_TitleScrollFollowType == .customize {
+            if lgf_Style.lgf_TitleScrollFollowType == .customize {
                 lgf_SwiftPTDelegate?.lgf_TitleScrollFollowCustomizeAnimationConfig?(lgf_Style, lgf_TitleButtons, lgf_UnSelectIndex, lgf_SelectIndex, autoScrollDuration)
                 if lgf_Style.lgf_ShowPrint {
                     debugPrint(String.init(format: "🤖️:自定义回位动画的 contentOffset.x:%f", contentOffset.x))
                 }
+            } else {
+                lgf_AutoTitleScrollFollowAnimationConfig(lgf_Style, lgf_TitleButtons, lgf_UnSelectIndex, lgf_SelectIndex, autoScrollDuration)
             }
         }
         if (isExecution) {

@@ -30,8 +30,7 @@ public enum lgf_FreePageLineAnimationType {
 
 public enum lgf_FreeTitleScrollFollowType {
     case defult// 在可滚动的情况下, 选中 title 默认滚动到 lgf_PVTitleView 中间
-    // 后续推出下面的 仿腾讯新闻, 天天快报选中 title 滚动效果 现暂时不可用 请勿设置
-    case leftRight// 向左滚动选中 title 永远出现在最右边可见位置, 反之向右滚动选中 title 永远出现在最左边可见位置（此效果不会像上面的效果那样滚到中间）(模仿腾讯新闻)
+    case leftRight// 向左滚动选中 title 永远出现在最右边可见位置, 反之向右滚动选中 title 永远出现在最左边可见位置（此效果不会像上面的效果那样滚到中间）(模仿腾讯新闻)（此效果可适度减少性能占用，适合复杂页面）
     case customize// 我想自定义这个效果，将返回你或许需要的值
 }
 

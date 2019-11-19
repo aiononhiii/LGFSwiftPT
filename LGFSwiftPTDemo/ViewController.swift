@@ -54,28 +54,38 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
         
         sview = UIView.init(frame: CGRect.init(x: 0, y: 20, width: UIScreen.main.bounds.width, height: 50))
         view.addSubview(sview)
+        
+        creatSwiftPT()
+        
+        view.bringSubviewToFront(showAliPayBtn)
+    }
+    
+    func creatSwiftPT() {
         let style = LGFSwiftPTStyle()
         style.lgf_LineHeight = 5
         style.lgf_LineWidth = 20
-        style.lgf_LineAnimation = .shortToLong
-        style.lgf_LineWidthType = .equalTitleSTR
+        style.lgf_LineAnimation = .defult
+        style.lgf_LineWidthType = .fixedWith
         style.lgf_StartDebug = true
         style.lgf_TitleTransformSX = 2.0
-        style.lgf_PVAnimationType = .smallToBig
+        style.lgf_PVAnimationType = .topToBottom
+        style.lgf_TitleScrollFollowType = .leftRight
         style.lgf_TitleLeftRightSpace = 10
         
+        // 自定义特殊标
         let lab = UILabel.init()
-        lab.lgfpt_SwiftPTSpecialTitleProperty = "4~~~100"
-        lab.text = "来国锋"
-        lab.textColor = UIColor.red
+        lab.lgfpt_SwiftPTSpecialTitleProperty = "4~~~120"// 4 添加到对应下标， 100 宽度
+        lab.text = "我是特殊标"
+        lab.textColor = UIColor.white
+        lab.font = UIFont.boldSystemFont(ofSize: 20)
         style.lgf_SwiftPTSpecialTitleArray = [lab]
+        
+        style.lgf_Titles = ["转入", "转出转闪电", "转入", "出", "", "转出", "转出", "转出", "转出", "转出", "转出", "转出", "转出"] // 这两句可以随意替换设置
         
         swiftPT = LGFSwiftPT.lgf(style, self, sview, collectionView)
         swiftPT.lgf_SwiftPTDelegate = self
-        swiftPT.lgf_Style?.lgf_Titles = ["转入", "转出转闪电", "转入", "出", "", "转出", "转出", "转出", "转出", "转出", "转出", "转出", "转出"]
-        swiftPT.lgf_ReloadTitle()
-        
-        view.bringSubviewToFront(showAliPayBtn)
+//        swiftPT.lgf_Style.lgf_Titles = ["转入", "转出转闪电", "转入", "出", "", "转出", "转出", "转出", "转出", "转出", "转出", "转出", "转出"]// 这两句可以随意替换设置
+        swiftPT.lgf_ReloadTitle()// 这句必须设置，不然不刷新 swiftPT 的 UI，也可用来随时替换新的数据源（替换时如果你关联了外部 collectionview ，记得也同时修改你自己定义的外部 collectionview 的数据源防止数组越界）
     }
     
     
@@ -93,7 +103,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDe
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return swiftPT.lgf_Style?.lgf_Titles.count ?? 0
+        return swiftPT.lgf_Style.lgf_Titles.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UICollectionViewCell", for: indexPath)
