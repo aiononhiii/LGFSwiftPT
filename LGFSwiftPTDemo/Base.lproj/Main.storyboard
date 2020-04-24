@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rEk-ZG-8kj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rEk-ZG-8kj">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="Che-7a-fQB">
             <objects>
-                <navigationController interfaceStyle="light" id="rEk-ZG-8kj" sceneMemberID="viewController">
+                <navigationController id="rEk-ZG-8kj" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="XgH-dX-7Ih">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="19V-uo-LeD"/>
+                        <segue destination="DVf-R5-2sG" kind="relationship" relationship="rootViewController" id="Kkk-4W-zoU"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="StO-wS-n0w" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -46,7 +46,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="p35-o9-aeH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.5" id="o8W-K7-qu8"/>
                             <constraint firstItem="p35-o9-aeH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ztn-GV-3Zz"/>
@@ -59,7 +59,56 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="134"/>
+            <point key="canvasLocation" x="797.60000000000002" y="133.5832083958021"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="o79-c8-OWP">
+            <objects>
+                <viewController id="DVf-R5-2sG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WjJ-5H-cFg"/>
+                        <viewControllerLayoutGuide type="bottom" id="RZv-bx-2fd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cZ5-SI-4xd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcK-1i-Ez1">
+                                <rect key="frame" x="60.5" y="479.5" width="254" height="42"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
+                                <state key="normal" title="点击查看支付宝效果页">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAO-kb-KZB">
+                                <rect key="frame" x="87.5" y="283.5" width="200" height="100"/>
+                                <color key="backgroundColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="07P-Bv-dvS"/>
+                                    <constraint firstAttribute="height" constant="100" id="DU4-v9-0ML"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
+                                <state key="normal" title="LGFSWIFTPT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="8aB-eI-Xpl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fAO-kb-KZB" firstAttribute="centerY" secondItem="cZ5-SI-4xd" secondAttribute="centerY" id="DRp-zp-UdL"/>
+                            <constraint firstItem="fAO-kb-KZB" firstAttribute="centerX" secondItem="cZ5-SI-4xd" secondAttribute="centerX" id="FOC-qC-Xkw"/>
+                            <constraint firstItem="mcK-1i-Ez1" firstAttribute="centerX" secondItem="cZ5-SI-4xd" secondAttribute="centerX" id="MIg-ty-eBQ"/>
+                            <constraint firstItem="mcK-1i-Ez1" firstAttribute="centerY" secondItem="cZ5-SI-4xd" secondAttribute="centerY" multiplier="1.5" id="sbd-iB-T1d"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="eHD-LY-z9T"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dCN-2w-LH2" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="57" y="142"/>
         </scene>
     </scenes>
 </document>

@@ -65,6 +65,11 @@ class VerticalViewController: UIViewController {
             
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
