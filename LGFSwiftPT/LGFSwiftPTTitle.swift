@@ -9,79 +9,132 @@
 import UIKit
 
 public protocol LGFSwiftPTTitleDelegate: NSObjectProtocol {
+    
     // MARK: - 加载 title 网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架，使用前请打开 lgf_IsNetImage
-    /**
-     imageView 要加载网络图片的 imageView
-     imageUrl 网络图片的 Url
-     */
+    /// - Parameters:
+    ///   - imageView: 要加载网络图片的 imageView
+    ///   - imageUrl: 网络图片的 Url
     func lgf_GetTitleNetImage(_ imageView: UIImageView, _ imageUrl: URL!)
-    // MARK: - 实现这个代理来对 LGFSwiftPTTitle 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等
-    /**
-     lgf_SwiftPTTitle LGFSwiftPTTitle 本体
-     index 所在的 index
-     style LGFSwiftPTStyle
-     */
+    
+    // MARK: - 实现这个代理来对 LGFSwiftPTTitle 初始化时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等 注意：这些新配置如果和 LGFSwiftPTStyle 冲突将覆盖 LGFSwiftPTStyle 的效果
+    /// - Parameters:
+    ///   - lgf_SwiftPTTitle: LGFSwiftPTTitle 本体
+    ///   - index: 所在的 index
+    ///   - style: LGFSwiftPTStyle
     func lgf_GetTitle(_ lgf_SwiftPTTitle: UIView, _ index: Int, _ style: LGFSwiftPTStyle)
+   
+    // MARK: -  实现这个代理来对 LGFSwiftPTTitle 中的 centerLine 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius/isHidden等等 LGFSwiftPTStyle 中 lgf_IsHaveCenterLine 需要为true
+    /// - Parameters:
+    ///   - centerLine: centerLine 本体
+    ///   - index: 所在的 index
+    ///   - style: LGFSwiftPTStyle
+    ///   - X: (X - width / 2) 等同于 centerX
+    ///   - Y: 等同于 centerY
+    ///   - W: 等同于 width
+    ///   - H: 等同于 height
+    func lgf_GetCenterLine(_ centerLine: UIView, _ index: Int, _ style: LGFSwiftPTStyle, _ X: NSLayoutConstraint, _ Y: NSLayoutConstraint, _ W: NSLayoutConstraint, _ H: NSLayoutConstraint)
 }
 
 public class LGFSwiftPTTitle: UIView {
     
-    weak var lgf_SwiftPTTitleDelegate: LGFSwiftPTTitleDelegate?
+    /// LGFSwiftPTTitle 主代理
+    public weak var lgf_SwiftPTTitleDelegate: LGFSwiftPTTitleDelegate?
     
-    @IBOutlet weak var lgf_Title: UILabel!// 标
-    @IBOutlet weak var lgf_SubTitle: UILabel!// 子标
-    @IBOutlet weak var lgf_TitleWidth: NSLayoutConstraint!// 标宽度
-    @IBOutlet weak var lgf_TitleHeight: NSLayoutConstraint!// 标高度
-    @IBOutlet weak var lgf_SubTitleTop: NSLayoutConstraint!// 子标相对于标距离
-    @IBOutlet weak var lgf_SubTitleWidth: NSLayoutConstraint!// 标宽度
-    @IBOutlet weak var lgf_SubTitleHeight: NSLayoutConstraint!// 子标高度（子标宽度暂时于标共享取两者MAX值）
-    @IBOutlet weak var lgf_TitleCenterX: NSLayoutConstraint!// 标中心X
-    @IBOutlet weak var lgf_TitleCenterY: NSLayoutConstraint!// 标中心Y
+    /// 标
+    @IBOutlet weak var lgf_Title: UILabel!
+    /// 标宽度
+    @IBOutlet weak var lgf_TitleWidth: NSLayoutConstraint!
+    /// 标高度
+    @IBOutlet weak var lgf_TitleHeight: NSLayoutConstraint!
+    /// 标中心X
+    @IBOutlet weak var lgf_TitleCenterX: NSLayoutConstraint!
+    /// 标中心Y
+    @IBOutlet weak var lgf_TitleCenterY: NSLayoutConstraint!
     
-    @IBOutlet weak var lgf_TopImageSpace: NSLayoutConstraint!// 标上图片相对于标距离
-    @IBOutlet weak var lgf_BottomImageSpace: NSLayoutConstraint!// 标下图片相对于标距离
-    @IBOutlet weak var lgf_LeftImageSpace: NSLayoutConstraint!// 标左图片相对于标距离
-    @IBOutlet weak var lgf_RightImageSpace: NSLayoutConstraint!// 标右图片相对于标距离
+    /// 子标
+    @IBOutlet weak var lgf_SubTitle: UILabel!
+    /// 子标相对于标距离
+    @IBOutlet weak var lgf_SubTitleTop: NSLayoutConstraint!
+    /// 标宽度
+    @IBOutlet weak var lgf_SubTitleWidth: NSLayoutConstraint!
+    /// 子标高度（子标宽度暂时于标共享取两者MAX值）
+    @IBOutlet weak var lgf_SubTitleHeight: NSLayoutConstraint!
+    @IBOutlet weak var lgf_CenterLine: UIView!
+    @IBOutlet weak var lgf_CenterLineX: NSLayoutConstraint!
+    @IBOutlet weak var lgf_CenterLineY: NSLayoutConstraint!
+    @IBOutlet weak var lgf_CenterLineWidth: NSLayoutConstraint!
+    @IBOutlet weak var lgf_CenterLineHeight: NSLayoutConstraint!
     
-    @IBOutlet weak var lgf_TopImage: UIImageView!// 标上图片
-    @IBOutlet weak var lgf_TopImageWidth: NSLayoutConstraint!// 标上图片宽度
-    @IBOutlet weak var lgf_TopImageHeight: NSLayoutConstraint!// 标上图片高度
+    /// 标上图片相对于标距离
+    @IBOutlet weak var lgf_TopImageSpace: NSLayoutConstraint!
+    /// 标下图片相对于标距离
+    @IBOutlet weak var lgf_BottomImageSpace: NSLayoutConstraint!
+    /// 标左图片相对于标距离
+    @IBOutlet weak var lgf_LeftImageSpace: NSLayoutConstraint!
+    /// 标右图片相对于标距离
+    @IBOutlet weak var lgf_RightImageSpace: NSLayoutConstraint!
     
-    @IBOutlet weak var lgf_BottomImage: UIImageView!// 标下图片
-    @IBOutlet weak var lgf_BottomImageWidth: NSLayoutConstraint!// 标下图片宽度
-    @IBOutlet weak var lgf_BottomImageHeight: NSLayoutConstraint!// 标下图片高度
+    /// 标上图片
+    @IBOutlet weak var lgf_TopImage: UIImageView!
+    /// 标上图片宽度
+    @IBOutlet weak var lgf_TopImageWidth: NSLayoutConstraint!
+    /// 标上图片高度
+    @IBOutlet weak var lgf_TopImageHeight: NSLayoutConstraint!
     
-    @IBOutlet weak var lgf_LeftImage: UIImageView!// 标左图片
-    @IBOutlet weak var lgf_LeftImageWidth: NSLayoutConstraint!// 标左图片宽度
-    @IBOutlet weak var lgf_LeftImageHeight: NSLayoutConstraint!// 标左图片高度
+    /// 标下图片
+    @IBOutlet weak var lgf_BottomImage: UIImageView!
+    /// 标下图片宽度
+    @IBOutlet weak var lgf_BottomImageWidth: NSLayoutConstraint!
+    /// 标下图片高度
+    @IBOutlet weak var lgf_BottomImageHeight: NSLayoutConstraint!
     
-    @IBOutlet weak var lgf_RightImage: UIImageView!// 标右图片
-    @IBOutlet weak var lgf_RightImageWidth: NSLayoutConstraint!// 标右图片宽度
-    @IBOutlet weak var lgf_RightImageHeight: NSLayoutConstraint!// 标右图片高度
+    /// 标左图片
+    @IBOutlet weak var lgf_LeftImage: UIImageView!
+    /// 标左图片宽度
+    @IBOutlet weak var lgf_LeftImageWidth: NSLayoutConstraint!
+    /// 标左图片高度
+    @IBOutlet weak var lgf_LeftImageHeight: NSLayoutConstraint!
     
-    fileprivate lazy var lgf_SelectImageNames: [String] = []// 选中图片数组
-    fileprivate lazy var lgf_UnSelectImageNames: [String] = []// 未选中图片数组
+    /// 标右图片
+    @IBOutlet weak var lgf_RightImage: UIImageView!
+    /// 标右图片宽度
+    @IBOutlet weak var lgf_RightImageWidth: NSLayoutConstraint!
+    /// 标右图片高度
+    @IBOutlet weak var lgf_RightImageHeight: NSLayoutConstraint!
     
-    fileprivate var lgf_IsHaveImage: Bool = false// 是否有标图片
-    var lgf_CurrentTransformSX: CGFloat = 1.0// 放大缩小倍数
-    var lgf_MainTitleCurrentTransformSX: CGFloat = 1.0// 主标题放大缩小倍数
-    var lgf_MainTitleCurrentTransformTY: CGFloat = 0.0// 主标题上下位移
-    var lgf_MainTitleCurrentTransformTX: CGFloat = 0.0// 主标题左右位移
-    var lgf_SubTitleCurrentTransformSX: CGFloat = 1.0// 子标题放大缩小倍数
-    var lgf_SubTitleCurrentTransformTY: CGFloat = 0.0// 子标题上下位移
-    var lgf_SubTitleCurrentTransformTX: CGFloat = 0.0// 子标题左右位移
-    // 标字体渐变色用数组
-    fileprivate lazy var lgf_SelectColorRGBA: [CGFloat] = {
+    /// 选中图片数组
+    private(set) lazy var lgf_SelectImageNames: [String] = []
+    /// 未选中图片数组
+    private(set) lazy var lgf_UnSelectImageNames: [String] = []
+    
+    /// 是否有标图片
+    private(set) var lgf_IsHaveImage: Bool = false
+    /// 放大缩小倍数
+    private(set) var lgf_CurrentTransformSX: CGFloat = 1.0
+    /// 主标题放大缩小倍数
+    private(set) var lgf_MainTitleCurrentTransformSX: CGFloat = 1.0
+    /// 主标题上下位移
+    private(set) var lgf_MainTitleCurrentTransformTY: CGFloat = 0.0
+    /// 主标题左右位移
+    private(set) var lgf_MainTitleCurrentTransformTX: CGFloat = 0.0
+    /// 子标题放大缩小倍数
+    private(set) var lgf_SubTitleCurrentTransformSX: CGFloat = 1.0
+    /// 子标题上下位移
+    private(set) var lgf_SubTitleCurrentTransformTY: CGFloat = 0.0
+    /// 子标题左右位移
+    private(set) var lgf_SubTitleCurrentTransformTX: CGFloat = 0.0
+    /// 标字体渐变色用数组
+    private(set) lazy var lgf_SelectColorRGBA: [CGFloat] = {
         let (r, g, b, a) = lgf_Style.lgf_TitleSelectColor.lgfpt_Components.rgba
         let arr = [r, g, b, a]
         return arr
     }()
-    fileprivate lazy var lgf_UnSelectColorRGBA: [CGFloat] = {
+    private(set) lazy var lgf_UnSelectColorRGBA: [CGFloat] = {
         let (r, g, b, a) = lgf_Style.lgf_UnTitleSelectColor.lgfpt_Components.rgba
         let arr = [r, g, b, a]
         return arr
     }()
-    fileprivate lazy var lgf_DeltaRGBA: [CGFloat] = {
+    private(set) lazy var lgf_DeltaRGBA: [CGFloat] = {
         let r = lgf_UnSelectColorRGBA[0] - lgf_SelectColorRGBA[0]
         let g = lgf_UnSelectColorRGBA[1] - lgf_SelectColorRGBA[1]
         let b = lgf_UnSelectColorRGBA[2] - lgf_SelectColorRGBA[2]
@@ -89,17 +142,17 @@ public class LGFSwiftPTTitle: UIView {
         let arr = [r, g, b, a]
         return arr
     }()
-    fileprivate lazy var lgf_SubSelectColorRGBA: [CGFloat] = {
+    private(set) lazy var lgf_SubSelectColorRGBA: [CGFloat] = {
         let (r, g, b, a) = lgf_Style.lgf_SubTitleSelectColor.lgfpt_Components.rgba
         let arr = [r, g, b, a]
         return arr
     }()
-    fileprivate lazy var lgf_SubUnSelectColorRGBA: [CGFloat] = {
+    private(set) lazy var lgf_SubUnSelectColorRGBA: [CGFloat] = {
         let (r, g, b, a) = lgf_Style.lgf_UnSubTitleSelectColor.lgfpt_Components.rgba
         let arr = [r, g, b, a]
         return arr
     }()
-    fileprivate lazy var lgf_SubDeltaRGBA: [CGFloat] = {
+    private(set) lazy var lgf_SubDeltaRGBA: [CGFloat] = {
         let r = lgf_SubUnSelectColorRGBA[0] - lgf_SubSelectColorRGBA[0]
         let g = lgf_SubUnSelectColorRGBA[1] - lgf_SubSelectColorRGBA[1]
         let b = lgf_SubUnSelectColorRGBA[2] - lgf_SubSelectColorRGBA[2]
@@ -108,7 +161,7 @@ public class LGFSwiftPTTitle: UIView {
         return arr
     }()
     
-    weak var lgf_Style: LGFSwiftPTStyle! {// 配置用模型
+    private(set) weak var lgf_Style: LGFSwiftPTStyle! {// 配置用模型
         didSet {
             // 非主要属性配置
             if lgf_Style.lgf_TitleCornerRadius > 0.0 {
@@ -135,7 +188,7 @@ public class LGFSwiftPTTitle: UIView {
             
             // 如果设置了都是相同标图片, 那么就强制转成全部相同图片
             if lgf_Style.lgf_SameSelectImageName.count > 0 && lgf_Style.lgf_SameUnSelectImageName.count > 0 {
-                lgf_Style.lgf_Titles.forEach {_ in
+                lgf_Style.lgf_Titles.forEach { _ in
                     lgf_SelectImageNames.append(lgf_Style.lgf_SameSelectImageName)
                     lgf_UnSelectImageNames.append(lgf_Style.lgf_SameUnSelectImageName)
                 }
@@ -246,12 +299,11 @@ public class LGFSwiftPTTitle: UIView {
     }
     
     // MARK: - 标初始化
-    /**
-     titleText 标文字
-     index 在 LGFSwiftPT 中的位置下标
-     style 配置用模型
-     @return LGFSwiftPTTitle
-     */
+    /// - Parameters:
+    ///   - titleText: 标文字
+    ///   - index: 在 LGFSwiftPT 中的位置下标
+    ///   - style: LGFSwiftPTStyle
+    ///   - delegate: LGFSwiftPTTitle
     class func lgf_AllocTitle(_ titleText: String, _ index: Int,_ style: LGFSwiftPTStyle!, _ delegate: LGFSwiftPTTitleDelegate) -> LGFSwiftPTTitle {
         // 初始化标
         let title = LGFPTBundle.loadNibNamed(String(describing: LGFSwiftPTTitle.self.classForCoder()), owner: self, options: nil)?.first as! LGFSwiftPTTitle
@@ -268,6 +320,16 @@ public class LGFSwiftPTTitle: UIView {
             title.lgf_RightImage.backgroundColor = UIColor.lgfpt_RandomColor()
             title.lgf_TopImage.backgroundColor = UIColor.lgfpt_RandomColor()
             title.lgf_BottomImage.backgroundColor = UIColor.lgfpt_RandomColor()
+        }
+        
+        // 分割线配置
+        if (title.lgf_Style.lgf_IsHaveCenterLine) {
+            title.lgf_CenterLine.isHidden = index == title.lgf_Style.lgf_Titles.count - 1
+            title.lgf_CenterLineWidth.constant = title.lgf_Style.lgf_CenterLineSize.width
+            title.lgf_CenterLineHeight.constant = title.lgf_Style.lgf_CenterLineSize.height
+            title.lgf_CenterLineX.constant = title.lgf_Style.lgf_CenterLineCenter.x - (title.lgf_Style.lgf_CenterLineSize.width / 2.0)
+            title.lgf_CenterLineY.constant = title.lgf_Style.lgf_CenterLineCenter.y
+            title.lgf_SwiftPTTitleDelegate?.lgf_GetCenterLine(title.lgf_CenterLine, index, title.lgf_Style, title.lgf_CenterLineX, title.lgf_CenterLineY, title.lgf_CenterLineWidth, title.lgf_CenterLineHeight)
         }
         
         // 需要显示子标题
@@ -330,12 +392,11 @@ public class LGFSwiftPTTitle: UIView {
     }
     
     // MARK: - 标整体状态改变 核心逻辑部分
-    /**
-     progress 外部 progress
-     isSelectTitle 是否是要选中的 LGFSwiftPTTitle
-     selectIndex 选中的 index
-     unselectIndex 未选中的 index
-     */
+    /// - Parameters:
+    ///   - progress: 外部 progress
+    ///   - isSelectTitle: 是否是要选中的 LGFSwiftPTTitle
+    ///   - selectIndex: 选中的 index
+    ///   - unselectIndex: 未选中的 index
     func lgf_SetMainTitleTransform(_ progress: CGFloat, _ isSelectTitle: Bool, _ selectIndex: Int, _ unselectIndex: Int) {
         let deltaScale = lgf_Style.lgf_TitleTransformSX - 1.0
         let mainTitleDeltaScale = lgf_Style.lgf_MainTitleTransformSX - 1.0

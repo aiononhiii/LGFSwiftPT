@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -63,12 +61,22 @@
                         <constraint firstAttribute="width" id="ggI-QZ-qXY"/>
                     </constraints>
                 </imageView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Bh-wH-nQy">
+                    <rect key="frame" x="244" y="81" width="1" height="6"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="8zo-Vc-Z7D"/>
+                        <constraint firstAttribute="height" constant="6" id="ZLo-b6-92W"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="J0G-Rd-ber" firstAttribute="top" secondItem="YZh-ss-mZ4" secondAttribute="bottom" id="7MZ-3I-Myw"/>
                 <constraint firstItem="2dG-CC-KUS" firstAttribute="centerY" secondItem="SQL-IO-p2l" secondAttribute="centerY" id="Fib-9F-UrY"/>
                 <constraint firstItem="mq4-tq-UBd" firstAttribute="centerX" secondItem="SQL-IO-p2l" secondAttribute="centerX" id="JLD-i1-6xJ"/>
+                <constraint firstAttribute="trailing" secondItem="8Bh-wH-nQy" secondAttribute="trailing" id="JMq-AC-dFV"/>
+                <constraint firstItem="8Bh-wH-nQy" firstAttribute="centerY" secondItem="SQL-IO-p2l" secondAttribute="centerY" id="NhU-jx-hKT"/>
                 <constraint firstItem="J0G-Rd-ber" firstAttribute="centerX" secondItem="SQL-IO-p2l" secondAttribute="centerX" id="Qwe-R6-hyE"/>
                 <constraint firstItem="mq4-tq-UBd" firstAttribute="leading" secondItem="2dG-CC-KUS" secondAttribute="trailing" id="SBv-vN-jtO"/>
                 <constraint firstItem="mq4-tq-UBd" firstAttribute="top" secondItem="gKn-au-jyU" secondAttribute="bottom" id="VDQ-A9-XvZ"/>
@@ -85,6 +93,11 @@
                 <outlet property="lgf_BottomImageHeight" destination="65G-T7-EVM" id="xUL-tQ-SAD"/>
                 <outlet property="lgf_BottomImageSpace" destination="7MZ-3I-Myw" id="ZCT-Ij-uLp"/>
                 <outlet property="lgf_BottomImageWidth" destination="ggI-QZ-qXY" id="DpN-0n-F7c"/>
+                <outlet property="lgf_CenterLine" destination="8Bh-wH-nQy" id="PTs-UR-DRw"/>
+                <outlet property="lgf_CenterLineHeight" destination="ZLo-b6-92W" id="ef9-YF-xPt"/>
+                <outlet property="lgf_CenterLineWidth" destination="8zo-Vc-Z7D" id="Ieg-2Q-2eX"/>
+                <outlet property="lgf_CenterLineX" destination="JMq-AC-dFV" id="STV-ae-fjR"/>
+                <outlet property="lgf_CenterLineY" destination="NhU-jx-hKT" id="RsT-qB-KFV"/>
                 <outlet property="lgf_LeftImage" destination="2dG-CC-KUS" id="1Xx-JR-3kH"/>
                 <outlet property="lgf_LeftImageHeight" destination="XKg-v0-ETF" id="osu-Ms-lWt"/>
                 <outlet property="lgf_LeftImageSpace" destination="SBv-vN-jtO" id="yKS-g3-yBS"/>

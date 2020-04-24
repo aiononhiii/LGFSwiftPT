@@ -9,124 +9,162 @@
 import UIKit
 
 @objc public protocol LGFSwiftPTDelegate: NSObjectProtocol {
+    
     // MARK: - 标动画完全结束后的选中标回调代理
+    /// - Parameter selectIndex: 选中下标
     @objc func lgf_SelectSwiftPTTitle(_ selectIndex: Int)
+    
     // MARK: - 以 contentOffsetX 匹配最精确的选中标回调代理
+    /// - Parameter selectIndex: 选中下标
     @objc optional func lgf_RealSelectSwiftPTTitle(_ selectIndex: Int)
+
     // MARK: - 加载网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架，使用前请打开 lgf_IsNetImage
-    /**
-     imageView 要加载网络图片的 imageView
-     imageUrl 网络图片的 Url
-     */
+    /// - Parameters:
+    ///   - imageView: 要加载网络图片的 imageView
+    ///   - imageUrl: 网络图片的 Url
     @objc optional func lgf_GetNetImage(_ imageView: UIImageView, _ imageUrl: URL!)
+    
     // MARK: - 实现这个代理来对 LGFSwiftPTTitle 初始化时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等 注意：这些新配置如果和 LGFSwiftPTStyle 冲突将覆盖 LGFSwiftPTStyle 的效果
-    /**
-     lgf_SwiftPTTitle LGFSwiftPTTitle 本体
-     index 所在的 index
-     style LGFSwiftPTStyle
-     */
+    /// - Parameters:
+    ///   - lgf_SwiftPTTitle: LGFSwiftPTTitle 本体
+    ///   - index: 所在的 index
+    ///   - style: LGFSwiftPTStyle
     @objc optional func lgf_GetLGFSwiftPTTitle(_ lgf_SwiftPTTitle: UIView, _ index: Int, _ style: LGFSwiftPTStyle)
+    
+    // MARK: -  实现这个代理来对 LGFSwiftPTTitle 中的 centerLine 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius/isHidden等等 LGFSwiftPTStyle 中 lgf_IsHaveCenterLine 需要为true
+    /// - Parameters:
+    ///   - centerLine: centerLine 本体
+    ///   - index: 所在的 index
+    ///   - style: LGFSwiftPTStyle
+    ///   - X: -(width / 2) 等同于 centerX
+    ///   - Y: 等同于 centerY
+    ///   - W: 等同于 width
+    ///   - H: 等同于 height
+    @objc optional func lgf_GetLGFSwiftPTCenterLine(_ centerLine: UIView, _ index: Int, _ style: LGFSwiftPTStyle, _ X: NSLayoutConstraint, _ Y: NSLayoutConstraint, _ W: NSLayoutConstraint, _ H: NSLayoutConstraint)
+    
     // MARK: - 实现这个代理来对 LGFSwiftPTLine 初始化时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等 注意：这些新配置如果和 LGFSwiftPTStyle 冲突将覆盖 LGFSwiftPTStyle 的效果
-    /**
-     lgf_SwiftPTLine LGFSwiftPTLine 本体
-     style LGFSwiftPTStyle
-     */
+    /// - Parameters:
+    ///   - lgf_SwiftPTLine: LGFSwiftPTLine 本体
+    ///   - style: LGFSwiftPTStyle
     @objc optional func lgf_GetLGFSwiftPTLine(_ lgf_SwiftPTLine: UIImageView, _ style: LGFSwiftPTStyle)
+    
     // MARK: - 实现这个代理来对所有标的滚动动效状态进行配置（为了某些标队列特殊物理效果的需求）（注意：实现这个代理后我的默认效果将无效）
-    /**
-     allTitles 所有标数组
-     selectTitle 选中标本体
-     unSelectTitle 未选中标本体
-     selectIndex  选中 index
-     unSelectIndex 未选中 index
-     progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计)
-     */
+    /// - Parameters:
+    ///   - allTitles: 所有标数组
+    ///   - style: LGFSwiftPTStyle
+    ///   - selectTitle: 选中标本体
+    ///   - unSelectTitle: 未选中标本体
+    ///   - selectIndex: 选中 index
+    ///   - unSelectIndex: 未选中 index
+    ///   - progress: 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计)
     @objc optional func lgf_SetAllTitleState(_ allTitles: [LGFSwiftPTTitle], _ style: LGFSwiftPTStyle, _ selectTitle: LGFSwiftPTTitle, _ unSelectTitle: LGFSwiftPTTitle, _ selectIndex: Int, _ unSelectIndex: Int, _ progress: CGFloat)
+    
     // MARK: - 实现这个代理来对所有标的点击动效状态进行配置（为了某些标队列特殊物理效果的需求）（注意：实现这个代理后我的默认效果将无效）
-    /**
-     allTitles 所有标数组
-     selectTitle 选中标本体
-     unSelectTitle 未选中标本体
-     selectIndex  选中 index
-     unSelectIndex 未选中 index
-     progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计)
-     */
+    /// - Parameters:
+    ///   - allTitles: 所有标数组
+    ///   - style: LGFSwiftPTStyle
+    ///   - selectTitle: 选中标本体
+    ///   - unSelectTitle: 未选中标本体
+    ///   - selectIndex: 选中 index
+    ///   - unSelectIndex: 未选中 index
+    ///   - progress: 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计)
     @objc optional func lgf_SetAllTitleClickState(_ allTitles: [LGFSwiftPTTitle], _ style: LGFSwiftPTStyle, _ selectTitle: LGFSwiftPTTitle, _ unSelectTitle: LGFSwiftPTTitle, _ selectIndex: Int, _ unSelectIndex: Int, _ progress: CGFloat)
+    
     // MARK: - 如果我原配的动画满足不了你，那么请使用这个自定义 line 动画代理（自定义配置滚动后 line 的动画）
-    /**
-     style LGFSwiftPTStyle
-     selectX 选中标的 X
-     selectWidth 选中标的 Width
-     unSelectX 未选中标的 X
-     unSelectWidth 未选中标的 Width
-     unSelectTitle 未选中标本体
-     selectTitle 选中标本体
-     unSelectIndex 未选中 index
-     selectIndex 选中 index
-     line line 本体
-     progress 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计动画吧)
-     */
+    /// - Parameters:
+    ///   - style: LGFSwiftPTStyle
+    ///   - selectX: 选中标的 X
+    ///   - selectWidth: 选中标的 Width
+    ///   - unSelectX: 未选中标的 X
+    ///   - unSelectWidth: 未选中标的 Width
+    ///   - unSelectTitle: 未选中标本体
+    ///   - selectTitle: 选中标本体
+    ///   - unSelectIndex: 未选中 index
+    ///   - selectIndex: 选中 index
+    ///   - line: 本体
+    ///   - progress: 进度参数(运行项目可查看 progress 改变的 log 输出 然后自行设计动画吧)
     @objc optional func lgf_SwiftPTViewCustomizeScrollLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ progress: CGFloat)
+    
     // MARK: - 自定义配置点击后 line 的动画
-    /**
-     style LGFSwiftPTStyle
-     selectX 选中标的 X
-     selectWidth 选中标的 Width
-     unSelectX 未选中标的 X
-     unSelectWidth 未选中标的 Width
-     unSelectTitle 未选中标本体
-     selectTitle 选中标本体
-     unSelectIndex 未选中 index
-     selectIndex 选中 index
-     line line 本体
-     duration 点击动画时长
-     */
+    /// - Parameters:
+    ///   - style: LGFSwiftPTStyle
+    ///   - selectX: 选中标的 X
+    ///   - selectWidth: 选中标的 Width
+    ///   - unSelectX: 未选中标的 X
+    ///   - unSelectWidth: 未选中标的 Width
+    ///   - unSelectTitle: 未选中标本体
+    ///   - selectTitle: 选中标本体
+    ///   - unSelectIndex: 未选中 index
+    ///   - selectIndex: 选中 index
+    ///   - line: line 本体
+    ///   - duration: 点击动画时长
     @objc optional func lgf_SwiftPTViewCustomizeClickLineAnimationConfig(_ style: LGFSwiftPTStyle, _ selectX: CGFloat, _ selectWidth: CGFloat, _ unSelectX: CGFloat, _ unSelectWidth: CGFloat, _ unSelectTitle: LGFSwiftPTTitle, _ selectTitle: LGFSwiftPTTitle, _ unSelectIndex: Int, _ selectIndex: Int, _ line: LGFSwiftPTLine, _ duration: TimeInterval)
+    
     // MARK: - 自定义配置选中结束后标的回位模式
-    /**
-     style LGFSwiftPTStyle
-     lgf_TitleButtons 所有标数组
-     unSelectIndex 未选中 index
-     selectIndex 选中 index
-     duration 回位动画时长
-     */
+    /// - Parameters:
+    ///   - style: LGFSwiftPTStyle
+    ///   - lgf_TitleButtons: 所有标数组
+    ///   - unSelectIndex: 未选中 index
+    ///   - selectIndex: 选中 index
+    ///   - duration: 回位动画时长
     @objc optional func lgf_TitleScrollFollowCustomizeAnimationConfig(_ style: LGFSwiftPTStyle, _ lgf_TitleButtons: [LGFSwiftPTTitle], _ unSelectIndex: Int, _ selectIndex: Int, _ duration: TimeInterval)
+    
     // MARK: - 自定义分页动画（我这里提供一个配置入口，也可以自己在外面配置 UICollectionViewFlowLayout 原理一样，自己在外面配置的话记得配置 self.scrollDirection = .horizontal self.minimumInteritemSpacing = 0 self.minimumLineSpacing = 0 self.sectionInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)）
-    /**
-     attributes UICollectionViewLayoutAttributes
-     flowLayout UICollectionViewFlowLayout
-     */
+    /// - Parameters:
+    ///   - attributes: UICollectionViewLayoutAttributes
+    ///   - flowLayout: UICollectionViewFlowLayout
     @objc optional func lgf_FreePageViewCustomizeAnimationConfig(_ attributes: [UICollectionViewLayoutAttributes], _ flowLayout: UICollectionViewFlowLayout)
 }
 
 public class LGFSwiftPT: UIScrollView {
     
+    /// LGFSwiftPT 主代理
     public weak var lgf_SwiftPTDelegate: LGFSwiftPTDelegate?
-    public weak var lgf_SVC: UIViewController?
-    public var lgf_TitleLine: LGFSwiftPTLine!
-    public var lgf_Style: LGFSwiftPTStyle!
-    public lazy var lgf_TitleButtons: [LGFSwiftPTTitle] = []
-    public var lgf_SelectIndex: Int = 0
-    public var lgf_UnSelectIndex: Int = 0
-    
-    fileprivate var lgf_PageView: UICollectionView!// 外部分页控制器
-    fileprivate var lgf_RealSelectIndex: Int = 0// 最准确的选中标值
-    fileprivate var lgf_SwiftPTViewEnabled: Bool! {
+    /// 父控件
+    private(set) weak var lgf_SVC: UIViewController?
+    /// line
+    private(set) var lgf_TitleLine: LGFSwiftPTLine!
+    /// style
+    private(set) var lgf_Style: LGFSwiftPTStyle!
+    /// 所有标堆
+    private(set) lazy var lgf_TitleButtons: [LGFSwiftPTTitle] = []
+    /// 选中的下标
+    private(set) var lgf_SelectIndex: Int = 0
+    /// 前一个变成未选中的下标
+    private(set) var lgf_UnSelectIndex: Int = 0
+    /// 外部分页控制器
+    private(set) var lgf_PageView: UICollectionView!
+    /// 最准确的选中标值
+    private(set) var lgf_RealSelectIndex: Int = 0
+    /// 手势控制
+    private(set) var lgf_SwiftPTViewEnabled: Bool! {
         didSet {
             lgf_SetViewEnabled(lgf_SwiftPTViewEnabled, self)
         }
-    }// 操作中是否禁用手势
-    fileprivate var lgf_PageViewEnabled: Bool! {
+    }
+    /// 操作中是否禁用手势
+    private(set) var lgf_PageViewEnabled: Bool! {
         didSet {
             lgf_SetViewEnabled(lgf_PageViewEnabled, lgf_PageView)
         }
-    }// 操作中是否禁用手势
+    }
     
     // MARK: - 初始化配置
+    /// - Parameters:
+    ///   - style: LGFSwiftPTStyle
+    ///   - SVC: 父控制器
+    ///   - SV: 父控件
+    ///   - PV: 分页父控件
     public class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ SV: UIView!, _ PV: UICollectionView!) -> LGFSwiftPT {
         return lgf(style, SVC, SV, PV, .zero)
     }
+    
     // MARK: - 初始化配置(纯代码)
+    /// - Parameters:
+    ///   - style: LGFSwiftPTStyle
+    ///   - SVC: 父控制器
+    ///   - PV: 父控件
+    ///   - frame: frame CGRect
     public class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ PV: UICollectionView!, _ frame: CGRect) -> LGFSwiftPT {
         return lgf(style, SVC, nil, PV, frame)
     }
@@ -169,6 +207,11 @@ public class LGFSwiftPT: UIScrollView {
     }
     
     // MARK: - 刷新所有标
+    /// - Parameters:
+    ///   - selectIndex: 刷新后要选中的 title
+    ///   - isExecutionDelegate: 是否开启代理监控
+    ///   - isReloadPageCV: 是否刷新 lgf_PageView
+    ///   - animated: 是否带动画
     public func lgf_ReloadTitle() {
         lgf_ReloadTitleAndSelectIndex(0, false)
     }
@@ -204,6 +247,13 @@ public class LGFSwiftPT: UIScrollView {
     }
     
     // MARK: - 手动选中某个标（如果关联外部 CV 外部 CV 请手动滚动）
+    /// - Parameters:
+    ///   - index: 要选中的 title
+    ///   - isExecutionDelegate: 是否开启代理监控
+    ///   - isReloadPageCV: 是否刷新 lgf_PageView
+    ///   - duration: 动画时间
+    ///   - autoScrollDuration: 滚动动画时间
+    ///   - animated: 是否带动画
     public func lgf_SelectIndex(_ index: Int) {
         lgf_SelectIndex(index, false)
     }
@@ -224,7 +274,7 @@ public class LGFSwiftPT: UIScrollView {
     }
     
     // MARK: - 添加标
-    fileprivate func lgf_AddTitles() {
+    private func lgf_AddTitles() {
         for (index, value) in lgf_Style.lgf_Titles.enumerated() {
             let title = LGFSwiftPTTitle.lgf_AllocTitle(value, index, lgf_Style, self)
             let tap = UITapGestureRecognizer.init(target: self, action: #selector(lgf_TitleClick(_:)))
@@ -245,7 +295,7 @@ public class LGFSwiftPT: UIScrollView {
     }
     
     // MARK: - 添加底部线
-    fileprivate func lgf_AddLine() {
+    private func lgf_AddLine() {
         if lgf_Style.lgf_IsShowLine {
             lgf_TitleLine = LGFSwiftPTLine.lgf_AllocLine(lgf_Style, self)
             addSubview(lgf_TitleLine)
@@ -254,7 +304,7 @@ public class LGFSwiftPT: UIScrollView {
     }
     
     // MARK: - 配置 lgf_PageView
-    fileprivate func lgf_PageViewConfig() {
+    private func lgf_PageViewConfig() {
         if lgf_PageView != nil {
             let layout = LGFSwiftPTFlowLayout()
             layout.lgf_PVAnimationType = lgf_Style.lgf_PVAnimationType
@@ -299,7 +349,7 @@ public class LGFSwiftPT: UIScrollView {
 // MARK: - 标点击
 extension LGFSwiftPT {
     // MARK: - 标点击事件 滚动到指定tag位置
-    @objc fileprivate func lgf_TitleClick(_ sender: UITapGestureRecognizer) {
+    @objc private func lgf_TitleClick(_ sender: UITapGestureRecognizer) {
         if !lgf_AutoSelectIndex(sender.view!.tag) {
             return
         }
@@ -310,7 +360,7 @@ extension LGFSwiftPT {
     }
     
     // MARK: - 更新标view的UI(用于点击标的时候)
-    fileprivate func lgf_AdjustUIWhenBtnOnClickExecutionDelegate(_ isExecution: Bool, _ duration: TimeInterval, _ autoScrollDuration: TimeInterval) {
+    private func lgf_AdjustUIWhenBtnOnClickExecutionDelegate(_ isExecution: Bool, _ duration: TimeInterval, _ autoScrollDuration: TimeInterval) {
         lgf_PageViewEnabled = false
         // 外部分页控制器 滚动到对应下标
         if lgf_PageView != nil {
@@ -349,7 +399,7 @@ extension LGFSwiftPT {
 // MARK: - 外层分页控制器滚动
 extension LGFSwiftPT {
     // MARK: - 外层分页控制器 contentOffset 转化
-    fileprivate func lgf_ConvertToProgress(_ contentOffsetX: CGFloat) {
+    private func lgf_ConvertToProgress(_ contentOffsetX: CGFloat) {
         let selectProgress = contentOffsetX / lgf_PageView.lgfpt_Width
         var progress = selectProgress - floor(selectProgress)
         var selectIndex: CGFloat = 0.0
@@ -375,7 +425,7 @@ extension LGFSwiftPT {
     }
     
     // MARK: - 更新标view的UI(用于滚动外部分页控制器的时候)
-    fileprivate func lgf_AdjustUIWithProgress(_ progress: CGFloat, _ unSelectIndex: Int, _ selectIndex: Int) {
+    private func lgf_AdjustUIWithProgress(_ progress: CGFloat, _ unSelectIndex: Int, _ selectIndex: Int) {
         // 取得 前一个选中的标 和将要选中的标
         let unSelectTitle = lgf_TitleButtons[unSelectIndex]
         let selectTitle = lgf_TitleButtons[selectIndex]
@@ -428,7 +478,7 @@ extension LGFSwiftPT {
     }
     
     // MARK: - 标自动滚动
-    fileprivate func lgf_AutoScrollTitle(_ selectIndex: Int) {
+    private func lgf_AutoScrollTitle(_ selectIndex: Int) {
         if !lgf_AutoSelectIndex(selectIndex) {
             return
         }
@@ -439,7 +489,7 @@ extension LGFSwiftPT {
 // MARK: - 标回位
 extension LGFSwiftPT {
     // MARK: - 调整title位置 使其滚动到中间
-    fileprivate func lgf_TitleAutoScrollToTheMiddleExecutionDelegate(_ isExecution: Bool, _ autoScrollDuration: TimeInterval) {
+    private func lgf_TitleAutoScrollToTheMiddleExecutionDelegate(_ isExecution: Bool, _ autoScrollDuration: TimeInterval) {
         if lgf_SelectIndex > lgf_TitleButtons.count - 1 || lgf_TitleButtons.count == 0 {
             return
         }
@@ -464,38 +514,43 @@ extension LGFSwiftPT {
 // MARK: - 核心逻辑
 extension LGFSwiftPT {
     // MARK: - 取得要改变的 X 和 Width 核心逻辑部分(注意：根据 lgf_LineWidthType 的类型，返回的结果会不一样)
-    fileprivate func lgf_GetXAndW(_ selectTitle: LGFSwiftPTTitle, _ unSelectTitle: LGFSwiftPTTitle) -> (CGFloat, CGFloat, CGFloat, CGFloat) {
+    private func lgf_GetXAndW(_ selectTitle: LGFSwiftPTTitle, _ unSelectTitle: LGFSwiftPTTitle) -> (CGFloat, CGFloat, CGFloat, CGFloat) {
         var selectX: CGFloat = 0.0
         var selectWidth: CGFloat = 0.0
         var unSelectX: CGFloat = 0.0
         var unSelectWidth: CGFloat = 0.0
-        if lgf_Style.lgf_LineWidthType == .equalTitle {
+        switch lgf_Style.lgf_LineWidthType {
+        case .equalTitle:
             selectX = selectTitle.lgfpt_X + lgf_Style.lgf_LineCenterX
             selectWidth = selectTitle.lgfpt_Width
             unSelectX = unSelectTitle.lgfpt_X + lgf_Style.lgf_LineCenterX
             unSelectWidth = unSelectTitle.lgfpt_Width
-        } else if lgf_Style.lgf_LineWidthType == .equalTitleSTRAndImage {
+            break
+        case .equalTitleSTRAndImage:
             selectX = (selectTitle.lgfpt_X + lgf_Style.lgf_LineCenterX + selectTitle.lgf_LeftImage.lgfpt_X * selectTitle.lgf_CurrentTransformSX)
             selectWidth = (selectTitle.lgf_RightImage.lgfpt_X + selectTitle.lgf_RightImage.lgfpt_Width - selectTitle.lgf_LeftImage.lgfpt_X) * selectTitle.lgf_CurrentTransformSX
             unSelectX = (unSelectTitle.lgfpt_X + lgf_Style.lgf_LineCenterX + unSelectTitle.lgf_LeftImage.lgfpt_X * unSelectTitle.lgf_CurrentTransformSX)
             unSelectWidth = (unSelectTitle.lgf_RightImage.lgfpt_X + unSelectTitle.lgf_RightImage.lgfpt_Width - unSelectTitle.lgf_LeftImage.lgfpt_X) * unSelectTitle.lgf_CurrentTransformSX
-        } else if lgf_Style.lgf_LineWidthType == .equalTitleSTR {
+            break
+        case .equalTitleSTR:
             selectX = selectTitle.lgfpt_X + lgf_Style.lgf_LineCenterX + (lgf_Style.lgf_IsLineAlignSubTitle ? selectTitle.lgf_SubTitle.lgfpt_X : selectTitle.lgf_Title.lgfpt_X) * selectTitle.lgf_CurrentTransformSX
             selectWidth = (lgf_Style.lgf_IsLineAlignSubTitle ? selectTitle.lgf_SubTitle.lgfpt_Width : selectTitle.lgf_Title.lgfpt_Width) * selectTitle.lgf_CurrentTransformSX
             unSelectX = unSelectTitle.lgfpt_X + lgf_Style.lgf_LineCenterX + (lgf_Style.lgf_IsLineAlignSubTitle ? unSelectTitle.lgf_SubTitle.lgfpt_X : unSelectTitle.lgf_Title.lgfpt_X) * unSelectTitle.lgf_CurrentTransformSX
             unSelectWidth = (lgf_Style.lgf_IsLineAlignSubTitle ? unSelectTitle.lgf_SubTitle.lgfpt_Width : unSelectTitle.lgf_Title.lgfpt_Width) * unSelectTitle.lgf_CurrentTransformSX
-        } else if lgf_Style.lgf_LineWidthType == .fixedWith {
+            break
+        case .fixedWith:
             selectX = selectTitle.lgfpt_X + lgf_Style.lgf_LineCenterX + (selectTitle.lgfpt_Width - lgf_Style.lgf_LineWidth) / 2.0
             selectWidth = lgf_Style.lgf_LineWidth
             unSelectX = unSelectTitle.lgfpt_X + lgf_Style.lgf_LineCenterX + (unSelectTitle.lgfpt_Width - lgf_Style.lgf_LineWidth) / 2.0
             unSelectWidth = lgf_Style.lgf_LineWidth
+            break
         }
         return (selectX, selectWidth, unSelectX, unSelectWidth)
     }
     
     // MARK: - 自动 selectIndex 转换
     @discardableResult
-    fileprivate func lgf_AutoSelectIndex(_ selectIndex: Int) -> Bool {
+    private func lgf_AutoSelectIndex(_ selectIndex: Int) -> Bool {
         if lgf_SelectIndex == selectIndex {
             return false
         }
@@ -505,7 +560,7 @@ extension LGFSwiftPT {
     }
     
     // MARK: - 手势是否禁用
-    fileprivate func lgf_SetViewEnabled(_ enabled: Bool, _ sview: UIScrollView?) {
+    private func lgf_SetViewEnabled(_ enabled: Bool, _ sview: UIScrollView?) {
         if enabled {
             sview?.isScrollEnabled = ((lgf_Style.lgf_PVAnimationType == .none) && (sview == lgf_PageView)) ? false : true
             sview?.isUserInteractionEnabled = true
@@ -532,6 +587,9 @@ extension LGFSwiftPT: LGFSwiftPTTitleDelegate {
     }
     public func lgf_GetTitle(_ lgf_SwiftPTTitle: UIView, _ index: Int, _ style: LGFSwiftPTStyle) {
         lgf_SwiftPTDelegate?.lgf_GetLGFSwiftPTTitle?(lgf_SwiftPTTitle, index, style)
+    }
+    public func lgf_GetCenterLine(_ centerLine: UIView, _ index: Int, _ style: LGFSwiftPTStyle, _ X: NSLayoutConstraint, _ Y: NSLayoutConstraint, _ W: NSLayoutConstraint, _ H: NSLayoutConstraint) {
+        lgf_SwiftPTDelegate?.lgf_GetLGFSwiftPTCenterLine?(centerLine, index, style, X, Y, W, H)
     }
 }
 

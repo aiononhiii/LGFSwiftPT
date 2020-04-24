@@ -9,33 +9,40 @@
 import UIKit
 
 public protocol LGFSwiftPTLineDelegate: NSObjectProtocol {
+    
     // MARK: - 加载 line 网络图片代理，具体加载框架我的 Demo 不做约束，请自己选择图片加载框架，使用前请打开 lgf_IsNetImage
-    /**
-     imageView 要加载网络图片的 imageView
-     imageUrl 网络图片的 Url
-     */
+    /// - Parameters:
+    ///   - imageView: 要加载网络图片的 imageView
+    ///   - imageUrl: 网络图片的 Url
     func lgf_GetLineNetImage(_ imageView: UIImageView, _ imageUrl: URL!)
+    
     // MARK: - 实现这个代理来对 LGFSwiftPTLine 生成时某些系统属性进行配置 backgroundColor/borderColor/CornerRadius等等
-    /**
-     lgf_SwiftPTLine LGFSwiftPTLine 本体
-     style LGFSwiftPTStyle
-     */
+    /// - Parameters:
+    ///   - lgf_SwiftPTLine: LGFSwiftPTLine 本体
+    ///   - style: LGFSwiftPTStyle
     func lgf_GetLine(_ lgf_SwiftPTLine: UIImageView, _ style: LGFSwiftPTStyle)
 }
 
 public class LGFSwiftPTLine: UIImageView {
     
-    weak var lgf_SwiftPTLineDelegate: LGFSwiftPTLineDelegate?
+    /// LGFSwiftPTLine 主代理
+    public weak var lgf_SwiftPTLineDelegate: LGFSwiftPTLineDelegate?
     
-    weak var lgf_Style: LGFSwiftPTStyle! {// 配置用模型
+    /// 配置用模型
+    private(set) weak var lgf_Style: LGFSwiftPTStyle! {
         didSet {
             // 坐标配置
             let Y = lgf_Style.lgf_PVTitleView.lgfpt_Height - ((lgf_Style.lgf_LineHeight + lgf_Style.lgf_LineBottom) > lgf_Style.lgf_PVTitleView.lgfpt_Height ? lgf_Style.lgf_PVTitleView.lgfpt_Height : (lgf_Style.lgf_LineHeight + lgf_Style.lgf_LineBottom))
             let H = (lgf_Style.lgf_LineHeight + lgf_Style.lgf_LineBottom) > lgf_Style.lgf_PVTitleView.lgfpt_Height ? (lgf_Style.lgf_PVTitleView.lgfpt_Height - lgf_Style.lgf_LineBottom) : lgf_Style.lgf_LineHeight
-            if lgf_Style.lgf_LineWidthType == .fixedWith {
+            switch lgf_Style.lgf_LineWidthType {
+            case .fixedWith:
                 lgfpt_Width = lgf_Style.lgf_LineWidth
-            } else if lgf_Style.lgf_LineWidthType == .equalTitle {
+                break
+            case .equalTitle:
                 lgfpt_Width = lgf_Style.lgf_TitleFixedWidth
+                break
+            default:
+                break
             }
             lgfpt_Y = Y
             lgfpt_Height = H
@@ -63,7 +70,10 @@ public class LGFSwiftPTLine: UIImageView {
         }
     }
     
-    // MARK: - 初始化
+    // MARK: - LGFSwiftPTLine 初始化
+    /// - Parameters:
+    ///   - style: LGFSwiftPTStyle
+    ///   - delegate: LGFSwiftPTLineDelegate
     class func lgf_AllocLine(_ style: LGFSwiftPTStyle, _ delegate: LGFSwiftPTLineDelegate) -> LGFSwiftPTLine {
         let line = LGFPTBundle.loadNibNamed(String(describing: LGFSwiftPTLine.self.classForCoder()), owner: self, options: nil)?.first as! LGFSwiftPTLine
         line.lgf_SwiftPTLineDelegate = delegate
