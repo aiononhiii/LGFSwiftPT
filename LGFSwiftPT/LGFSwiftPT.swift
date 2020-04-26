@@ -384,10 +384,12 @@ extension LGFSwiftPT {
             
             let (selectX, selectWidth, unSelectX, unSelectWidth) = self.lgf_GetXAndW(selectTitle, unSelectTitle)
             // LGFSwiftPTMethod 类里是所有我已经实现的动画代码，也希望你们使用我的代理来自定义自己的动画，如果可以能够结合 LGFSwiftPTStyle 分享给大家那是极好的（我的动画代码不一定是最精简的，效果也不一定是最惊艳的～）
-            if (self.lgf_Style.lgf_LineAnimation == .customize) {
-                self.lgf_SwiftPTDelegate?.lgf_SwiftPTViewCustomizeClickLineAnimationConfig?(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, animatedDuration)
-            } else {
-                lgf_AutoClickLineAnimationConfig(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, duration)
+            if (self.lgf_TitleLine != nil) && self.lgf_Style.lgf_IsShowLine {
+                if self.lgf_Style.lgf_LineAnimation == .customize {
+                    self.lgf_SwiftPTDelegate?.lgf_SwiftPTViewCustomizeClickLineAnimationConfig?(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, animatedDuration)
+                } else {
+                    lgf_AutoClickLineAnimationConfig(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, duration)
+                }
             }
         }) { (finish) in
             self.lgf_TitleAutoScrollToTheMiddleExecutionDelegate(isExecution, autoScrollDuration)
@@ -447,12 +449,12 @@ extension LGFSwiftPT {
         if (lgf_TitleLine != nil) && lgf_Style.lgf_IsShowLine {
             let (selectX, selectWidth, unSelectX, unSelectWidth) = lgf_GetXAndW(selectTitle, unSelectTitle)
             // LGFSwiftPTMethod 类里是所有我已经实现的动画代码，希望你们使用我的代理来自定义自己的动画，如果可以能够结合 LGFSwiftPTStyle 分享给大家那是极好的（我的动画代码不一定是最精简的，效果也不一定是最惊艳的～）
-             if lgf_Style.lgf_LineAnimation == .customize {
+            if lgf_Style.lgf_LineAnimation == .customize {
                 lgf_SwiftPTDelegate?.lgf_SwiftPTViewCustomizeScrollLineAnimationConfig?(lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, lgf_TitleLine, progress)
                 if lgf_Style.lgf_ShowPrint {
                     debugPrint(String.init(format: "🤖️:自定义 line 动画 progress:%f", progress))
                 }
-             } else {
+            } else {
                 lgf_AutoScrollLineAnimationConfig(lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, lgf_TitleLine, progress)
             }
         }
@@ -466,7 +468,7 @@ extension LGFSwiftPT {
                 if lgf_PageView.isTracking || lgf_PageView.isDragging || lgf_PageView.isDecelerating {
                     lgf_SwiftPTViewEnabled  = false
                     lgf_ConvertToProgress(lgf_PageView.contentOffset.x < 0.0 ? 0.0 : lgf_PageView.contentOffset.x)
-                    if (Int(lgf_PageView.contentOffset.x) % Int(lgf_PageView.lgfpt_Width)) == 0 {
+                    if Int(lgf_PageView.contentOffset.x) % Int(lgf_PageView.lgfpt_Width) == 0 {
                         lgf_SwiftPTViewEnabled = true
                         if !lgf_Style.lgf_IsExecutedImmediatelyTitleScrollFollow {
                             lgf_AutoScrollTitle(lgf_PageView.lgfpt_HorizontalIndex())
@@ -504,7 +506,7 @@ extension LGFSwiftPT {
                 lgf_AutoTitleScrollFollowAnimationConfig(lgf_Style, lgf_TitleButtons, lgf_UnSelectIndex, lgf_SelectIndex, autoScrollDuration)
             }
         }
-        if (isExecution) {
+        if isExecution {
             debugPrint(String.init(format: "🤖️:当前选中:%@(%tu),当前未选中:%@(%tu)", lgf_Style.lgf_Titles[lgf_SelectIndex], lgf_SelectIndex,  lgf_Style.lgf_Titles[lgf_SelectIndex], lgf_UnSelectIndex))
             lgf_SwiftPTDelegate?.lgf_SelectSwiftPTTitle(lgf_SelectIndex)
         }

@@ -48,18 +48,18 @@ public class LGFSwiftPTLine: UIImageView {
             lgfpt_Height = H
             // 添加 line 图片
             if lgf_Style.lgf_LineImageName.count > 0 && subviews.count == 0 {
-                if (lgf_Style.lgf_IsLineNetImage) {
+                if lgf_Style.lgf_IsLineNetImage {
                     lgf_SwiftPTLineDelegate?.lgf_GetLineNetImage(self, URL.init(string: lgf_Style.lgf_LineImageName))
                 } else {
                     image = UIImage.init(named: lgf_Style.lgf_LineImageName, in: lgf_Style.lgf_ImageBundel, compatibleWith: nil)
                 }
             }
             // 非主要属性配置
-            if (lgf_Style.lgf_LineCornerRadius > 0.0) {
+            if lgf_Style.lgf_LineCornerRadius > 0.0 {
                 layer.cornerRadius = lgf_Style.lgf_LineCornerRadius
                 if !clipsToBounds { clipsToBounds = true }
             }
-            if (lgf_Style.lgf_TitleBorderWidth > 0.0) {
+            if lgf_Style.lgf_TitleBorderWidth > 0.0 {
                 layer.borderWidth = lgf_Style.lgf_LineBorderWidth
                 layer.borderColor = lgf_Style.lgf_LineBorderColor.cgColor
                 if !clipsToBounds { clipsToBounds = true }

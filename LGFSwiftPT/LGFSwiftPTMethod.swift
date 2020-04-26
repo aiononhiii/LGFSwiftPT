@@ -248,7 +248,7 @@ public func lgf_TitleScrollFollowLeftRightAnimationConfig(_ style: LGFSwiftPTSty
     let isRight = selectIndex > unSelectIndex
     let title = lgf_TitleButtons[isRight ? min(selectIndex + 1, lgf_TitleButtons.count - 1) : max(selectIndex - 1, 0)]
     UIView.animate(withDuration: duration) {
-        if (isRight) {
+        if isRight {
             if selectIndex == (lgf_TitleButtons.count - 1) {
                 style.lgf_PVTitleView.contentOffset = CGPoint.init(x: style.lgf_PVTitleView.contentSize.width - style.lgf_PVTitleView.lgfpt_Width, y: 0.0)
             } else {
@@ -295,11 +295,11 @@ public func lgf_FreePageViewTopToBottomAnimationConfig(_ attributes: [UICollecti
         let scale = -abs(abs(attr.center.x - contentOffsetX - collectionViewCenterX) / flowLayout.collectionView!.lgfpt_Width) * 50.0
         let index = abs(flowLayout.collectionView!.contentOffset.x / flowLayout.collectionView!.lgfpt_Width)
         if flowLayout.collectionView!.panGestureRecognizer.translation(in: flowLayout.collectionView!).x < 0.0 {
-            if (attr.indexPath.item != Int(index)) {
+            if attr.indexPath.item != Int(index) {
                 attr.alpha = alpha
             }
         } else {
-            if (attr.indexPath.item == Int(index)) {
+            if attr.indexPath.item == Int(index) {
                 attr.alpha = alpha
             }
         }

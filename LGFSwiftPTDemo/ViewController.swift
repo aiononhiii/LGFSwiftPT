@@ -61,12 +61,13 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
     
     func creatSwiftPT() {
         let style = LGFSwiftPTStyle()
+        style.lgf_IsShowLine = false
         style.lgf_LineHeight = 5
         style.lgf_LineWidth = 20
         style.lgf_LineAnimation = .defult
         style.lgf_LineWidthType = .fixedWith
 //        style.lgf_StartDebug = true
-        style.lgf_MainTitleTransformSX = 1.2
+        style.lgf_MainTitleTransformSX = 2.0
         style.lgf_PVAnimationType = .topToBottom
         style.lgf_TitleScrollFollowType = .leftRight
         style.lgf_TitleLeftRightSpace = 10
