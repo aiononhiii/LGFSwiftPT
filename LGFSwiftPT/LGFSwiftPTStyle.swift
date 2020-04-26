@@ -92,8 +92,6 @@ public class LGFSwiftPTStyle: NSObject {
     public var lgf_CenterLineSize: CGSize = CGSize.init(width: 1.0, height: 6.0)
     /// title 分割线 X/Y 轴偏移
     public var lgf_CenterLineCenter: CGPoint = CGPoint.init(x: 0.0, y: 0.0)
-    /// 选中 title 放大缩小后紧紧贴着左右（互相挤压）（类似汽车之家效果）
-    public var lgf_IsZoomExtruding: Bool = true
     /// 选中 title 字体颜色 默认 blackColor 黑色 (对应 lgf_TitleUnSelectColor 两个颜色一样则取消渐变效果)
     public var lgf_TitleSelectColor: UIColor = UIColor.black
     /// 未选中 title 字体颜色 默认 lightGrayColor 淡灰色 (对应 lgf_TitleSelectColor 两个颜色一样则取消渐变效果)
@@ -102,6 +100,8 @@ public class LGFSwiftPTStyle: NSObject {
     public var lgf_TitleSelectFont: UIFont = UIFont.systemFont(ofSize: 14)
     /// title 未选中字体 默认 和选中字体一样
     public var lgf_UnTitleSelectFont: UIFont = UIFont.systemFont(ofSize: 14)
+    /// 选中 title 放大缩小后紧紧贴着左右（互相挤压）（需配合下面的 lgf_MainTitleTransformSX 使用）（类似汽车之家效果）
+    public var lgf_IsZoomExtruding: Bool = true
     /// 选中主 title 放大缩小倍数 默认 1.0(不放大缩小)
     public var lgf_MainTitleTransformSX: CGFloat = 1.0 {
         didSet {

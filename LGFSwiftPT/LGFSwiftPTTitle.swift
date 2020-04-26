@@ -180,7 +180,7 @@ public class LGFSwiftPTTitle: UIView {
             lgf_Title.textAlignment = .center
             
             // 副标 Label 配置
-            if (lgf_Style.lgf_IsDoubleTitle) {
+            if lgf_Style.lgf_IsDoubleTitle {
                 lgf_SubTitle.textColor = lgf_Style.lgf_UnSubTitleSelectColor
                 lgf_SubTitle.font = lgf_Style.lgf_UnSubTitleSelectFont
                 lgf_SubTitle.textAlignment = .center
@@ -223,13 +223,13 @@ public class LGFSwiftPTTitle: UIView {
                 lgf_LeftImageSpace.constant = lgf_Style.lgf_LeftImageSpace
                 lgf_LeftImageWidth.constant = min(lgf_Style.lgf_LeftImageWidth, lgf_Style.lgf_PVTitleView.lgfpt_Height)
                 lgf_LeftImageHeight.constant = min(lgf_Style.lgf_LeftImageHeight, lgf_Style.lgf_PVTitleView.lgfpt_Height)
-                if (lgf_Style.lgf_IsNetImage) {
+                if lgf_Style.lgf_IsNetImage {
                     lgf_SwiftPTTitleDelegate?.lgf_GetTitleNetImage(lgf_LeftImage, URL.init(string: lgf_Style.lgf_UnSelectImageNames[tag]))
                 } else {
                     lgf_LeftImage.image = UIImage.init(named: lgf_Style.lgf_UnSelectImageNames[tag], in: lgf_Style.lgf_ImageBundel, compatibleWith: nil)
                 }
                 lgf_TitleCenterX.constant = lgf_TitleCenterX.constant + (lgf_Style.lgf_LeftImageWidth / 2)
-                if (lgf_Style.lgf_LeftImageSpace > 0.0) {
+                if lgf_Style.lgf_LeftImageSpace > 0.0 {
                     lgf_TitleCenterX.constant = lgf_TitleCenterX.constant + (lgf_Style.lgf_LeftImageSpace / 2)
                 }
             } else {
@@ -237,19 +237,19 @@ public class LGFSwiftPTTitle: UIView {
             }
             
             // 只要有宽度，允许设置右图片
-            if (lgf_Style.lgf_RightImageWidth > 0.0) {
+            if lgf_Style.lgf_RightImageWidth > 0.0 {
                 lgf_RightImage.isHidden = false
                 lgf_RightImage.contentMode = lgf_Style.lgf_TitleImageContentMode
                 lgf_RightImageSpace.constant = lgf_Style.lgf_RightImageSpace
                 lgf_RightImageWidth.constant = min(lgf_Style.lgf_RightImageWidth, lgf_Style.lgf_PVTitleView.lgfpt_Height)
                 lgf_RightImageHeight.constant = min(lgf_Style.lgf_RightImageHeight, lgf_Style.lgf_PVTitleView.lgfpt_Height)
-                if (lgf_Style.lgf_IsNetImage) {
+                if lgf_Style.lgf_IsNetImage {
                     lgf_SwiftPTTitleDelegate?.lgf_GetTitleNetImage(lgf_RightImage, URL.init(string: lgf_Style.lgf_UnSelectImageNames[tag]))
                 } else {
                     lgf_RightImage.image = UIImage.init(named: lgf_Style.lgf_UnSelectImageNames[tag], in: lgf_Style.lgf_ImageBundel, compatibleWith: nil)
                 }
                 lgf_TitleCenterX.constant = lgf_TitleCenterX.constant - (lgf_Style.lgf_RightImageWidth / 2.0)
-                if (lgf_Style.lgf_RightImageSpace > 0.0) {
+                if lgf_Style.lgf_RightImageSpace > 0.0 {
                     lgf_TitleCenterX.constant = lgf_TitleCenterX.constant - (lgf_Style.lgf_RightImageSpace / 2.0)
                 }
             } else {
@@ -257,19 +257,19 @@ public class LGFSwiftPTTitle: UIView {
             }
             
             // 只要有高度，允许设置上图片
-            if (lgf_Style.lgf_TopImageHeight > 0.0) {
+            if lgf_Style.lgf_TopImageHeight > 0.0 {
                 lgf_TopImage.isHidden = false
                 lgf_TopImage.contentMode = lgf_Style.lgf_TitleImageContentMode
                 lgf_TopImageSpace.constant = lgf_Style.lgf_TopImageSpace
                 lgf_TopImageWidth.constant = min(lgf_Style.lgf_TopImageWidth, lgf_Style.lgf_PVTitleView.lgfpt_Width)
                 lgf_TopImageHeight.constant = min(lgf_Style.lgf_TopImageHeight, lgf_Style.lgf_PVTitleView.lgfpt_Height)
-                if (lgf_Style.lgf_IsNetImage) {
+                if lgf_Style.lgf_IsNetImage {
                     lgf_SwiftPTTitleDelegate?.lgf_GetTitleNetImage(lgf_TopImage, URL.init(string: lgf_Style.lgf_UnSelectImageNames[tag]))
                 } else {
                     lgf_TopImage.image = UIImage.init(named: lgf_Style.lgf_UnSelectImageNames[tag], in: lgf_Style.lgf_ImageBundel, compatibleWith: nil)
                 }
                 lgf_TitleCenterY.constant = lgf_TitleCenterY.constant + (lgf_Style.lgf_TopImageHeight / 2.0)
-                if (lgf_Style.lgf_TopImageSpace > 0.0) {
+                if lgf_Style.lgf_TopImageSpace > 0.0 {
                     lgf_TitleCenterY.constant = lgf_TitleCenterY.constant + (lgf_Style.lgf_TopImageSpace / 2.0)
                 }
             } else {
@@ -277,19 +277,19 @@ public class LGFSwiftPTTitle: UIView {
             }
             
             // 只要有高度，允许设置下图片
-            if (lgf_Style.lgf_BottomImageHeight > 0.0) {
+            if lgf_Style.lgf_BottomImageHeight > 0.0 {
                 lgf_BottomImage.isHidden = false
                 lgf_BottomImage.contentMode = lgf_Style.lgf_TitleImageContentMode
                 lgf_BottomImageSpace.constant = lgf_Style.lgf_BottomImageSpace
                 lgf_BottomImageWidth.constant = min(lgf_Style.lgf_BottomImageWidth, lgf_Style.lgf_PVTitleView.lgfpt_Width)
                 lgf_BottomImageHeight.constant = min(lgf_Style.lgf_BottomImageHeight, lgf_Style.lgf_PVTitleView.lgfpt_Height)
-                if (lgf_Style.lgf_IsNetImage) {
+                if lgf_Style.lgf_IsNetImage {
                     lgf_SwiftPTTitleDelegate?.lgf_GetTitleNetImage(lgf_BottomImage, URL.init(string: lgf_Style.lgf_UnSelectImageNames[tag]))
                 } else {
                     lgf_BottomImage.image = UIImage.init(named: lgf_Style.lgf_UnSelectImageNames[tag], in: lgf_Style.lgf_ImageBundel, compatibleWith: nil)
                 }
                 lgf_TitleCenterY.constant = lgf_TitleCenterY.constant - (lgf_Style.lgf_BottomImageHeight / 2.0)
-                if (lgf_Style.lgf_BottomImageSpace > 0.0) {
+                if lgf_Style.lgf_BottomImageSpace > 0.0 {
                     lgf_TitleCenterY.constant = lgf_TitleCenterY.constant - (lgf_Style.lgf_BottomImageSpace / 2.0)
                 }
             } else {
@@ -323,7 +323,7 @@ public class LGFSwiftPTTitle: UIView {
         }
         
         // 分割线配置
-        if (title.lgf_Style.lgf_IsHaveCenterLine) {
+        if title.lgf_Style.lgf_IsHaveCenterLine {
             title.lgf_CenterLine.isHidden = index == title.lgf_Style.lgf_Titles.count - 1
             title.lgf_CenterLineWidth.constant = title.lgf_Style.lgf_CenterLineSize.width
             title.lgf_CenterLineHeight.constant = title.lgf_Style.lgf_CenterLineSize.height
@@ -357,7 +357,7 @@ public class LGFSwiftPTTitle: UIView {
         
         // 标 X
         var titleX: CGFloat = 0.0
-        if (index > 0) {
+        if index > 0 {
             let subview = title.lgf_Style.lgf_PVTitleView.subviews[index - 1]
             titleX = subview.lgfpt_X + subview.lgfpt_Width
         } else {
