@@ -86,6 +86,9 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
         
         swiftPT = LGFSwiftPT.lgf(style, self, sview, collectionView)
         swiftPT.lgf_SwiftPTDelegate = self
+        if swiftPT.lgf_SelectIndex == 0 {
+            
+        }
 //        swiftPT.lgf_Style.lgf_Titles = ["转入", "转出转闪电", "转入", "出", "", "转出", "转出", "转出", "转出", "转出", "转出", "转出", "转出"]// 这两句可以随意替换设置
         swiftPT.lgf_ReloadTitle()// 这句必须设置，不然不刷新 swiftPT 的 UI，也可用来随时替换新的数据源（替换时如果你关联了外部 collectionview ，记得也同时修改你自己定义的外部 collectionview 的数据源防止数组越界）
     }

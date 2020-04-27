@@ -29,7 +29,7 @@ public class LGFSwiftPTLine: UIImageView {
     public weak var lgf_SwiftPTLineDelegate: LGFSwiftPTLineDelegate?
     
     /// 配置用模型
-    private(set) weak var lgf_Style: LGFSwiftPTStyle! {
+    public private(set) weak var lgf_Style: LGFSwiftPTStyle! {
         didSet {
             // 坐标配置
             let Y = lgf_Style.lgf_PVTitleView.lgfpt_Height - ((lgf_Style.lgf_LineHeight + lgf_Style.lgf_LineBottom) > lgf_Style.lgf_PVTitleView.lgfpt_Height ? lgf_Style.lgf_PVTitleView.lgfpt_Height : (lgf_Style.lgf_LineHeight + lgf_Style.lgf_LineBottom))

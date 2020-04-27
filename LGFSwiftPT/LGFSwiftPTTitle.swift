@@ -103,38 +103,38 @@ public class LGFSwiftPTTitle: UIView {
     @IBOutlet weak var lgf_RightImageHeight: NSLayoutConstraint!
     
     /// 选中图片数组
-    private(set) lazy var lgf_SelectImageNames: [String] = []
+    public private(set) lazy var lgf_SelectImageNames: [String] = []
     /// 未选中图片数组
-    private(set) lazy var lgf_UnSelectImageNames: [String] = []
+    public private(set) lazy var lgf_UnSelectImageNames: [String] = []
     
     /// 是否有标图片
-    private(set) var lgf_IsHaveImage: Bool = false
+    public private(set) var lgf_IsHaveImage: Bool = false
     /// 放大缩小倍数
-    private(set) var lgf_CurrentTransformSX: CGFloat = 1.0
+    public private(set) var lgf_CurrentTransformSX: CGFloat = 1.0
     /// 主标题放大缩小倍数
-    private(set) var lgf_MainTitleCurrentTransformSX: CGFloat = 1.0
+    public private(set) var lgf_MainTitleCurrentTransformSX: CGFloat = 1.0
     /// 主标题上下位移
-    private(set) var lgf_MainTitleCurrentTransformTY: CGFloat = 0.0
+    public private(set) var lgf_MainTitleCurrentTransformTY: CGFloat = 0.0
     /// 主标题左右位移
-    private(set) var lgf_MainTitleCurrentTransformTX: CGFloat = 0.0
+    public private(set) var lgf_MainTitleCurrentTransformTX: CGFloat = 0.0
     /// 子标题放大缩小倍数
-    private(set) var lgf_SubTitleCurrentTransformSX: CGFloat = 1.0
+    public private(set) var lgf_SubTitleCurrentTransformSX: CGFloat = 1.0
     /// 子标题上下位移
-    private(set) var lgf_SubTitleCurrentTransformTY: CGFloat = 0.0
+    public private(set) var lgf_SubTitleCurrentTransformTY: CGFloat = 0.0
     /// 子标题左右位移
-    private(set) var lgf_SubTitleCurrentTransformTX: CGFloat = 0.0
+    public private(set) var lgf_SubTitleCurrentTransformTX: CGFloat = 0.0
     /// 标字体渐变色用数组
-    private(set) lazy var lgf_SelectColorRGBA: [CGFloat] = {
+    public private(set) lazy var lgf_SelectColorRGBA: [CGFloat] = {
         let (r, g, b, a) = lgf_Style.lgf_TitleSelectColor.lgfpt_Components.rgba
         let arr = [r, g, b, a]
         return arr
     }()
-    private(set) lazy var lgf_UnSelectColorRGBA: [CGFloat] = {
+    public private(set) lazy var lgf_UnSelectColorRGBA: [CGFloat] = {
         let (r, g, b, a) = lgf_Style.lgf_UnTitleSelectColor.lgfpt_Components.rgba
         let arr = [r, g, b, a]
         return arr
     }()
-    private(set) lazy var lgf_DeltaRGBA: [CGFloat] = {
+    public private(set) lazy var lgf_DeltaRGBA: [CGFloat] = {
         let r = lgf_UnSelectColorRGBA[0] - lgf_SelectColorRGBA[0]
         let g = lgf_UnSelectColorRGBA[1] - lgf_SelectColorRGBA[1]
         let b = lgf_UnSelectColorRGBA[2] - lgf_SelectColorRGBA[2]
@@ -142,17 +142,17 @@ public class LGFSwiftPTTitle: UIView {
         let arr = [r, g, b, a]
         return arr
     }()
-    private(set) lazy var lgf_SubSelectColorRGBA: [CGFloat] = {
+    public private(set) lazy var lgf_SubSelectColorRGBA: [CGFloat] = {
         let (r, g, b, a) = lgf_Style.lgf_SubTitleSelectColor.lgfpt_Components.rgba
         let arr = [r, g, b, a]
         return arr
     }()
-    private(set) lazy var lgf_SubUnSelectColorRGBA: [CGFloat] = {
+    public private(set) lazy var lgf_SubUnSelectColorRGBA: [CGFloat] = {
         let (r, g, b, a) = lgf_Style.lgf_UnSubTitleSelectColor.lgfpt_Components.rgba
         let arr = [r, g, b, a]
         return arr
     }()
-    private(set) lazy var lgf_SubDeltaRGBA: [CGFloat] = {
+    public private(set) lazy var lgf_SubDeltaRGBA: [CGFloat] = {
         let r = lgf_SubUnSelectColorRGBA[0] - lgf_SubSelectColorRGBA[0]
         let g = lgf_SubUnSelectColorRGBA[1] - lgf_SubSelectColorRGBA[1]
         let b = lgf_SubUnSelectColorRGBA[2] - lgf_SubSelectColorRGBA[2]
@@ -161,7 +161,7 @@ public class LGFSwiftPTTitle: UIView {
         return arr
     }()
     
-    private(set) weak var lgf_Style: LGFSwiftPTStyle! {// 配置用模型
+    public private(set) weak var lgf_Style: LGFSwiftPTStyle! {// 配置用模型
         didSet {
             // 非主要属性配置
             if lgf_Style.lgf_TitleCornerRadius > 0.0 {

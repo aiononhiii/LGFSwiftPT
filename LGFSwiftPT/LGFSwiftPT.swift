@@ -121,29 +121,29 @@ public class LGFSwiftPT: UIScrollView {
     /// LGFSwiftPT 主代理
     public weak var lgf_SwiftPTDelegate: LGFSwiftPTDelegate?
     /// 父控件
-    private(set) weak var lgf_SVC: UIViewController?
+    public private(set) weak var lgf_SVC: UIViewController?
     /// line
-    private(set) var lgf_TitleLine: LGFSwiftPTLine!
+    public private(set) var lgf_TitleLine: LGFSwiftPTLine!
     /// style
-    private(set) var lgf_Style: LGFSwiftPTStyle!
+    public private(set) var lgf_Style: LGFSwiftPTStyle!
     /// 所有标堆
-    private(set) lazy var lgf_TitleButtons: [LGFSwiftPTTitle] = []
+    public private(set) lazy var lgf_TitleButtons: [LGFSwiftPTTitle] = []
     /// 选中的下标
-    private(set) var lgf_SelectIndex: Int = 0
+    public private(set) var lgf_SelectIndex: Int = 0
     /// 前一个变成未选中的下标
-    private(set) var lgf_UnSelectIndex: Int = 0
+    public private(set) var lgf_UnSelectIndex: Int = 0
     /// 外部分页控制器
-    private(set) var lgf_PageView: UICollectionView!
+    public private(set) var lgf_PageView: UICollectionView!
     /// 最准确的选中标值
-    private(set) var lgf_RealSelectIndex: Int = 0
+    public private(set) var lgf_RealSelectIndex: Int = 0
     /// 手势控制
-    private(set) var lgf_SwiftPTViewEnabled: Bool! {
+    public private(set) var lgf_SwiftPTViewEnabled: Bool! {
         didSet {
             lgf_SetViewEnabled(lgf_SwiftPTViewEnabled, self)
         }
     }
     /// 操作中是否禁用手势
-    private(set) var lgf_PageViewEnabled: Bool! {
+    public private(set) var lgf_PageViewEnabled: Bool! {
         didSet {
             lgf_SetViewEnabled(lgf_PageViewEnabled, lgf_PageView)
         }
