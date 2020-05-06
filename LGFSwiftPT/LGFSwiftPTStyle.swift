@@ -88,6 +88,8 @@ public class LGFSwiftPTStyle: NSObject {
     }
     /// title 中间是否有分割线
     public var lgf_IsHaveCenterLine: Bool = false
+    /// title 分割线 颜色
+    public var lgf_CenterLineColor: UIColor = UIColor.black
     /// title 分割线 size
     public var lgf_CenterLineSize: CGSize = CGSize.init(width: 1.0, height: 6.0)
     /// title 分割线 X/Y 轴偏移

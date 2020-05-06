@@ -67,7 +67,7 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
         style.lgf_LineAnimation = .defult
         style.lgf_LineWidthType = .fixedWith
 //        style.lgf_StartDebug = true
-        style.lgf_MainTitleTransformSX = 2.0
+        style.lgf_TitleTransformSX = 2.0
         style.lgf_PVAnimationType = .topToBottom
         style.lgf_TitleScrollFollowType = .leftRight
         style.lgf_TitleLeftRightSpace = 10
@@ -106,6 +106,11 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
             W.constant = 10
             X.constant = -5
         }
+    }
+    
+    func lgf_SetAllTitleState(_ allTitles: [LGFSwiftPTTitle], _ style: LGFSwiftPTStyle, _ selectTitle: LGFSwiftPTTitle, _ unSelectTitle: LGFSwiftPTTitle, _ selectIndex: Int, _ unSelectIndex: Int, _ progress: CGFloat) {
+        unSelectTitle.lgf_SetMainTitleTransform(progress, false, selectIndex, unSelectIndex)
+        selectTitle.lgf_SetMainTitleTransform(progress, true, selectIndex, unSelectIndex)
     }
 }
 

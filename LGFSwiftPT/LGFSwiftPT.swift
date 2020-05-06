@@ -373,13 +373,16 @@ extension LGFSwiftPT {
         let animatedDuration = lgf_Style.lgf_TitleHaveAnimation ? duration : 0.0
         UIView.animateKeyframes(withDuration: animatedDuration, delay: 0.0, options: .calculationModeLinear, animations: {
             // 标整体状态改变
-            unSelectTitle.lgf_SetMainTitleTransform(1.0, false, self.lgf_SelectIndex, self.lgf_UnSelectIndex)
-            selectTitle.lgf_SetMainTitleTransform(1.0, true, self.lgf_SelectIndex, self.lgf_UnSelectIndex)
-            if self.lgf_Style.lgf_IsZoomExtruding {
-                lgf_ZoomExtruding(self.lgf_TitleButtons, self.lgf_Style, selectTitle, unSelectTitle, self.lgf_SelectIndex, self.lgf_UnSelectIndex, 1.0)
-            }
             if self.lgf_SwiftPTDelegate?.responds(to: #selector(self.lgf_SwiftPTDelegate!.lgf_SetAllTitleClickState(_:_:_:_:_:_:_:))) ?? false {
                 self.lgf_SwiftPTDelegate?.lgf_SetAllTitleClickState?(self.lgf_TitleButtons, self.lgf_Style, selectTitle, unSelectTitle, self.lgf_SelectIndex, self.lgf_UnSelectIndex, 1.0)
+            } else {
+                unSelectTitle.lgf_SetMainTitleTransform(1.0, false, self.lgf_SelectIndex, self.lgf_UnSelectIndex)
+                selectTitle.lgf_SetMainTitleTransform(1.0, true, self.lgf_SelectIndex, self.lgf_UnSelectIndex)
+            }
+            
+            // 挤压
+            if self.lgf_Style.lgf_IsZoomExtruding {
+                lgf_ZoomExtruding(self.lgf_TitleButtons, self.lgf_Style, selectTitle, unSelectTitle, self.lgf_SelectIndex, self.lgf_UnSelectIndex, 1.0)
             }
             
             let (selectX, selectWidth, unSelectX, unSelectWidth) = self.lgf_GetXAndW(selectTitle, unSelectTitle)
@@ -433,22 +436,25 @@ extension LGFSwiftPT {
         let selectTitle = lgf_TitleButtons[selectIndex]
         
         // 标整体状态改变
-        unSelectTitle.lgf_SetMainTitleTransform(progress, false, selectIndex, unSelectIndex)
-        selectTitle.lgf_SetMainTitleTransform(progress, true, selectIndex, unSelectIndex)
-        if lgf_Style.lgf_IsZoomExtruding {
-            lgf_ZoomExtruding(lgf_TitleButtons, lgf_Style, selectTitle, unSelectTitle, lgf_SelectIndex, lgf_UnSelectIndex, 1.0)
-        }
         if lgf_SwiftPTDelegate?.responds(to: #selector(lgf_SwiftPTDelegate?.lgf_SetAllTitleState(_:_:_:_:_:_:_:))) ?? false {
             lgf_SwiftPTDelegate?.lgf_SetAllTitleState?(lgf_TitleButtons, lgf_Style, selectTitle, unSelectTitle, selectIndex, unSelectIndex, progress)
             if lgf_Style.lgf_ShowPrint {
                 debugPrint(String.init(format: "🤖️:自定义标动效状态 progress:%f", progress))
             }
+        } else {
+            unSelectTitle.lgf_SetMainTitleTransform(progress, false, selectIndex, unSelectIndex)
+            selectTitle.lgf_SetMainTitleTransform(progress, true, selectIndex, unSelectIndex)
+        }
+        
+        // 挤压
+        if lgf_Style.lgf_IsZoomExtruding {
+            lgf_ZoomExtruding(lgf_TitleButtons, lgf_Style, selectTitle, unSelectTitle, lgf_SelectIndex, lgf_UnSelectIndex, 1.0)
         }
         
         // 标底部滚动条 更新位置
         if (lgf_TitleLine != nil) && lgf_Style.lgf_IsShowLine {
             let (selectX, selectWidth, unSelectX, unSelectWidth) = lgf_GetXAndW(selectTitle, unSelectTitle)
-            // LGFSwiftPTMethod 类里是所有我已经实现的动画代码，希望你们使用我的代理来自定义自己的动画，如果可以能够结合 LGFSwiftPTStyle 分享给大家那是极好的（我的动画代码不一定是最精简的，效果也不一定是最惊艳的～）
+            // LGFSwiftPTMethod 类里是所有我已经实现的动画代码，希望你们使用我的代理来自定义自己的动画，如果可以能够结合 LGFSwiftPTStyle 分享给大家那是极好的（我的动画效果不一定是好的）
             if lgf_Style.lgf_LineAnimation == .customize {
                 lgf_SwiftPTDelegate?.lgf_SwiftPTViewCustomizeScrollLineAnimationConfig?(lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, unSelectIndex, selectIndex, lgf_TitleLine, progress)
                 if lgf_Style.lgf_ShowPrint {

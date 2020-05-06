@@ -59,6 +59,8 @@ public class LGFSwiftPTTitle: UIView {
     @IBOutlet weak var lgf_SubTitleWidth: NSLayoutConstraint!
     /// 子标高度（子标宽度暂时于标共享取两者MAX值）
     @IBOutlet weak var lgf_SubTitleHeight: NSLayoutConstraint!
+    
+    /// 分割线
     @IBOutlet weak var lgf_CenterLine: UIView!
     @IBOutlet weak var lgf_CenterLineX: NSLayoutConstraint!
     @IBOutlet weak var lgf_CenterLineY: NSLayoutConstraint!
@@ -325,6 +327,7 @@ public class LGFSwiftPTTitle: UIView {
         // 分割线配置
         if title.lgf_Style.lgf_IsHaveCenterLine {
             title.lgf_CenterLine.isHidden = index == title.lgf_Style.lgf_Titles.count - 1
+            title.lgf_CenterLine.backgroundColor = title.lgf_Style.lgf_CenterLineColor
             title.lgf_CenterLineWidth.constant = title.lgf_Style.lgf_CenterLineSize.width
             title.lgf_CenterLineHeight.constant = title.lgf_Style.lgf_CenterLineSize.height
             title.lgf_CenterLineX.constant = title.lgf_Style.lgf_CenterLineCenter.x - (title.lgf_Style.lgf_CenterLineSize.width / 2.0)
@@ -428,6 +431,8 @@ public class LGFSwiftPTTitle: UIView {
         lgf_SubTitle.transform = CGAffineTransform.identity
         lgf_SubTitle.transform = CGAffineTransform.init(scaleX: lgf_SubTitleCurrentTransformSX, y: lgf_SubTitleCurrentTransformSX)
         lgf_SubTitle.transform = lgf_SubTitle.transform.translatedBy(x: lgf_SubTitleCurrentTransformTX, y: lgf_SubTitleCurrentTransformTY)
+        
+        lgf_CenterLine.transform = CGAffineTransform.init(scaleX: 1.0 / lgf_CurrentTransformSX, y: 1.0 / lgf_CurrentTransformSX)
         
         // 标颜色渐变
         if lgf_Style.lgf_TitleSelectColor != lgf_Style.lgf_UnTitleSelectColor {

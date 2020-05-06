@@ -40,7 +40,7 @@ public class LGFSwiftPTFlowLayout: UICollectionViewFlowLayout {
             break
         case .customize?:
             lgf_SwiftPTFlowLayoutDelegate?.lgf_FreePageViewCustomizeAnimation(attrs, self)
-            debugPrint(String.init(format: "自定义分页动画的 contentOffset.x:%f", collectionView!.contentOffset.x))
+            debugPrint(String.init(format: "🤖️:自定义分页动画的 contentOffset.x:%f", collectionView!.contentOffset.x))
             break
         default:
             break
