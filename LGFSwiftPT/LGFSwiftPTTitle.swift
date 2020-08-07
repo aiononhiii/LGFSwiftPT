@@ -308,7 +308,7 @@ public class LGFSwiftPTTitle: UIView {
     ///   - delegate: LGFSwiftPTTitle
     class func lgf_AllocTitle(_ titleText: String, _ index: Int,_ style: LGFSwiftPTStyle!, _ delegate: LGFSwiftPTTitleDelegate) -> LGFSwiftPTTitle {
         // 初始化标
-        let title = LGFPTBundle.loadNibNamed(String(describing: LGFSwiftPTTitle.self.classForCoder()), owner: self, options: nil)?.first as! LGFSwiftPTTitle
+        let title = LGFSwiftPTStyle.LGFPTBundle.loadNibNamed(String(describing: LGFSwiftPTTitle.self.classForCoder()), owner: self, options: nil)?.first as! LGFSwiftPTTitle
         title.tag = index
         title.lgf_SwiftPTTitleDelegate = delegate
         title.lgf_Style = style
@@ -490,6 +490,10 @@ public class LGFSwiftPTTitle: UIView {
                 }
             }
         }
+    }
+    
+    deinit {
+        debugPrint("🤖️:LGFSwiftPTTitle --- 已释放 ✈️")
     }
     
 }

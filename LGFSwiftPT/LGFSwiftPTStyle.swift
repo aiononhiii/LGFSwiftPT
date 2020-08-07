@@ -8,8 +8,6 @@
 
 import UIKit
 
-public let LGFPTBundle = Bundle.init(path: Bundle.init(for: LGFSwiftPT.self).path(forResource: "LGFSwiftPT", ofType: "bundle") ?? "") ?? Bundle.main
-
 public enum lgf_FreePageViewAnimationType {
     case defult/// 默认分页动画
     case topToBottom/// 从上往下进入的分页动画
@@ -41,8 +39,10 @@ public enum lgf_FreeTitleLineWidthType {
     case fixedWith/// 宽度等于固定宽度
 }
 
-
 public class LGFSwiftPTStyle: NSObject {
+    
+    public static let LGFPTBundle = Bundle.init(path: Bundle.init(for: LGFSwiftPT.self).path(forResource: "LGFSwiftPT", ofType: "bundle") ?? "") ?? Bundle.main
+    
     /// 开启 UI 调试模式（自定义 line 动画时可打开）
     public var lgf_StartDebug: Bool = false
     /// 展示自定义动画辅助 Print
@@ -329,4 +329,7 @@ public class LGFSwiftPTStyle: NSObject {
     public var lgf_LineBorderColor: UIColor = UIColor.clear
     public var lgf_LineImageContentMode: UIView.ContentMode = .scaleToFill
     
+    deinit {
+        debugPrint("🤖️:LGFSwiftPTStyle --- 已释放 ✈️")
+    }
 }

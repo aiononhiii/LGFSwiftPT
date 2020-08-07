@@ -33,10 +33,10 @@ public class LGFSwiftPTFlowLayout: UICollectionViewFlowLayout {
         let attrs = super.layoutAttributesForElements(in: rect)?.map { ($0.copy() as! UICollectionViewLayoutAttributes) } ?? []
         switch lgf_PVAnimationType {
         case .topToBottom?:
-            lgf_FreePageViewTopToBottomAnimationConfig(attrs, self)
+            self.lgf_FreePageViewTopToBottomAnimationConfig(attrs, self)
             break
         case .smallToBig?:
-            lgf_FreePageViewSmallToBigAnimationConfig(attrs, self)
+            self.lgf_FreePageViewSmallToBigAnimationConfig(attrs, self)
             break
         case .customize?:
             lgf_SwiftPTFlowLayoutDelegate?.lgf_FreePageViewCustomizeAnimation(attrs, self)
@@ -46,5 +46,9 @@ public class LGFSwiftPTFlowLayout: UICollectionViewFlowLayout {
             break
         }
         return attrs
+    }
+    
+    deinit {
+        debugPrint("🤖️:LGFSwiftPTFlowLayout --- 已释放 ✈️")
     }
 }

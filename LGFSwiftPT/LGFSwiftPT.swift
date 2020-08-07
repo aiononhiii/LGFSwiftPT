@@ -133,7 +133,7 @@ public class LGFSwiftPT: UIScrollView {
     /// 前一个变成未选中的下标
     public private(set) var lgf_UnSelectIndex: Int = 0
     /// 外部分页控制器
-    public private(set) var lgf_PageView: UICollectionView!
+    public private(set) weak var lgf_PageView: UICollectionView!
     /// 最准确的选中标值
     public private(set) var lgf_RealSelectIndex: Int = 0
     /// 手势控制
@@ -169,8 +169,7 @@ public class LGFSwiftPT: UIScrollView {
         return lgf(style, SVC, nil, PV, frame)
     }
     public class func lgf(_ style: LGFSwiftPTStyle, _ SVC: UIViewController?, _ SV: UIView!, _ PV: UICollectionView!, _ frame: CGRect) -> LGFSwiftPT {
-        assert(style.lgf_UnSelectImageNames.count == style.lgf_SelectImageNames.count, "🤖️:选中图片数组和未选中图片数组count必须一致")
-        let SwiftPT = LGFPTBundle.loadNibNamed(String(describing: LGFSwiftPT.self.classForCoder()), owner: self, options: nil)?.first as! LGFSwiftPT
+        let SwiftPT = LGFSwiftPTStyle.LGFPTBundle.loadNibNamed(String(describing: LGFSwiftPT.self.classForCoder()), owner: self, options: nil)?.first as! LGFSwiftPT
         SwiftPT.lgf_Style = style
         SwiftPT.lgf_PageView = PV
         SwiftPT.lgf_SVC = SVC
@@ -178,20 +177,13 @@ public class LGFSwiftPT: UIScrollView {
         // 部分基础 UI 配置
         SwiftPT.backgroundColor = SwiftPT.lgf_Style.lgf_PVTitleViewBackgroundColor
         if #available(iOS 11.0, *) {
-            if SwiftPT.lgf_PageView != nil {
-                SwiftPT.lgf_PageView.contentInsetAdjustmentBehavior = .never
-            }
+            SwiftPT.lgf_PageView?.contentInsetAdjustmentBehavior = .never
         } else {
             SwiftPT.lgf_SVC!.automaticallyAdjustsScrollViewInsets = false
         }
-        if SV != nil {
-            SV.addSubview(SwiftPT)
-        }
-        
+        SV?.addSubview(SwiftPT)
         DispatchQueue.main.async {
-            if SwiftPT.lgf_PageView != nil {
-                SwiftPT.lgf_PageViewConfig()
-            }
+            SwiftPT.lgf_PageViewConfig()
             // 是否有固定 Frame
             if SwiftPT.lgf_Style.lgf_PVTitleViewFrame == .zero {
                 if frame == .zero {
@@ -203,6 +195,7 @@ public class LGFSwiftPT: UIScrollView {
                 SwiftPT.frame = SwiftPT.lgf_Style.lgf_PVTitleViewFrame
             }
         }
+        assert(SwiftPT.lgf_Style.lgf_UnSelectImageNames.count == SwiftPT.lgf_Style.lgf_SelectImageNames.count, "🤖️:选中图片数组和未选中图片数组count必须一致")
         return SwiftPT
     }
     
@@ -230,8 +223,6 @@ public class LGFSwiftPT: UIScrollView {
             }
         }
         assert((selectIndex <= (lgf_Style.lgf_Titles.count - 1)) && (selectIndex >= 0), "🤖️:lgf_ReloadTitleAndSelectIndex -> selectIndex 导致数组越界了")
-        // 删除一遍所有子控件
-        lgf_RemoveAllSubViews()
         DispatchQueue.main.async {
             // 初始化选中值
             self.lgf_AutoSelectIndex(selectIndex)
@@ -317,6 +308,15 @@ public class LGFSwiftPT: UIScrollView {
         }
     }
     
+    // MARK: - 切换||重设 外部关联 lgf_PageView
+    /// - Parameters:
+    ///   - PV: lgf_PageView
+    ///   - reload: 切换后是否刷新数据源
+    public func lgf_ResetPageView(_ PV: UICollectionView) {
+        lgf_PageView = PV
+        lgf_PageViewConfig()
+    }
+    
     // MARK: - 自动计算 contentSize
     public func lgf_AutoSwiftPTContentSize() {
         var contentWidth: CGFloat = 0.0
@@ -324,25 +324,9 @@ public class LGFSwiftPT: UIScrollView {
         contentSize = CGSize.init(width: contentWidth, height: -lgfpt_Height)
     }
     
-    // MARK: - 删除所有子控件
-    public func lgf_RemoveAllSubViews() {
-        subviews.forEach { $0.removeFromSuperview() }
-        lgf_TitleButtons.removeAll()
-    }
-    
     deinit {
-        lgf_RemoveAllSubViews()
-        if lgf_PageView != nil {
-            lgf_PageView.removeObserver(self, forKeyPath: "contentOffset")
-        }
-        lgf_Style = nil
-        lgf_SVC?.children.forEach {
-            $0.willMove(toParent: lgf_SVC)
-            $0.view.removeFromSuperview()
-            $0.removeFromParent()
-        }
-        removeFromSuperview()
-        debugPrint("🤖️:分页控件 LGFSwiftPT --- 已经释放完毕 ✈️")
+        lgf_PageView?.removeObserver(self, forKeyPath: "contentOffset")
+        debugPrint("🤖️:分页控件 < LGFSwiftPT > --- 已释放 ✈️✈️✈️")
     }
 }
 
@@ -382,7 +366,7 @@ extension LGFSwiftPT {
             
             // 挤压
             if self.lgf_Style.lgf_IsZoomExtruding {
-                lgf_ZoomExtruding(self.lgf_TitleButtons, self.lgf_Style, selectTitle, unSelectTitle, self.lgf_SelectIndex, self.lgf_UnSelectIndex, 1.0)
+                self.lgf_ZoomExtruding(self.lgf_TitleButtons, self.lgf_Style, selectTitle, unSelectTitle, self.lgf_SelectIndex, self.lgf_UnSelectIndex, 1.0)
             }
             
             let (selectX, selectWidth, unSelectX, unSelectWidth) = self.lgf_GetXAndW(selectTitle, unSelectTitle)
@@ -391,7 +375,7 @@ extension LGFSwiftPT {
                 if self.lgf_Style.lgf_LineAnimation == .customize {
                     self.lgf_SwiftPTDelegate?.lgf_SwiftPTViewCustomizeClickLineAnimationConfig?(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, animatedDuration)
                 } else {
-                    lgf_AutoClickLineAnimationConfig(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, duration)
+                    self.lgf_AutoClickLineAnimationConfig(self.lgf_Style, selectX, selectWidth, unSelectX, unSelectWidth, unSelectTitle, selectTitle, self.lgf_UnSelectIndex, self.lgf_SelectIndex, self.lgf_TitleLine, duration)
                 }
             }
         }) { (finish) in

@@ -61,13 +61,13 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
     
     func creatSwiftPT() {
         let style = LGFSwiftPTStyle()
-        style.lgf_IsShowLine = false
+        style.lgf_IsShowLine = true
         style.lgf_LineHeight = 5
         style.lgf_LineWidth = 20
-        style.lgf_LineAnimation = .defult
+        style.lgf_LineAnimation = .tortoiseDown
         style.lgf_LineWidthType = .fixedWith
-//        style.lgf_StartDebug = true
-        style.lgf_TitleTransformSX = 2.0
+        style.lgf_StartDebug = true
+        style.lgf_TitleTransformSX = 1.4
         style.lgf_PVAnimationType = .topToBottom
         style.lgf_TitleScrollFollowType = .leftRight
         style.lgf_TitleLeftRightSpace = 10
@@ -84,15 +84,22 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
         
         style.lgf_Titles = ["转入", "转出转闪电", "转入", "出", "", "转出", "转出", "转出", "转出", "转出", "转出", "转出", "转出"] // 这两句可以随意替换设置
         
-        swiftPT = LGFSwiftPT.lgf(style, self, sview, collectionView)
+        swiftPT = LGFSwiftPT.lgf(style, self, nil, nil)
         swiftPT.lgf_SwiftPTDelegate = self
         if swiftPT.lgf_SelectIndex == 0 {
             
         }
+        sview.addSubview(swiftPT)
+        swiftPT.lgf_ResetPageView(collectionView)
+        
+        
 //        swiftPT.lgf_Style.lgf_Titles = ["转入", "转出转闪电", "转入", "出", "", "转出", "转出", "转出", "转出", "转出", "转出", "转出", "转出"]// 这两句可以随意替换设置
         swiftPT.lgf_ReloadTitle()// 这句必须设置，不然不刷新 swiftPT 的 UI，也可用来随时替换新的数据源（替换时如果你关联了外部 collectionview ，记得也同时修改你自己定义的外部 collectionview 的数据源防止数组越界）
     }
     
+    @IBAction func testClick(_ sender: Any) {
+        
+    }
     
     @IBAction func showAliPay(_ sender: Any) {
         let vc = UIStoryboard.init(name: "VerticalViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "VerticalViewController")
@@ -111,6 +118,10 @@ class ViewController: UIViewController, LGFSwiftPTDelegate {
     func lgf_SetAllTitleState(_ allTitles: [LGFSwiftPTTitle], _ style: LGFSwiftPTStyle, _ selectTitle: LGFSwiftPTTitle, _ unSelectTitle: LGFSwiftPTTitle, _ selectIndex: Int, _ unSelectIndex: Int, _ progress: CGFloat) {
         unSelectTitle.lgf_SetMainTitleTransform(progress, false, selectIndex, unSelectIndex)
         selectTitle.lgf_SetMainTitleTransform(progress, true, selectIndex, unSelectIndex)
+    }
+    
+    func lgf_GetLGFSwiftPTTitle(_ lgf_SwiftPTTitle: UIView, _ index: Int, _ style: LGFSwiftPTStyle) {
+        
     }
 }
 

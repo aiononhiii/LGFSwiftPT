@@ -75,12 +75,16 @@ public class LGFSwiftPTLine: UIImageView {
     ///   - style: LGFSwiftPTStyle
     ///   - delegate: LGFSwiftPTLineDelegate
     class func lgf_AllocLine(_ style: LGFSwiftPTStyle, _ delegate: LGFSwiftPTLineDelegate) -> LGFSwiftPTLine {
-        let line = LGFPTBundle.loadNibNamed(String(describing: LGFSwiftPTLine.self.classForCoder()), owner: self, options: nil)?.first as! LGFSwiftPTLine
+        let line = LGFSwiftPTStyle.LGFPTBundle.loadNibNamed(String(describing: LGFSwiftPTLine.self.classForCoder()), owner: self, options: nil)?.first as! LGFSwiftPTLine
         line.lgf_SwiftPTLineDelegate = delegate
         line.lgf_Style = style
         // 这个代理放在最下面，对一些 LGFSwiftPTStyle 配置的属性拥有最终修改权
         line.lgf_SwiftPTLineDelegate?.lgf_GetLine(line, style)
         return line
+    }
+    
+    deinit {
+        debugPrint("🤖️:LGFSwiftPTLine --- 已释放 ✈️")
     }
     
 }
